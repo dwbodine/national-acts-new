@@ -1,0 +1,43 @@
+@use 'variables' as v;
+
+.contactSection {
+  min-height: 80vh;
+}
+
+.form-cell {
+  margin-bottom: 10px;
+}
+
+.contactSection input[type='text'],
+.contactSection input[type='email'],
+.contactSection textarea {
+  width: 100%;
+}
+
+.contact-header {
+  padding: 40px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.contact-header h1 {
+  font-size: v.$contact-title-font-size;
+  margin-bottom: 15px;
+}
+
+.contact-header p {
+  font-size: v.$contact-font-size;
+  font-weight: bold;
+}
+
+.contact-header-submit-button {
+  margin: 10px 0;
+}
+
+.contact-section-response {
+  text-align: center;
+}
+
+.contact-section-response p {
+  font-size: v.$contact-response-font-size;
+}

@@ -1,0 +1,113 @@
+@use 'variables' as v;
+
+.artist-box-col {
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px 25px;
+}
+
+.artist-box-col h1 {
+  font-size: 28px;
+  margin: 0;
+  padding: 0;
+  color: v.$artist-box-header-color;
+}
+
+.social-network-container {
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+}
+
+ul.social-network {
+  list-style: none;
+  display: flex;
+  margin: 0 auto;
+  padding: 0;
+  flex-direction: row;
+}
+
+ul.social-network li {
+  display: flex;
+  margin: 0 5px;
+}
+
+.social-circle li a {
+  display: inline-block;
+  position: relative;
+  margin: 0 auto 0 auto;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
+  color: v.$artist-box-icon-color;
+}
+
+.social-circle li i {
+  margin: 0;
+  line-height: 40px;
+  text-align: center;
+}
+
+.social-network a.icoWebsite:hover {
+  color: v.$artist-box-icon-hover-color;
+  background: v.$artist-box-website-hover-color;
+}
+
+.social-network a.icoInstagram:hover {
+  color: v.$artist-box-icon-hover-color;
+  background: v.$artist-box-instagram-hover-background;
+}
+
+.social-network a.icoFacebook:hover {
+  color: v.$artist-box-icon-hover-color;
+  background-color: v.$artist-box-facebook-hover-color;
+}
+
+.social-network a.icoTwitter:hover {
+  color: v.$artist-box-icon-hover-color;
+  background-color: v.$artist-box-twitter-hover-color;
+}
+
+.social-network a.icoYouTube:hover {
+  color: v.$artist-box-icon-hover-color;
+  background-color: v.$artist-box-youtube-hover-color;
+}
+
+.social-network a.icoSpotify:hover {
+  color: v.$artist-box-icon-hover-color;
+  background-color: v.$artist-box-spotify-hover-color;
+}
+
+@media (max-width: 768px) {
+  .artist-box-col {
+    padding: 15px 0;
+  }
+
+  ul.social-network {
+    display: inline;
+  }
+
+  ul.social-network li {
+    display: inline;
+  }
+
+  .social-circle li a {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 375px) {
+  .artist-box-col {
+    padding: unset;
+  }
+}
+
+@media (max-width: 320px) {
+  ul.social-network li {
+    margin: 0;
+  }
+}

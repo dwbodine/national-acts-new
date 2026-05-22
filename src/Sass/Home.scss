@@ -1,0 +1,309 @@
+.homeSection {
+  padding: 0;
+  overflow: hidden;
+  min-height: 80vh;
+}
+
+.hero-image {
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.hero-image #crowdPic {
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.hero-image #logoPic {
+  width: 33%;
+  left: 33%;
+  top: 33%;
+}
+
+.homeSection h1 {
+  text-align: center;
+  color: #d90617;
+  text-transform: uppercase;
+}
+
+.banner-col {
+  width: 100vw;
+  overflow: hidden;
+  text-align: center;
+  padding: 0;
+  background-image: url(/images/home_banner.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 69px;
+}
+
+.banner-col img {
+  display: none;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.select-col {
+  width: 100vw;
+  background-color: #333333;
+  overflow: hidden;
+  text-align: center;
+  background-image: url(/images/select_vip.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 30px;
+  padding: 0;
+}
+
+.select-col #home_select_500 {
+  display: none;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.home-vip-col {
+  background:
+    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+  background-color: #131313;
+  background-size: 20px 20px;
+  min-height: 500px;
+}
+
+.front-page-search {
+  margin-top: 0;
+}
+
+.front-page-search .jumbotron {
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 32px;
+}
+
+.front-page-search .input-group {
+  vertical-align: middle;
+}
+
+.front-page-search .form-control {
+  border-radius: 4px 0 0 4px;
+}
+
+.search-banner-col {
+  height: 75px;
+  background-color: #b10009;
+  background-image: linear-gradient(#b10009, #f00011);
+}
+
+@media (max-width: 769px) {
+  .banner-col {
+    background-image: unset;
+    height: unset;
+  }
+
+  .banner-col img {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .select-col {
+    background-image: unset;
+    height: unset;
+  }
+
+  .select-col #home_select_500 {
+    display: block;
+  }
+}
+
+@media (max-width: 500px) {
+  .select-col #home_select_500 {
+    display: block;
+  }
+}
+
+@media (max-width: 320px) {
+  .front-page-search .form-control {
+    min-width: unset;
+    max-width: 150px;
+  }
+}
+
+.homeSection .category-header {
+  margin: 25px 0;
+  text-align: center;
+}
+
+.home-tab {
+  margin: 10px;
+  padding: 0;
+  text-align: center;
+  min-height: 175px;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 300ms, font-size 300ms;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-tab:hover {
+  opacity: .7;
+}
+
+.home-tab h4 {
+  font-weight: bold;
+  color: #fff;
+  align-self: flex-end;
+  width: 100%;
+  transition: font-size 300ms;
+  font: 24px 'Carrois Gothic SC', sans-serif;
+  text-transform: uppercase;
+}
+
+.home-tab:hover h4 {
+  font-size: 40px;
+}
+
+
+.concerts-tab {
+  background-image: url(/images/music_icon.jpg);
+}
+
+
+.vip-tab {
+  background-image: url(/images/vip_icon.jpg);
+}
+
+
+.conference-tab {
+  background-image: url(/images/conf_icon.jpg);
+}
+
+
+.fundraiser-tab {
+  background-image: url(/images/fund_icon.jpg);
+}
+
+
+.festival-tab {
+  background-image: url(/images/festival_icon.jpg);
+}
+
+
+.sports-tab {
+  background-image: url(/images/sports_icon.jpg);
+}
+
+
+.networking-tab {
+  background-image: url(/images/network_icon.jpg);
+}
+
+
+.arts-tab {
+  background-image: url(/images/arts_icon.jpg);
+}
+
+.classes-tab {
+  background-image: url(/images/classes_icon.jpg);
+}
+
+.homeVipImgContainer {
+  max-width: 250px !important;
+  height: 150px !important;
+  background-size: contain !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  margin: 0 50px 10px 50px !important;
+}
+
+.homeVipImgContainer:hover {
+  filter: grayscale(0%);
+  cursor: pointer;
+}
+
+.homeVipImgContainer::after {
+  content: '';
+  position: relative;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
+  transition: background .25s;
+}
+
+.homeVipImgContainer:hover::after {
+  content: '';
+  position: relative;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
+  transition: background .25s;
+}
+
+.homeVipImgContainer:hover::before {
+  content: 'Get VIP';
+  text-transform: uppercase;
+  color: white;
+  background: #800;
+  position: relative;
+  top: 40%;
+  left: 30%;
+  padding: 1.5em;
+  -ms-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+  transition: opacity .25s;
+  z-index: 6;
+}
+
+@media (max-width: 600px) {
+  .homeVipImgContainer {
+    height: 100px;
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .front-page-search {
+    margin-top: 50px;
+  }
+
+  .jumbotron h1 {
+    font-size: 1.5rem;
+  }
+
+  .banner-col {
+    line-height: 0;
+  }
+
+  .banner-col img {
+    vertical-align: unset;
+    overflow: hidden;
+  }
+
+  .select-col {
+    display: none;
+  }
+}
+
+@media (max-width: 329px) {
+  .jumbotron h1 {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,142 @@
+.sellTicketsSection,
+.sellTicketsVIPSection {
+  min-height: 80vh;
+}
+
+.sellTicketsSection h2,
+.sellTicketsVIPSection h2 {
+  font-weight: bold;
+}
+
+.sellTicketsSection .icon,
+.sellTicketsVIPSection .icon {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.sellTicketsSection h6,
+.sellTicketsVIPSection h6 {
+  font-weight: bold;
+}
+
+.hero-image .sell-tickets-title {
+  display: block;
+  z-index: 1;
+  position: absolute;
+  left: 33.5%;
+  bottom: 5%;
+  width: 33%;
+  text-align: center;
+}
+
+.hero-image .sell-tickets-title h2 {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 950px) {
+  .hero-image .sell-tickets-title h2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 800px) {
+  .hero-image .sell-tickets-title h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero-image .sell-tickets-title h2 {
+    font-size: 20px;
+    position: relative;
+  }
+
+  .sell-tickets-title {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .sell-tickets-title {
+    margin-top: 125px;
+  }
+
+  .hero-image .sell-tickets-title h2 {
+    font-size: 18px;
+    position: unset;
+    color: #d90617;
+  }
+}
+
+@media (max-width: 380px) {
+  .sell-tickets-title {
+    margin-top: 175px;
+  }
+
+  .hero-image .sell-tickets-title h2 {
+    font-size: 16px;
+  }
+}
+
+.slide {
+  width: 90vw;
+  height: 65vh;
+  margin: 0 10%;
+  text-align: center;
+}
+
+@media (max-width: 1500px) {
+  .slide {
+    margin: 0 15%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .slide {
+    margin: 0 5%;
+  }
+}
+
+@media (max-width: 960px) {
+  .slide {
+    margin: 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .slide {
+    height: auto;
+  }
+}
+
+.ticket-management {
+  max-width: 100%;
+  height: auto;
+}
+
+.ticket-management-list {
+  line-height: 35px;
+}
+
+.ticket-management-list li {
+  text-align: left;
+}
+
+.sign-up {
+  margin-top: -50px;
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.image-row {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .image-row {
+    display: none;
+  }
+}

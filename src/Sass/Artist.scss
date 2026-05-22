@@ -1,0 +1,107 @@
+@use 'variables' as v;
+
+.artistSection {
+  text-align: center;
+  overflow: hidden;
+  min-height: 80vh;
+}
+
+.artist-info-row {
+  max-width: 1600px;
+  margin: auto;
+  text-align: center;
+}
+
+.artist_title_1,
+.artist_title_2,
+.artist_text {
+  color: v.$header-color;
+}
+
+.artist_title_1 {
+  text-align: center;
+  font-size: 24pt;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.artist_title_2 {
+  text-align: center;
+  font-size: 18pt;
+  font-weight: bold;
+}
+
+.artist_text {
+  text-align: center;
+  font-size: 12pt;
+}
+
+.artist-header {
+  margin: 0 -12px;
+  padding: 0;
+}
+
+.artist-header .artist-image {
+  padding: 0;
+}
+
+.artist-header img {
+  width: 100%;
+  height: auto;
+}
+
+.artistSection .upcoming-events {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  margin: 25px 0 15px 0;
+}
+
+.wait-spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.wait-spinner {
+  margin: 50px auto;
+  min-height: 100vh;
+}
+
+.redirect-box-container {
+  padding: 0;
+}
+
+.redirect-box {
+  height: 125px;
+  margin: 0;
+  padding: 0;
+  background-color: v.$redirect-box-background-color;
+  outline: 2px solid v.$redirect-box-border-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.redirect-box div {
+  margin: auto;
+  padding: 0;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+@media (max-width: 974px) {
+  .redirect-box {
+    width: auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 524px) {
+  .redirect-box div {
+    top: unset;
+  }
+}

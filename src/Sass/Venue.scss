@@ -1,0 +1,96 @@
+.venueSection {
+  margin-top: -25px;
+  text-align: center;
+  min-height: 80vh;
+}
+
+.venue_title_1 {
+  color: black;
+}
+
+.venue-image {
+  padding: 0;
+}
+
+.venue-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.venue-col {
+  text-align: left;
+  padding: 15px;
+}
+
+.venue-col h1 {
+  color: black;
+}
+
+@media (max-width: 480px) {
+  .venue-col h1 {
+    font-size: 30px;
+  }
+
+  .venue-col p {
+    font-size: 12px;
+  }
+}
+
+.venue-col-right {
+  text-align: right;
+}
+
+@media (max-width: 575px) {
+  .venue-col {
+    text-align: center;
+  }
+
+  .venue-col-right {
+    text-align: center;
+  }
+}
+
+.topRow {
+  padding: 0;
+}
+
+.topRow .col {
+  padding: 0;
+}
+
+.bottomRow {
+  background-color: transparent;
+  padding-top: 10px;
+}
+
+.venue-col p,
+.venue-col h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.venueSection .upcoming-events {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  margin: 25px 0 15px 0;
+}
+
+.seller-thumb {
+  display: block;
+}
+
+.seller-thumb img {
+  max-width: 100px;
+}
+
+@media only screen and (max-width: 480px) {
+  .seller-thumb {
+    display: none;
+  }
+}
+
+.fixed-width-control, input[type=text].fixed-width-control {
+  width: 300px;
+  max-width: unset;
+}

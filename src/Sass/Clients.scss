@@ -1,0 +1,72 @@
+.clientSection {
+  min-height: 80vh;
+}
+
+.clientSection div {
+  overflow: hidden;
+}
+
+.clientSection .row .col-lg-6,
+.clientSection .row .col-xl-4 {
+  margin: 10px 0;
+}
+
+.featImgContainer {
+  max-width: 400px;
+  height: 150px !important;
+  overflow: hidden !important;
+  position: relative;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 10px !important;
+}
+
+.featImgContainer:hover {
+  filter: grayscale(0%);
+  cursor: pointer;
+}
+
+.featImgContainer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
+  transition: background .25s;
+}
+
+.featImgContainer:hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
+  transition: background .25s;
+}
+
+.featImgContainer:hover::before {
+  content: 'Get VIP';
+  text-transform: uppercase;
+  color: white;
+  background: #800;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 1.5em;
+  -ms-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+  transition: opacity .25s;
+  z-index: 6;
+}
+
+@media(max-width: 430px) {
+  .featImgContainer {
+    max-width: 360px;
+    background-size: cover;
+  }
+}
