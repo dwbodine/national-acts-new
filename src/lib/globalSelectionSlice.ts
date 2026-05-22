@@ -1,20 +1,32 @@
 'use client';
 
-import { Faq, GlobalSelection, Menu, Page, SiteSetting, VipEvent } from '../types/public';
+import {
+  Faq,
+  FeaturedArtist,
+  GlobalSelection,
+  Menu,
+  Page,
+  SiteSetting,
+  Tour,
+  VipEvent,
+} from '../types/public';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 const initialState: GlobalSelection = {
   artists: undefined,
   eventReloadTime: 0,
+  featuredArtists: undefined,
   generalFAQ: [],
   isLoading: false,
   menu: undefined,
   pages: undefined,
   reloadArtists: true,
   reloadEvents: true,
+  reloadFeaturedArtists: true,
   reloadGeneralFaqs: true,
   reloadMenu: true,
   reloadSettings: true,
+  reloadTours: true,
   reloadVIPFAQs: true,
   settings: undefined,
   vipFAQ: [],
@@ -34,6 +46,10 @@ export const globalSelectionSlice = createSlice({
     },
     setEvents: (state, action: PayloadAction<VipEvent[]>) => {
       state.events = action.payload;
+      return state;
+    },
+    setFeaturedArtists: (state, action: PayloadAction<FeaturedArtist[]>) => {
+      state.featuredArtists = action.payload;
       return state;
     },
     setGeneralFAQ: (state, action: PayloadAction<Faq[]>) => {
@@ -60,6 +76,10 @@ export const globalSelectionSlice = createSlice({
       state.reloadEvents = action.payload;
       return state;
     },
+    setReloadFeaturedArtists: (state, action: PayloadAction<boolean>) => {
+      state.reloadFeaturedArtists = action.payload;
+      return state;
+    },
     setReloadGeneralFAQs: (state, action: PayloadAction<boolean>) => {
       state.reloadGeneralFaqs = action.payload;
       return state;
@@ -72,12 +92,20 @@ export const globalSelectionSlice = createSlice({
       state.reloadSettings = action.payload;
       return state;
     },
+    setReloadTours: (state, action: PayloadAction<boolean>) => {
+      state.reloadTours = action.payload;
+      return state;
+    },
     setReloadVIPFAQs: (state, action: PayloadAction<boolean>) => {
       state.reloadVIPFAQs = action.payload;
       return state;
     },
     setSettings: (state, action: PayloadAction<SiteSetting[]>) => {
       state.settings = action.payload;
+      return state;
+    },
+    setTours: (state, action: PayloadAction<Tour[]>) => {
+      state.tours = action.payload;
       return state;
     },
     setVIPFAQ: (state, action: PayloadAction<Faq[]>) => {
@@ -91,17 +119,21 @@ export const {
   setArtists,
   setEventReloadTime,
   setEvents,
+  setFeaturedArtists,
   setGeneralFAQ,
   setIsLoading,
   setMenu,
   setPages,
   setReloadArtists,
   setReloadEvents,
+  setReloadFeaturedArtists,
   setReloadGeneralFAQs,
   setReloadMenu,
   setReloadSettings,
+  setReloadTours,
   setReloadVIPFAQs,
   setSettings,
+  setTours,
   setVIPFAQ,
 } = globalSelectionSlice.actions;
 

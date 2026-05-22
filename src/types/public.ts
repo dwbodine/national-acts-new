@@ -104,11 +104,15 @@ export type GlobalSelection = {
   artists?: Page[];
   events?: VipEvent[];
   eventReloadTime?: number;
+  featuredArtists?: FeaturedArtist[];
   reloadArtists: boolean;
   reloadEvents: boolean;
+  reloadFeaturedArtists: boolean;
   reloadGeneralFaqs: boolean;
   reloadVIPFAQs: boolean;
+  reloadTours: boolean;
   pages?: Page[];
+  tours?: Tour[];
   settings?: SiteSetting[];
   reloadSettings: boolean;
   isLoading: boolean;
@@ -189,6 +193,16 @@ export interface Seller {
   sellerEventCategories?: SellerEventCategory[];
 }
 
+export interface Tour {
+  tourId: number;
+  sellers?: Seller[];
+  tourName: string;
+  isActive: boolean;
+  announceDate: string;
+  coverImage?: string;
+  href?: string;
+}
+
 export interface Page {
   pageId: number;
   route: string;
@@ -229,4 +243,13 @@ export interface EmailMessage {
   ccEmails?: string[];
   fromAddress?: string;
   fromName?: string;
+}
+
+export interface FeaturedArtist {
+  featuredArtistOrder: number;
+  title: string;
+  backgroundImage?: string;
+  previewImage: string;
+  logoImage: string;
+  href: string;
 }

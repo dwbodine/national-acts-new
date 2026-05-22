@@ -27,14 +27,14 @@ export default function FAQ(props: PageProps) {
                     </Col>
                 </Row>
                 <Row className="justify-content-center">
-                    <Col xl={4} lg={5} md={6} sm={12}>
+                    <Col xxl={6} xl={6} lg={6} md={6} sm={12} xs={12}>
                         <div className="faq-card" onClick={() => goToFaq(FAQType.General)}>
                             <img src="/images/logo_icon.jpg" alt="General Questions about Concert Tickets" />
                             <h3>General Questions about Concert Tickets</h3>
                             <button>Read More</button>
                         </div>
                     </Col>
-                    <Col xl={4} lg={5} md={6} sm={12}>
+                    <Col xxl={6} xl={6} lg={6} md={6} sm={12} xs={12}>
                         <div className="faq-card" onClick={() => goToFaq(FAQType.VIP)}>
                             <img src="/images/logo_icon.jpg" alt="General Questions About VIP Meet And Greets" />
                             <h3>General Questions About VIP Meet And Greets</h3>

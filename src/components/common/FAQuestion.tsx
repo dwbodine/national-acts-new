@@ -1,3 +1,5 @@
+"use client";
+
 import { FAQuestionProps } from "@/types/props";
 import parse from 'html-react-parser';
 import { useState } from "react";

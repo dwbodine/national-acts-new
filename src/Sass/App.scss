@@ -1,104 +1,25 @@
 @use 'variables' as v;
 
-@font-face {
-  font-family: 'Carrois Gothic SC';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/carroisgothicsc/v16/ZgNJjOVHM6jfUZCmyUqT2A2HVKjc-18gPnc.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Calibri';
-  font-style: italic;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/l/font?kit=J7adnpV-BGlaFfdAhLQo6btP&skey=36a3d5758e0e2f58&v=v15) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Calibri';
-  font-style: italic;
-  font-weight: 700;
-  src: url(https://fonts.gstatic.com/l/font?kit=J7aYnpV-BGlaFfdAhLQgUp5aHRge&skey=8b00183e5f6700b6&v=v15) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Calibri';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/l/font?kit=J7afnpV-BGlaFfdAhLEY6w&skey=a1029226f80653a8&v=v15) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Calibri';
-  font-style: normal;
-  font-weight: 700;
-  src: url(https://fonts.gstatic.com/l/font?kit=J7aanpV-BGlaFfdAjAo9_pxqHw&skey=cd2dd6afe6bf0eb2&v=v15) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-/* cyrillic */
-@font-face {
-  font-family: 'Helvetica Neue';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/l/font?kit=jAnfgHBgCsv4eNLTaMECf8DQsNS_exA&skey=4ad46dd97873f7d7&v=v17) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek */
-@font-face {
-  font-family: 'Helvetica Neue';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/l/font?kit=jAnfgHBgCsv4eNLTaMECf8DQsNS4exA&skey=4ad46dd97873f7d7&v=v17) format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Helvetica Neue';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/l/font?kit=jAnfgHBgCsv4eNLTaMECf8DQsNS1exA&skey=4ad46dd97873f7d7&v=v17) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Helvetica Neue';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/l/font?kit=jAnfgHBgCsv4eNLTaMECf8DQsNS7exA&skey=4ad46dd97873f7d7&v=v17) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
 body {
   margin: 0;
-  padding-top: 56px;
-  font-family: "Calibri", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: v.$main-font-family;
   font-size: 14px;
-  color: #333333;
-  background-color: #fff;
-}
-
-h1,
-h2,
-h3 {
-  font-family: 'Impact', 'Carrois Gothic SC', sans-serif;
-  text-transform: uppercase;
-  color: #d90617;
+  color: v.$main-text-color;
+  background-color: v.$main-background-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .required-field {
   color: #d90617;
 }
 
-input[type=text],
-input[type=email],
-input[type=date],
-input[type=tel],
-input[type=url],
+input[type='text'],
+input[type='email'],
+input[type='date'],
+input[type='tel'],
+input[type='url'],
 textarea,
 select {
   padding: 5px;
@@ -107,13 +28,13 @@ select {
   border: 1px solid grey;
 }
 
-input[type=text]:hover,
-input[type=email]:hover,
-input[type=button]:hover,
-input[type=submit]:hover,
-input[type=date]:hover,
-input[type=tel]:hover,
-input[type=url]:hover,
+input[type='text']:hover,
+input[type='email']:hover,
+input[type='button']:hover,
+input[type='submit']:hover,
+input[type='date']:hover,
+input[type='tel']:hover,
+input[type='url']:hover,
 textarea:hover,
 select:hover,
 button:hover {
@@ -121,14 +42,14 @@ button:hover {
   cursor: pointer;
 }
 
-input[type=text]:disabled:hover,
-input[type=checkbox]:disabled:hover,
-input[type=email]:disabled:hover,
-input[type=button]:disabled:hover,
-input[type=submit]:disabled:hover,
-input[type=date]:disabled:hover,
-input[type=tel]:disabled:hover,
-input[type=url]:disabled:hover,
+input[type='text']:disabled:hover,
+input[type='checkbox']:disabled:hover,
+input[type='email']:disabled:hover,
+input[type='button']:disabled:hover,
+input[type='submit']:disabled:hover,
+input[type='date']:disabled:hover,
+input[type='tel']:disabled:hover,
+input[type='url']:disabled:hover,
 textarea:disabled:hover,
 select:disabled:hover,
 button:disabled:hover {
@@ -149,7 +70,7 @@ button:disabled:hover {
 }
 
 .white {
-  color: #FFF;
+  color: #fff;
 }
 
 .btn-danger {
@@ -223,6 +144,13 @@ button:disabled:hover {
   text-transform: uppercase;
   display: block;
   white-space: nowrap;
+}
+
+.coming-soon {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes spin {

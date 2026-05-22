@@ -1,9 +1,11 @@
-import { FlatCompat } from '@eslint/eslintrc';
 import eslint from '@eslint/js';
+import next from 'eslint-config-next';
+import prettier from 'eslint-config-prettier';
 import tseslint from 'typescript-eslint';
 
 const eslintConfig = [
-    ...new FlatCompat({ baseDirectory: import.meta.dirname, }).extends('next', 'prettier'),
+  ...next,
+  prettier,
   ...tseslint.config(eslint.configs.all, tseslint.configs.strict),
   { ignores: [".next/**", "public/**", "out/**", "next.config.js", "next-env.d.ts"] },
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
@@ -26,6 +28,7 @@ const eslintConfig = [
       "one-var": "off",
       "prefer-named-capture-group": "off",
       "radix": "off",
+      "react-hooks/set-state-in-effect": "off",
       "require-unicode-regexp": "off",
     }
   }

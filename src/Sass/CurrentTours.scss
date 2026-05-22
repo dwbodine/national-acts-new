@@ -1,0 +1,299 @@
+@use 'variables' as v;
+
+.current-tours {
+  width: 100%;
+  padding: 0 60px;
+  background: v.$main-background-color;
+  color: v.$main-text-color;
+}
+
+.current-tours__inner {
+  width: 100%;
+  max-width: v.$max-width;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.current-tours__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.current-tours__title,
+.current-tours__description,
+.current-tours__card-title {
+  margin: 0;
+}
+
+.current-tours__title {
+  color: v.$current-tours-title-color;
+  font-family: v.$current-tours-title-font-family;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -1.44px;
+  line-height: 0.98;
+}
+
+.current-tours__description {
+  max-width: 648px;
+  color: v.$current-tours-description-color;
+  font-family: v.$current-tours-description-font-family;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+}
+
+.current-tours__carousel {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 56px;
+  align-items: center;
+  gap: 24px;
+}
+
+.current-tours__viewport {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.current-tours__grid {
+  width: 100%;
+  display: flex;
+  gap: 24px;
+  will-change: transform;
+}
+
+.current-tours__grid--animating {
+  transition: transform 0.42s ease;
+}
+
+.current-tours__grid--count-1 {
+  max-width: 376px;
+  margin: 0 auto;
+}
+
+.current-tours__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid rgb(255 255 255 / 22%);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 10%);
+  color: #fff;
+  font-size: 20px;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.current-tours__control:hover:not(:disabled),
+.current-tours__control:focus-visible:not(:disabled) {
+  border-color: rgb(255 255 255 / 45%);
+  background: rgb(255 255 255 / 18%);
+  transform: translateY(-1px);
+}
+
+.current-tours__control:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.current-tours__card {
+  position: relative;
+  display: flex;
+  flex: 0 0 calc((100% - 48px) / 3);
+  align-items: flex-end;
+  min-width: 0;
+  min-height: 434px;
+  aspect-ratio: 376 / 434.67;
+  overflow: hidden;
+  border-radius: 16px;
+  background: v.$main-background-color;
+  isolation: isolate;
+}
+
+.current-tours__card-link {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 24px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.current-tours__card-link:hover,
+.current-tours__card-link:focus-visible {
+  color: inherit;
+}
+
+.current-tours__image,
+.current-tours__overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.current-tours__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  
+}
+
+.current-tours__overlay {
+  background: transparent;
+  z-index: 1;
+}
+
+.current-tours__card--gradient .current-tours__overlay {
+  background: transparent;
+}
+
+.current-tours__card-title {
+  position: relative;
+  z-index: 2;
+  color: v.$current-tours-card-title-color;
+  font-family: v.$current-tours-card-title-font-family;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -0.96px;
+  line-height: 0.98;
+}
+
+.current-tours__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  padding: 24px 40px;
+  border-radius: 80px;
+  background: v.$current-tours-button-background-color;
+  color: v.$current-tours-button-text-color;
+  font-family: v.$current-tours-button-font-family;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.36px;
+  line-height: normal;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.current-tours__button:hover,
+.current-tours__button:focus-visible {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+@media (max-width: 1199px) {
+  .current-tours {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+}
+
+@media (max-width: 991px) {
+  .current-tours {
+    padding-bottom: 56px;
+  }
+
+  .current-tours__title {
+    font-size: 42px;
+    letter-spacing: -1.2px;
+  }
+
+  .current-tours__carousel {
+    grid-template-columns: 48px minmax(0, 1fr) 48px;
+    gap: 16px;
+  }
+
+  .current-tours__grid {
+    gap: 16px;
+  }
+
+  .current-tours__control {
+    width: 48px;
+    height: 48px;
+    font-size: 18px;
+  }
+
+  .current-tours__card {
+    flex-basis: calc((100% - 16px) / 2);
+  }
+}
+
+@media (max-width: 767px) {
+  .current-tours {
+    padding: 32px 16px 48px;
+  }
+
+  .current-tours__inner {
+    gap: 32px;
+  }
+
+  .current-tours__header {
+    gap: 12px;
+  }
+
+  .current-tours__title {
+    font-size: 36px;
+    letter-spacing: -1px;
+  }
+
+  .current-tours__description {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .current-tours__carousel {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    gap: 10px;
+  }
+
+  .current-tours__grid {
+    gap: 16px;
+  }
+
+  .current-tours__control {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+  }
+
+  .current-tours__card {
+    flex-basis: 100%;
+    min-height: 360px;
+  }
+
+  .current-tours__card-link {
+    padding: 20px;
+  }
+
+  .current-tours__card-title {
+    font-size: 28px;
+    letter-spacing: -0.84px;
+  }
+
+  .current-tours__button {
+    width: 100%;
+    min-height: 64px;
+    padding: 18px 24px;
+  }
+}

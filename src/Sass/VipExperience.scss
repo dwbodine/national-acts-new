@@ -1,0 +1,231 @@
+@use 'variables' as v;
+
+.vip-experience {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-height: 500px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgb(233 6 6 / 98%) 0%, rgb(167 5 5 / 92%) 44%, rgb(24 6 6 / 98%) 100%);
+  color: v.$main-text-color;
+}
+
+.vip-experience::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 18%, rgb(255 129 129 / 16%) 0%, rgb(255 129 129 / 0%) 40%),
+    linear-gradient(180deg, rgb(255 84 84 / 12%) 0%, rgb(255 84 84 / 0%) 36%);
+}
+
+.vip-experience__inner {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  padding: 168px 0 176px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 46px;
+}
+
+.vip-experience__title {
+  width: 100%;
+  margin: 0;
+  color: v.$vip-experience-title-color;
+  font-family: v.$vip-solutions-eyebrow-font-family;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -2.02px;
+  line-height: 72px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.vip-experience__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: min(100%, 374px);
+  min-height: 88px;
+  padding: 24px 48px;
+  border-radius: 999px;
+  background: v.$vip-experience-button-background-color;
+  color: v.$vip-experience-button-text-color;
+  font-family: v.$vip-experience-button-font-family;
+  font-size: 1.05rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: normal;
+  text-decoration: none;
+  box-shadow: 0 18px 48px rgb(0 0 0 / 18%);
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.vip-experience__button:hover,
+.vip-experience__button:focus-visible {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+.vip-experience__mask-wrap,
+.vip-experience__ring,
+.vip-experience__bottom-fade {
+  position: absolute;
+  pointer-events: none;
+}
+
+.vip-experience__mask-wrap {
+  inset: 0;
+  z-index: 1;
+}
+
+.vip-experience__mask-shape {
+  position: absolute;
+  inset: 0;
+  display: block;
+  opacity: 0.3;
+  background: linear-gradient(180deg, rgb(120 21 21 / 70%) 0%, rgb(53 10 10 / 90%) 100%);
+  mask-image: var(--vip-experience-mask-a), var(--vip-experience-mask-b);
+  mask-position: center, center;
+  mask-repeat: no-repeat, no-repeat;
+  mask-size: 100% 100%, min(86vw, 940px) min(86vw, 940px);
+  -webkit-mask-image: var(--vip-experience-mask-a), var(--vip-experience-mask-b);
+  -webkit-mask-position: center, center;
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-size: 100% 100%, min(86vw, 940px) min(86vw, 940px);
+}
+
+.vip-experience__ring {
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgb(255 255 255 / 7%) 0%, rgb(255 255 255 / 2%) 72%);
+  border: 1px solid rgb(255 255 255 / 8%);
+  transform: translate(-50%, -50%);
+}
+
+.vip-experience__ring--outer {
+  width: min(120vw, 1760px);
+  height: min(120vw, 1760px);
+}
+
+.vip-experience__ring--mid {
+  width: min(102vw, 1500px);
+  height: min(102vw, 1500px);
+}
+
+.vip-experience__ring--inner {
+  width: min(84vw, 1240px);
+  height: min(84vw, 1240px);
+}
+
+.vip-experience__bottom-fade {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  height: 220px;
+  background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 88%) 100%);
+}
+
+@media (max-width: 1199px) {
+  .vip-experience {
+    min-height: 620px;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .vip-experience__inner {
+    max-width: 680px;
+    padding: 140px 0 150px;
+    gap: 38px;
+  }
+}
+
+@media (max-width: 991px) {
+  .vip-experience__inner {
+    max-width: 620px;
+    padding: 120px 0 132px;
+  }
+
+  .vip-experience__title {
+    font-size: clamp(3.8rem, 8vw, 5.25rem);
+  }
+
+  .vip-experience__ring--outer {
+    width: 1320px;
+    height: 1320px;
+  }
+
+  .vip-experience__ring--mid {
+    width: 1120px;
+    height: 1120px;
+  }
+
+  .vip-experience__ring--inner {
+    width: 920px;
+    height: 920px;
+  }
+}
+
+@media (max-width: 767px) {
+  .vip-experience {
+    min-height: 520px;
+    padding: 0 16px;
+  }
+
+  .vip-experience__inner {
+    max-width: 360px;
+    padding: 96px 0 112px;
+    gap: 28px;
+  }
+
+  .vip-experience__title {
+    max-width: 340px;
+    font-size: clamp(2.9rem, 11vw, 4rem);
+  }
+
+  .vip-experience__button {
+    min-width: 100%;
+    min-height: 72px;
+    padding: 20px 24px;
+  }
+
+  .vip-experience__mask-shape {
+    opacity: 0.22;
+    mask-size: 100% 100%, 680px 680px;
+    -webkit-mask-size: 100% 100%, 680px 680px;
+  }
+
+  .vip-experience__ring--outer {
+    width: 860px;
+    height: 860px;
+  }
+
+  .vip-experience__ring--mid {
+    width: 700px;
+    height: 700px;
+  }
+
+  .vip-experience__ring--inner {
+    width: 540px;
+    height: 540px;
+  }
+
+  .vip-experience__bottom-fade {
+    height: 180px;
+  }
+}

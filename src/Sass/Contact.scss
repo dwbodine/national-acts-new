@@ -34,6 +34,20 @@
   margin: 10px 0;
 }
 
+.recaptcha-disclosure {
+  max-width: 520px;
+  margin: 0 auto 12px;
+  color: rgb(255 255 255 / 72%);
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+}
+
+.recaptcha-disclosure a {
+  color: #fff;
+  text-decoration: underline;
+}
+
 .contact-section-response {
   text-align: center;
 }
