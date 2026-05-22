@@ -10,6 +10,7 @@ import Downloads from "../Downloads";
 import Events from "../Events";
 import FAQ from "../FAQ";
 import FAQs from "../FAQs";
+import FanMoments from "../Moments/FanMoments";
 import Footer from "./Footer";
 import MailingList from "../MailingList";
 import MyAccount from "../MyAccount";
@@ -163,7 +164,7 @@ export default function PageLoader(props: PageProps) {
                 return <MailingList page={page} />
                 break;
             case PageTypeKey.Moments:
-                return <ComingSoon />
+                return <FanMoments />
                 break;
             case PageTypeKey.MyAccount:
                 return <MyAccount page={page} />
