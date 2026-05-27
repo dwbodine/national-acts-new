@@ -1,10 +1,12 @@
-import { FlatCompat } from '@eslint/eslintrc';
 import eslint from '@eslint/js';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import prettier from 'eslint-config-prettier/flat';
 import tseslint from 'typescript-eslint';
 
 const eslintConfig = [
-    ...new FlatCompat({ baseDirectory: import.meta.dirname, }).extends('next', 'prettier'),
+  ...nextVitals,
   ...tseslint.config(eslint.configs.all, tseslint.configs.strict),
+  prettier,
   { ignores: [".next/**", "public/**", "out/**", "next.config.js", "next-env.d.ts"] },
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
   {
