@@ -1,5 +1,5 @@
 # Base image with dependencies
-FROM node:alpine
+FROM node:24-alpine AS builder
 
 WORKDIR /app
 
@@ -7,23 +7,27 @@ ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 ENV NEXT_TELEMETRY_DISABLED=1
 
-COPY package*.json ./
-RUN npm install
+COPY package.json yarn.lock .yarnrc.yml ./
+RUN corepack enable && yarn install --immutable
 
 COPY . .
 
 RUN --mount=type=secret,id=_env cat /run/secrets/_env > .env
 
-RUN npm run standalone
+RUN yarn run standalone
 
 # Production runner
-FROM alpine:latest
-RUN apk update && apk add --no-cache nodejs icu-data-full
-RUN addgroup -S node && adduser -S node -G node
-USER node
-RUN mkdir /home/node/code && chown -R node:node /home/node/code
+FROM node:24-alpine AS runner
+
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN apk add --no-cache icu-data-full
 WORKDIR /home/node/code
-COPY --from=0 /app/.next/standalone .
+COPY --from=builder --chown=node:node /app/.next/standalone .
+USER node
 
 EXPOSE 3000
 CMD [ "node", "server.js" ]
