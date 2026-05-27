@@ -2,6 +2,9 @@
   "name": "national-acts-www",
   "version": "2.0.0",
   "private": true,
+  "resolutions": {
+    "postcss": "npm:8.5.15"
+  },
   "scripts": {
     "dev": "next dev -p 4000",
     "build": "next build",
