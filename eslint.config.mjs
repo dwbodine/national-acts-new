@@ -1,12 +1,12 @@
 import eslint from '@eslint/js';
-import next from 'eslint-config-next';
-import prettier from 'eslint-config-prettier';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import prettier from 'eslint-config-prettier/flat';
 import tseslint from 'typescript-eslint';
 
 const eslintConfig = [
-  ...next,
-  prettier,
+  ...nextVitals,
   ...tseslint.config(eslint.configs.all, tseslint.configs.strict),
+  prettier,
   { ignores: [".next/**", "public/**", "out/**", "next.config.js", "next-env.d.ts"] },
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
   {
