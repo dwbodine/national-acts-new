@@ -260,7 +260,7 @@
 
 .fan-moments-filter-dialog__date-shell {
   gap: 12px;
-  padding-left: 13px;
+  padding: 0 13px;
 }
 
 .fan-moments-filter-dialog__date-shell svg {
@@ -293,6 +293,109 @@
 .fan-moments-filter-dialog__date-shell:not(.fan-moments-filter-dialog__date-shell--empty)
   .fan-moments-filter-dialog__date-placeholder {
   display: none;
+}
+
+.fan-moments-filter-dialog__date-value {
+  color: rgb(255 255 255 / 72%);
+  font-family: v.$main-font-family;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.fan-moments-filter-dialog__calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fan-moments-filter-dialog__calendar-header {
+  display: grid;
+  grid-template-columns: 36px 1fr 36px;
+  align-items: center;
+  gap: 8px;
+}
+
+.fan-moments-filter-dialog__calendar-title {
+  color: #fff;
+  font-family: v.$main-font-family;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 22px;
+  text-align: center;
+}
+
+.fan-moments-filter-dialog__calendar-nav,
+.fan-moments-filter-dialog__calendar-day {
+  border: 1px solid rgb(255 255 255 / 14%);
+  background: rgb(255 255 255 / 7%);
+  color: #fff;
+  font-family: v.$main-font-family;
+}
+
+.fan-moments-filter-dialog__calendar-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+}
+
+.fan-moments-filter-dialog__calendar-nav svg {
+  width: 13px;
+  height: 13px;
+}
+
+.fan-moments-filter-dialog__calendar-weekdays,
+.fan-moments-filter-dialog__calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.fan-moments-filter-dialog__calendar-weekdays span {
+  color: rgb(255 255 255 / 46%);
+  font-family: v.$main-font-family;
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+}
+
+.fan-moments-filter-dialog__calendar-day {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  min-width: 0;
+  border-radius: 7px;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.fan-moments-filter-dialog__calendar-day:disabled {
+  border-color: rgb(255 255 255 / 7%);
+  background: rgb(0 0 0 / 18%);
+  color: rgb(255 255 255 / 22%);
+  cursor: not-allowed;
+}
+
+.fan-moments-filter-dialog__calendar-day--outside {
+  opacity: 0.5;
+}
+
+.fan-moments-filter-dialog__calendar-day--selected {
+  border-color: #e51d2a;
+  background: #e51d2a;
+  color: #fff;
+}
+
+.fan-moments-filter-dialog__calendar-nav:hover,
+.fan-moments-filter-dialog__calendar-nav:focus-visible,
+.fan-moments-filter-dialog__calendar-day:not(:disabled):hover,
+.fan-moments-filter-dialog__calendar-day:not(:disabled):focus-visible {
+  border-color: rgb(255 255 255 / 32%);
+  box-shadow: none;
+  opacity: 0.9;
 }
 
 .fan-moments-filter-dialog__actions {
