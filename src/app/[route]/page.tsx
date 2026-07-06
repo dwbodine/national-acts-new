@@ -1,9 +1,10 @@
-import { notFound, redirect } from "next/navigation";
-import { JSX } from "react";
-import type { Metadata } from "next";
-import { Page } from "@/types/public";
-import PageLoader from "@/components/common/PageLoader";
-import moment from "moment";
+import { getAbsoluteSiteUrl, getSiteUrl } from '@/lib/siteUrl';
+import { notFound, redirect } from 'next/navigation';
+import { JSX } from 'react';
+import type { Metadata } from 'next';
+import { Page } from '@/types/public';
+import PageLoader from '@/components/common/PageLoader';
+import moment from 'moment';
 
 const getPageData = async (route: string): Promise<Page | undefined> => {
   if (!route) {
@@ -14,10 +15,10 @@ const getPageData = async (route: string): Promise<Page | undefined> => {
 
   const requestOptions: RequestInit = {
     headers: {
-      "Content-Type": "application/json",
-      "x-api-key": `${process.env.NEXT_PUBLIC_API_KEY}`,
+      'Content-Type': 'application/json',
+      'x-api-key': `${process.env.NEXT_PUBLIC_API_KEY}`,
     },
-    method: "GET",
+    method: 'GET',
   };
 
   const res = await fetch(url, requestOptions);
@@ -32,9 +33,9 @@ const getPageData = async (route: string): Promise<Page | undefined> => {
 };
 
 /* eslint-disable-next-line func-style */
-export async function generateMetadata(
-  props: { params: Promise<{ route: string }> }
-): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ route: string }>;
+}): Promise<Metadata> {
   const { route } = await props.params;
   let page: Page | undefined = {
     isActive: true,
@@ -44,7 +45,7 @@ export async function generateMetadata(
       pageTypeName: 'Home',
     },
     route: '',
-    title: 'National Acts VIP'
+    title: 'National Acts VIP',
   };
 
   if (route) {
@@ -53,22 +54,23 @@ export async function generateMetadata(
     redirect('/');
   }
 
-  const title = page?.title || "National Acts VIP";
-  const description = page?.title || "National Acts VIP";
-    
+  const title = page?.title || 'National Acts VIP';
+  const description = page?.title || 'National Acts VIP';
+
   let ogImage = page?.linkPreviewImage;
   if (ogImage && !ogImage.startsWith('http')) {
     ogImage = `${process.env.NEXT_PUBLIC_PREVIEW_URL}${ogImage}`;
   }
   if (!ogImage) {
-    ogImage = `${process.env.NEXT_PUBLIC_SITE_URL}/images/logo-light.png`;
+    ogImage = getAbsoluteSiteUrl('/images/logo-light.png');
   }
 
-  const pageUrl = new URL(`${process.env.NEXT_PUBLIC_SITE_URL}/${route}`);
+  const siteUrl = getSiteUrl();
+  const pageUrl = getAbsoluteSiteUrl(`/${route}`);
 
   return {
     description,
-    metadataBase: pageUrl,
+    metadataBase: siteUrl,
     openGraph: {
       description,
       images: [
@@ -78,11 +80,12 @@ export async function generateMetadata(
         },
       ],
       title,
-      type: "website",
+      type: 'website',
+      url: pageUrl,
     },
     title,
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       description,
       images: [ogImage],
       title,
@@ -90,11 +93,10 @@ export async function generateMetadata(
   };
 }
 
-
-export default async function RoutingPage(
-  props: { params: Promise<{ route: string }> }
-): Promise<JSX.Element> {
-  const { route } = await props.params;;
+export default async function RoutingPage(props: {
+  params: Promise<{ route: string }>;
+}): Promise<JSX.Element> {
+  const { route } = await props.params;
   const page = await getPageData(route);
 
   if (!page) {
