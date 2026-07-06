@@ -1,7 +1,8 @@
-import Home from "@/components/Home";
-import { JSX } from "react";
-import { Metadata } from "next";
-import { Page } from "@/types/public";
+import { getAbsoluteSiteUrl, getSiteUrl } from '@/lib/siteUrl';
+import Home from '@/components/Home';
+import { JSX } from 'react';
+import { Metadata } from 'next';
+import { Page } from '@/types/public';
 
 const getPageData = (): Page => {
   const page: Page = {
@@ -12,7 +13,7 @@ const getPageData = (): Page => {
       pageTypeName: 'Home',
     },
     route: '',
-    title: 'National Acts VIP'
+    title: 'National Acts VIP',
   };
   return page;
 };
@@ -21,15 +22,14 @@ const getPageData = (): Page => {
 export function generateMetadata(): Metadata {
   const page = getPageData();
 
-  const title = page?.title || "National Acts VIP";
-  const description = page?.title || "National Acts VIP";
-  const ogImage =
-    page?.linkPreviewImage || `${process.env.NEXT_PUBLIC_SITE_URL}/images/logo-light.png`;
-  const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}`;
+  const title = page?.title || 'National Acts VIP';
+  const description = page?.title || 'National Acts VIP';
+  const ogImage = page?.linkPreviewImage || getAbsoluteSiteUrl('/images/logo-light.png');
+  const pageUrl = getSiteUrl();
 
   return {
     description,
-    metadataBase: new URL(pageUrl),
+    metadataBase: pageUrl,
     openGraph: {
       description,
       images: [
@@ -41,12 +41,12 @@ export function generateMetadata(): Metadata {
         },
       ],
       title,
-      type: "website",
-      url: pageUrl,
+      type: 'website',
+      url: pageUrl.toString(),
     },
     title,
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       description,
       images: [ogImage],
       title,
@@ -55,7 +55,9 @@ export function generateMetadata(): Metadata {
 }
 
 export default function HomePage(): JSX.Element {
-  return <>
-    <Home />
-  </>;
+  return (
+    <>
+      <Home />
+    </>
+  );
 }
