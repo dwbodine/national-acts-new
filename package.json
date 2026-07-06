@@ -24,7 +24,6 @@
     "@fortawesome/free-regular-svg-icons": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@fortawesome/react-fontawesome": "^3.3.1",
-    "@vitest/coverage-v8": "^4.1.10",
     "axios": "^1.18.1",
     "bootstrap": "^5.3.7",
     "html-react-parser": "^6.1.4",
@@ -61,6 +60,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^8.60.0",
     "@typescript-eslint/parser": "^8.60.0",
+    "@vitest/coverage-v8": "^4.1.5",
     "autoprefixer": "^10.5.0",
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.2.6",
@@ -80,7 +80,7 @@
     "sass": "^1.100.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.60.0",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.9"
   },
   "optionalDependencies": {
     "@img/sharp-win32-x64": "^0.34.5"

@@ -1,5 +1,3 @@
-import { describe, expect, it } from 'vitest';
-
 import {
   DEFAULT_COUNTRY_ID,
   EVENT_RELOAD_TIMEOUT,
@@ -8,6 +6,8 @@ import {
   MOBILE_WIDTH_BREAKPOINT,
   PageTypeKey,
 } from './index';
+
+import { describe, expect, it } from 'vitest';
 
 describe('constants', () => {
   it('exports page type keys used for route selection', () => {
