@@ -1,5 +1,5 @@
 # Base image with dependencies
-FROM node:24-alpine AS builder
+FROM node:26-alpine AS builder
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ ENV HOSTNAME="0.0.0.0"
 ENV NEXT_TELEMETRY_DISABLED=1
 
 COPY package.json yarn.lock .yarnrc.yml ./
-RUN corepack enable && yarn install --immutable
+RUN npm install -g corepack && corepack enable && corepack prepare yarn@4.17.0 --activate && yarn install --immutable
 
 COPY . .
 
@@ -17,7 +17,7 @@ RUN --mount=type=secret,id=_env cat /run/secrets/_env > .env
 RUN yarn run standalone
 
 # Production runner
-FROM node:24-alpine AS runner
+FROM node:26-alpine AS runner
 
 ENV NODE_ENV=production
 ENV PORT=3000
