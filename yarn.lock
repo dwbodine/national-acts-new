@@ -1793,7 +1793,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/coverage-v8@npm:^4.1.10":
+"@vitest/coverage-v8@npm:^4.1.5":
   version: 4.1.10
   resolution: "@vitest/coverage-v8@npm:4.1.10"
   dependencies:
@@ -4654,7 +4654,7 @@ __metadata:
     "@types/react-router-dom": "npm:^5.3.3"
     "@typescript-eslint/eslint-plugin": "npm:^8.60.0"
     "@typescript-eslint/parser": "npm:^8.60.0"
-    "@vitest/coverage-v8": "npm:^4.1.10"
+    "@vitest/coverage-v8": "npm:^4.1.5"
     autoprefixer: "npm:^10.5.0"
     axios: "npm:^1.18.1"
     bootstrap: "npm:^5.3.7"
@@ -4694,7 +4694,7 @@ __metadata:
     sharp: "npm:^0.34.5"
     typescript: "npm:^6.0.3"
     typescript-eslint: "npm:^8.60.0"
-    vitest: "npm:^4.1.10"
+    vitest: "npm:^4.1.9"
   dependenciesMeta:
     "@img/sharp-win32-x64":
       optional: true
@@ -6577,7 +6577,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest@npm:^4.1.10":
+"vitest@npm:^4.1.9":
   version: 4.1.10
   resolution: "vitest@npm:4.1.10"
   dependencies:
