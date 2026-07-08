@@ -134,7 +134,7 @@ const getFilterOptions = (
   locationOptions: getSortedUniqueOptions(events.map(getLocationOption)),
 });
 
-const fetchPublicData = async <ResponseData,>(
+const fetchPublicData = async <ResponseData>(
   path: string,
   serviceUrl: string,
   apiKey: string,

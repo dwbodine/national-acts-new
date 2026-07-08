@@ -27,6 +27,6 @@ export type FanMomentKey = {
 };
 
 export type FanMoment = {
-    key: FanMomentKey
-    images?: string[]
+  key: FanMomentKey;
+  images?: string[];
 };
