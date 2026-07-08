@@ -5,6 +5,7 @@ import { FaFilter, FaUndo } from 'react-icons/fa';
 type MomentsFilterProps = {
   className?: string;
   defaultValue?: string;
+  disabled?: boolean;
   filterLabel?: string;
   onFilterClick?: () => void;
   onResetClick?: () => void;
@@ -17,6 +18,7 @@ type MomentsFilterProps = {
 
 export default function MomentsFilter({
   className,
+  disabled = false,
   filterLabel = 'Filter',
   onFilterClick,
   onResetClick,
@@ -26,11 +28,21 @@ export default function MomentsFilter({
 
   return (
     <div className={wrapperClassName} role="search">
-      <button className="fan-moments-filter__button" type="button" onClick={onFilterClick}>
+      <button
+        className="fan-moments-filter__button"
+        disabled={disabled}
+        type="button"
+        onClick={onFilterClick}
+      >
         <FaFilter className="fan-moments-filter__button-icon" aria-hidden="true" />
         <span>{filterLabel}</span>
       </button>
-      <button className="fan-moments-filter__button" type="button" onClick={onResetClick}>
+      <button
+        className="fan-moments-filter__button"
+        disabled={disabled}
+        type="button"
+        onClick={onResetClick}
+      >
         <FaUndo className="fan-moments-filter__button-icon" aria-hidden="true" />
         <span>{resetLabel}</span>
       </button>

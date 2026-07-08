@@ -22,6 +22,7 @@ export type FanMomentKey = {
   filename?: string;
   sellerName?: string;
   eventTitle?: string;
+  eventVenue?: string;
   eventLocation?: string;
 };
 

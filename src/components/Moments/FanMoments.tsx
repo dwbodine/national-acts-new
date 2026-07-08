@@ -3,10 +3,11 @@
 import { Col, Container, Row } from "react-bootstrap";
 import type { FanMoment, MomentsFilterOptionsResponse } from "@/types/moments";
 import MomentsFilterDialog, { type MomentsFilterValues } from "./MomentsFilterDialog";
-import MomentsPhotoViewer, { type PhotoViewerItem } from "./MomentsPhotoViewer";
 import { useEffect, useState } from "react";
 import MomentsFilter from "./MomentsFilter";
 import MomentsHeader from "./MomentsHeader";
+import MomentsPhotoViewer from "./MomentsPhotoViewer";
+import { RingLoader } from 'react-spinners';
 
 const latestMomentCount = 8;
 
@@ -15,39 +16,6 @@ const emptyFilterValues: MomentsFilterValues = {
     date: '',
     location: '',
 };
-
-const getMomentAltText = (moment: FanMoment): string =>
-    [
-        moment.key.sellerName,
-        moment.key.eventTitle,
-        moment.key.eventLocation,
-        moment.key.momentDate,
-    ]
-        .filter(Boolean)
-        .join(' - ') || 'Fan moment';
-
-const getMomentImages = (moment: FanMoment): string[] =>
-    moment.images && moment.images.length > 0
-        ? moment.images
-        : [moment.key.filename].filter((image): image is string => Boolean(image));
-
-const getMomentPath = (moment: FanMoment, image: string): string => {
-    const baseUrl = process.env.NEXT_PUBLIC_MOMENTS_URL ?? '';
-    const normalizedBaseUrl = baseUrl.replace(/\/$/u, '');
-
-    return `${normalizedBaseUrl}/${moment.key.momentDate}/${moment.key.eventId}/${image}`;
-};
-
-const mapFanMomentToPhotoViewerItems = (moment: FanMoment): PhotoViewerItem[] =>
-    getMomentImages(moment).map((image) => ({
-        alt: getMomentAltText(moment),
-        foregroundHeight: 416,
-        foregroundImage: getMomentPath(moment, image),
-        foregroundWidth: 416,
-    }));
-
-const mapFanMomentsToPhotoViewerItems = (moments: FanMoment[]): PhotoViewerItem[] =>
-    moments.flatMap(mapFanMomentToPhotoViewerItems);
 
 const getMomentFilterUrl = (values?: MomentsFilterValues): string => {
     const searchParams = new URLSearchParams();
@@ -72,7 +40,17 @@ const getMomentFilterUrl = (values?: MomentsFilterValues): string => {
 const hasMomentFilters = (values?: MomentsFilterValues): boolean =>
     Boolean(values?.date || values?.band || values?.location);
 
-const getMomentItems = async (values?: MomentsFilterValues): Promise<PhotoViewerItem[]> => {
+const getFilterOptions = async (): Promise<MomentsFilterOptionsResponse | undefined> => {
+    const response = await fetch('/api/moments/filter-options');
+
+    if (!response.ok) {
+        return undefined;
+    }
+
+    return (await response.json()) as MomentsFilterOptionsResponse;
+};
+
+const getMomentItems = async (values?: MomentsFilterValues): Promise<FanMoment[]> => {
     const response = await fetch(getMomentFilterUrl(values));
 
     if (!response.ok) {
@@ -80,9 +58,8 @@ const getMomentItems = async (values?: MomentsFilterValues): Promise<PhotoViewer
     }
 
     const fanMoments = (await response.json()) as FanMoment[];
-    const moments = mapFanMomentsToPhotoViewerItems(fanMoments);
 
-    return hasMomentFilters(values) ? moments : moments.slice(0, latestMomentCount);
+    return hasMomentFilters(values) ? fanMoments : fanMoments.slice(0, latestMomentCount);
 };
 
 export default function FanMoments() {
@@ -92,36 +69,38 @@ export default function FanMoments() {
         locationOptions: [],
     });
     const [filterValues, setFilterValues] = useState<MomentsFilterValues>(emptyFilterValues);
-    const [momentItems, setMomentItems] = useState<PhotoViewerItem[]>([]);
+    const [moments, setMoments] = useState<FanMoment[]>([]);
+    const [photoViewerKey, setPhotoViewerKey] = useState(0);
+    const [isLoadingMoments, setIsLoadingMoments] = useState(true);
     const [showFilterDialog, setShowFilterDialog] = useState(false);
 
     useEffect(() => {
         let shouldUpdate = true;
 
-        const loadFilterOptions = async () => {
-            const response = await fetch('/api/moments/filter-options');
+        const loadInitialMomentData = async () => {
+            setIsLoadingMoments(true);
 
-            if (!response.ok) {
-                return;
-            }
+            try {
+                const [loadedFilterOptions, loadedMoments] = await Promise.all([
+                    getFilterOptions(),
+                    getMomentItems(),
+                ]);
 
-            const options = (await response.json()) as MomentsFilterOptionsResponse;
+                if (shouldUpdate) {
+                    if (loadedFilterOptions) {
+                        setFilterOptions(loadedFilterOptions);
+                    }
 
-            if (shouldUpdate) {
-                setFilterOptions(options);
+                    setMoments(loadedMoments);
+                }
+            } finally {
+                if (shouldUpdate) {
+                    setIsLoadingMoments(false);
+                }
             }
         };
 
-        const loadLatestMoments = async () => {
-            const moments = await getMomentItems();
-
-            if (shouldUpdate) {
-                setMomentItems(moments);
-            }
-        };
-
-        loadFilterOptions().catch(() => undefined);
-        loadLatestMoments().catch(() => undefined);
+        loadInitialMomentData().catch(() => undefined);
 
         return () => {
             shouldUpdate = false;
@@ -129,17 +108,38 @@ export default function FanMoments() {
     }, []);
 
     const applyFilters = async (values: MomentsFilterValues) => {
-        const moments = await getMomentItems(values);
+        setIsLoadingMoments(true);
 
-        setFilterValues(values);
-        setMomentItems(moments);
+        try {
+            const loadedMoments = await getMomentItems(values);
+
+            setFilterValues(values);
+            setMoments(loadedMoments);
+            setPhotoViewerKey((currentKey) => currentKey + 1);
+        } finally {
+            setIsLoadingMoments(false);
+        }
     };
 
     const resetFilters = async () => {
-        const moments = await getMomentItems();
+        setIsLoadingMoments(true);
 
-        setFilterValues(emptyFilterValues);
-        setMomentItems(moments);
+        try {
+            const [loadedFilterOptions, loadedMoments] = await Promise.all([
+                getFilterOptions(),
+                getMomentItems(),
+            ]);
+
+            setFilterValues(emptyFilterValues);
+            if (loadedFilterOptions) {
+                setFilterOptions(loadedFilterOptions);
+            }
+
+            setMoments(loadedMoments);
+            setPhotoViewerKey((currentKey) => currentKey + 1);
+        } finally {
+            setIsLoadingMoments(false);
+        }
     };
 
     return (
@@ -153,6 +153,7 @@ export default function FanMoments() {
                 <Row>
                     <Col xs={12}>
                         <MomentsFilter
+                            disabled={isLoadingMoments}
                             onFilterClick={() => setShowFilterDialog(true)}
                             onResetClick={() => {
                                 resetFilters().catch(() => undefined);
@@ -172,8 +173,11 @@ export default function FanMoments() {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={12}>
-                        <MomentsPhotoViewer items={momentItems} />
+                    <Col xs={12} hidden={!isLoadingMoments} className="fan-moments-spinner">
+                        <RingLoader size={150} color="#d12610" />
+                    </Col>
+                    <Col xs={12} hidden={isLoadingMoments}>
+                        <MomentsPhotoViewer key={photoViewerKey} moments={moments} />
                     </Col>
                 </Row>
             </Container>
