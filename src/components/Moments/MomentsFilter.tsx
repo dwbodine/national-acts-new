@@ -5,6 +5,7 @@ import type { MomentsFilterOption, MomentsFilterOptionsResponse } from '@/types/
 import { useEffect, useState } from 'react';
 
 const logosBaseUrl = process.env.NEXT_PUBLIC_LOGOS_URL ?? '';
+const momentsBaseUrl = process.env.NEXT_PUBLIC_MOMENTS_URL ?? '';
 
 const getBandFilterOptions = async (): Promise<MomentsFilterOption[]> => {
   const response = await fetch('/api/moments/filter-options?type=bands');
@@ -30,6 +31,20 @@ const getLogoUrl = (logo?: string): string | undefined => {
   }
 
   return `${logosBaseUrl.replace(/\/$/u, '')}/${trimmedLogo.replace(/^\//u, '')}`;
+};
+
+const getTileImageUrl = (image?: string): string | undefined => {
+  const trimmedImage = image?.trim();
+
+  if (!trimmedImage) {
+    return undefined;
+  }
+
+  if (/^(?:https?:)?\/\//u.test(trimmedImage) || trimmedImage.startsWith('/')) {
+    return trimmedImage;
+  }
+
+  return `${momentsBaseUrl.replace(/\/$/u, '')}/${trimmedImage.replace(/^\//u, '')}`;
 };
 
 type MomentsFilterProps = {
@@ -138,12 +153,19 @@ export default function MomentsFilter({
         <div className="fan-moments-filter__bands" aria-label="Bands with moments">
           {bandOptions.map((bandOption) => {
             const logoUrl = getLogoUrl(bandOption.logo);
+            const tileImageUrl = getTileImageUrl(bandOption.image);
 
             return (
               <button
                 key={bandOption.value}
                 className="fan-moments-filter__band-tile"
                 disabled={isDisabled}
+                aria-label={bandOption.label}
+                style={
+                  tileImageUrl
+                    ? { backgroundImage: `url(${JSON.stringify(tileImageUrl)})` }
+                    : undefined
+                }
                 type="button"
                 onClick={() => onBandSelect?.(bandOption.value)}
               >

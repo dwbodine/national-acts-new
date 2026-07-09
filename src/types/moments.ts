@@ -2,6 +2,7 @@ export type MomentsFilterOption = {
   label: string;
   logo?: string;
   value: string;
+  image?: string;
 };
 
 export type MomentFilterPayload = {

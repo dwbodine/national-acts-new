@@ -209,28 +209,51 @@
 }
 
 .fan-moments-filter__band-tile {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  height: auto;
+  min-height: 250px;
   max-width: 250px;
   padding: 16px 12px 14px;
-  background-color: transparent;
+  overflow: hidden;
+  background-color: rgb(255 255 255 / 7%);
+  background-position: center;
+  background-size: cover;
   border: 0;
   border-radius: 8px;
 }
 
+.fan-moments-filter__band-tile::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(0 0 0 / 18%) 0%, rgb(0 0 0 / 62%) 100%);
+  content: '';
+  pointer-events: none;
+}
+
+.fan-moments-filter__band-tile:hover,
+.fan-moments-filter__band-tile:focus-visible {
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 36%);
+}
+
 .fan-moments-filter__band-logo {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   max-width: 250px;
   height: auto;
+  max-height: 125px;
+  filter: drop-shadow(0 2px 10px rgb(0 0 0 / 80%));
   object-fit: contain;
 }
 
 .fan-moments-filter__band-fallback {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;

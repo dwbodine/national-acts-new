@@ -10,6 +10,7 @@ type MomentDate = Record<string, unknown> | string;
 
 type MomentSeller = Record<string, unknown> & {
   Id?: number | string;
+  MomentImage?: string;
   Logo?: string;
   Name?: string;
   SellerId?: number | string;
@@ -17,6 +18,7 @@ type MomentSeller = Record<string, unknown> & {
   name?: string;
   sellerId?: number | string;
   logo?: string;
+  momentImage?: string;
 };
 
 const getSortedUniqueOptions = (
@@ -86,8 +88,9 @@ const getBandOption = (seller: MomentSeller): MomentsFilterOption | undefined =>
   }
 
   return {
+    image: getStringProperty(seller, ['MomentImage', 'momentImage']),
     label: name,
-    logo: getStringProperty(seller, ['Logo', 'logo']),
+    logo: getStringProperty(seller, ['Logo', 'logo']),    
     value: sellerId,
   };
 };
