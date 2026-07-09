@@ -15,6 +15,7 @@ type MomentSeller = Record<string, unknown> & {
   id?: number | string;
   name?: string;
   sellerId?: number | string;
+  logo?: string;
 };
 
 const getSortedUniqueOptions = (
