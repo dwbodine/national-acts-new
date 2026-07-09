@@ -10,6 +10,7 @@ type MomentDate = Record<string, unknown> | string;
 
 type MomentSeller = Record<string, unknown> & {
   Id?: number | string;
+  Logo?: string;
   Name?: string;
   SellerId?: number | string;
   id?: number | string;
@@ -78,14 +79,16 @@ const normalizeDate = (dateValue: string): string | undefined => {
 
 const getBandOption = (seller: MomentSeller): MomentsFilterOption | undefined => {
   const name = getStringProperty(seller, ['Name', 'name']);
+  const sellerId = getIdProperty(seller, ['SellerId', 'sellerId', 'Id', 'id']);
 
-  if (!name) {
+  if (!name || !sellerId) {
     return undefined;
   }
 
   return {
     label: name,
-    value: getIdProperty(seller, ['SellerId', 'sellerId', 'Id', 'id']) ?? name,
+    logo: getStringProperty(seller, ['Logo', 'logo']),
+    value: sellerId,
   };
 };
 
@@ -159,7 +162,7 @@ const fetchPublicData = async <ResponseData>(
   return (await response.json()) as ResponseData;
 };
 
-export const GET = async (): Promise<NextResponse> => {
+export const GET = async (request: Request): Promise<NextResponse> => {
   const serviceUrl = process.env.NEXT_PUBLIC_SERVICE_URL;
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -171,6 +174,23 @@ export const GET = async (): Promise<NextResponse> => {
   }
 
   try {
+    const requestUrl = new URL(request.url);
+    const optionType = requestUrl.searchParams.get('type');
+
+    if (optionType === 'bands') {
+      const sellers = await fetchPublicData<MomentSeller[]>(
+        '/public/getAllMomentSellers',
+        serviceUrl,
+        apiKey,
+      );
+
+      return NextResponse.json({
+        activeDates: [],
+        bandOptions: getSortedUniqueOptions(sellers.map(getBandOption)),
+        locationOptions: [],
+      } satisfies MomentsFilterOptionsResponse);
+    }
+
     const [dates, events, sellers] = await Promise.all([
       fetchPublicData<MomentDate[]>('/public/getAllMomentDates', serviceUrl, apiKey),
       fetchPublicData<MomentEvent[]>('/public/getAllMomentEvents', serviceUrl, apiKey),

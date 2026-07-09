@@ -5,6 +5,7 @@ type MomentsHeaderProps = {
   description?: string;
   title?: string;
   titleId?: string;
+  caption?: string;
 };
 
 export default function MomentsHeader({
@@ -12,6 +13,7 @@ export default function MomentsHeader({
   description = 'From backstage hangs to front-row access- see what VIP looks like.',
   title = 'Real Fans. Real Moments.',
   titleId = 'fan-moments-title',
+  caption = 'Click on an artist logo to continue'
 }: MomentsHeaderProps) {
   const wrapperClassName = ['fan-moments__header', className].filter(Boolean).join(' ');
 
@@ -21,6 +23,7 @@ export default function MomentsHeader({
         {title}
       </h2>
       <p className="fan-moments__description">{description}</p>
+      <p className="fan-moments__caption">{caption}</p>
     </div>
   );
 }

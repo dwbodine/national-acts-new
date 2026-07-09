@@ -27,7 +27,8 @@
 }
 
 .fan-moments__title,
-.fan-moments__description {
+.fan-moments__description, 
+.fan-moments__caption {
   margin: 0;
 }
 
@@ -48,17 +49,34 @@
   font-style: normal;
   font-weight: 300;
   letter-spacing: -0.48px;
-  line-height: 1.5;
+  line-height: 1;
+}
+
+.fan-moments__caption {
+  color: v.$moments-description-color;
+  font-family: v.$moments-description-font-family;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: 1;
 }
 
 .fan-moments-filter {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: min(100%, 1040px);
+  margin: 25px auto 50px auto;
+}
+
+.fan-moments-filter__actions {
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: min(100%, 386px);
-  min-height: 40px;
-  margin: 25px auto 50px auto;
 }
 
 .fan-moments-filter__search,
@@ -153,6 +171,48 @@
 .fan-moments-filter__button-icon {
   width: 18px;
   height: 18px;
+}
+
+.fan-moments-filter__bands {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.fan-moments-filter__band-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: auto;
+  max-width: 250px;
+  padding: 16px 12px 14px;
+  background-color: transparent;
+  border: 0;
+  border-radius: 8px;
+}
+
+.fan-moments-filter__band-logo {
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  object-fit: contain;
+}
+
+.fan-moments-filter__band-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  color: #fff;
+  font-family: v.$moments-title-font-family;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1;
 }
 
 .fan-moments-filter-dialog {
@@ -802,10 +862,24 @@
     width: 100%;
   }
 
+  .fan-moments-filter__actions {
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+  }
+
   .fan-moments-filter__search,
   .fan-moments-filter__button {
     flex-basis: auto;
     width: 100%;
+  }
+
+  .fan-moments-filter__bands {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fan-moments-filter__band-tile {
+    min-height: 124px;
   }
 
   .fan-moments-filter-dialog {

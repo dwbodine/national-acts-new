@@ -11,14 +11,12 @@ import type { MomentsFilterOption } from '@/types/moments';
 import React from 'react';
 
 export type MomentsFilterValues = {
-  band: string;
   date: string;
   location: string;
 };
 
 type MomentsFilterDialogProps = {
   activeDates?: string[];
-  bandOptions?: MomentsFilterOption[];
   initialValues?: MomentsFilterValues;
   locationOptions?: MomentsFilterOption[];
   onApply?: (values: MomentsFilterValues) => void;
@@ -27,7 +25,6 @@ type MomentsFilterDialogProps = {
 };
 
 const emptyFilterValues: MomentsFilterValues = {
-  band: '',
   date: '',
   location: '',
 };
@@ -90,7 +87,6 @@ const getCalendarDays = (visibleMonth: Date): Date[] => {
 
 export default function MomentsFilterDialog({
   activeDates = [],
-  bandOptions = [],
   initialValues = emptyFilterValues,
   locationOptions = [],
   onApply,
@@ -180,25 +176,6 @@ export default function MomentsFilterDialog({
               >
                 <option value="">-- Select One --</option>
                 {locationOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-              <FaChevronDown aria-hidden="true" />
-            </span>
-          </label>
-
-          <label className="fan-moments-filter-dialog__field" htmlFor="fan-moments-filter-band">
-            <span>Band</span>
-            <span className="fan-moments-filter-dialog__select-shell">
-              <select
-                id="fan-moments-filter-band"
-                value={values.band}
-                onChange={(event) => updateValue('band', event.currentTarget.value)}
-              >
-                <option value="">-- Select One --</option>
-                {bandOptions.map((option) => (
                   <option key={option.value} value={option.value}>
                     {option.label}
                   </option>
