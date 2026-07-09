@@ -90,7 +90,7 @@ const getBandOption = (seller: MomentSeller): MomentsFilterOption | undefined =>
   return {
     image: getStringProperty(seller, ['MomentImage', 'momentImage']),
     label: name,
-    logo: getStringProperty(seller, ['Logo', 'logo']),    
+    logo: getStringProperty(seller, ['Logo', 'logo']),
     value: sellerId,
   };
 };
