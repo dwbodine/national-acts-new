@@ -62,6 +62,8 @@ export default function MomentsFilter({
   const [isLoadingBands, setIsLoadingBands] = useState(true);
   const wrapperClassName = ['fan-moments-filter', className].filter(Boolean).join(' ');
   const isDisabled = disabled || isLoadingBands;
+  const selectedBandOption = bandOptions.find((bandOption) => bandOption.value === selectedBand);
+  const selectedBandLogoUrl = getLogoUrl(selectedBandOption?.logo);
   const showBandTiles = !selectedBand;
   const showMomentControls = Boolean(selectedBand);
 
@@ -94,26 +96,43 @@ export default function MomentsFilter({
   return (
     <div className={wrapperClassName}>
       {showMomentControls ? (
-        <div className="fan-moments-filter__actions" role="search">
-          <button
-            className="fan-moments-filter__button"
-            disabled={isDisabled}
-            type="button"
-            onClick={onFilterClick}
-          >
-            <FaFilter className="fan-moments-filter__button-icon" aria-hidden="true" />
-            <span>{filterLabel}</span>
-          </button>
-          <button
-            className="fan-moments-filter__button"
-            disabled={isDisabled}
-            type="button"
-            onClick={onResetClick}
-          >
-            <FaUndo className="fan-moments-filter__button-icon" aria-hidden="true" />
-            <span>{resetLabel}</span>
-          </button>
-        </div>
+        <>
+          {selectedBandOption ? (
+            <div className="fan-moments-filter__selected-band">
+              {selectedBandLogoUrl ? (
+                <img
+                  className="fan-moments-filter__selected-band-logo"
+                  src={selectedBandLogoUrl}
+                  alt={`${selectedBandOption.label} logo`}
+                />
+              ) : (
+                <span className="fan-moments-filter__selected-band-fallback" aria-hidden="true">
+                  {selectedBandOption.label.slice(0, 1)}
+                </span>
+              )}
+            </div>
+          ) : null}
+          <div className="fan-moments-filter__actions" role="search">
+            <button
+              className="fan-moments-filter__button"
+              disabled={isDisabled}
+              type="button"
+              onClick={onFilterClick}
+            >
+              <FaFilter className="fan-moments-filter__button-icon" aria-hidden="true" />
+              <span>{filterLabel}</span>
+            </button>
+            <button
+              className="fan-moments-filter__button"
+              disabled={isDisabled}
+              type="button"
+              onClick={onResetClick}
+            >
+              <FaUndo className="fan-moments-filter__button-icon" aria-hidden="true" />
+              <span>{resetLabel}</span>
+            </button>
+          </div>
+        </>
       ) : null}
       {showBandTiles ? (
         <div className="fan-moments-filter__bands" aria-label="Bands with moments">

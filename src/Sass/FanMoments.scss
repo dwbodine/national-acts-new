@@ -79,6 +79,34 @@
   gap: 8px;
 }
 
+.fan-moments-filter__selected-band {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 320px);
+}
+
+.fan-moments-filter__selected-band-logo {
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  max-height: 96px;
+  object-fit: contain;
+}
+
+.fan-moments-filter__selected-band-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  color: #fff;
+  font-family: v.$moments-title-font-family;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1;
+}
+
 .fan-moments-filter__search,
 .fan-moments-filter__button {
   min-height: 40px;
@@ -866,6 +894,10 @@
     align-items: stretch;
     flex-direction: column;
     width: 100%;
+  }
+
+  .fan-moments-filter__selected-band {
+    align-self: center;
   }
 
   .fan-moments-filter__search,
