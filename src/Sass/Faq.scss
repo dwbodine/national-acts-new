@@ -1,8 +1,11 @@
+@use 'variables' as v;
+
 .faq-page {
   min-height: 100vh;
   background: #0c0c0c;
   color: #fff;
   font-family: 'Poppins', sans-serif;
+  max-width: v.$max-width;
 }
 
 .faq-page__hero {

@@ -1,6 +1,5 @@
 "use client";
 
-import { FAQType, PageProps } from "@/types/props";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import Artist from "../Artist";
@@ -15,6 +14,7 @@ import Footer from "./Footer";
 import MailingList from "../MailingList";
 import MyAccount from "../MyAccount";
 import OnePager from "../OnePager";
+import { PageProps } from "@/types/props";
 import { PageTypeKey } from "@/constants";
 import { RootState } from "@/lib/store";
 import SiteHeader from "./SiteHeader";
