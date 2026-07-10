@@ -4,6 +4,7 @@ import { FAQType, PageProps } from "@/types/props";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import Artist from "../Artist";
+import B2B from "../B2B";
 import ComingSoon from "./ComingSoon";
 import Contact from "../Contact";
 import Downloads from "../Downloads";
@@ -21,6 +22,7 @@ import Terms from "../Terms";
 import VIPClients from "../VIPClients";
 import Venue from "../Venue";
 import { setPages } from "@/lib/globalSelectionSlice";
+
 
 const removeInjectedNodes = (nodes: Node[]) => {
     nodes.forEach((node) => {
@@ -140,7 +142,7 @@ export default function PageLoader(props: PageProps) {
                 return <Artist page={page} />
                 break;
             case PageTypeKey.B2B:
-                return <ComingSoon />
+                return <B2B />
                 break;
             case PageTypeKey.Contact:
                 return <Contact page={page} />

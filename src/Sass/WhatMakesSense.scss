@@ -1,0 +1,207 @@
+@use 'variables' as v;
+
+.what-makes-sense {
+  position: relative;
+  width: 100%;
+  min-height: 360px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 76px;
+  background: rgb(207 0 0 / 90%);
+  color: #fff;
+}
+
+.what-makes-sense::after {
+  position: absolute;
+  z-index: 1;
+  inset: 14.38% 0 -1.85%;
+  content: '';
+  background: linear-gradient(180deg, transparent, #0c0c0c);
+  pointer-events: none;
+}
+
+.what-makes-sense__graphics {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.what-makes-sense__ring {
+  position: absolute;
+  top: 50%;
+  border: 1px solid rgb(255 255 255 / 5%);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 4%);
+  transform: translateY(-50%);
+}
+
+.what-makes-sense__ring--outer {
+  width: 1240px;
+  height: 1240px;
+}
+
+.what-makes-sense__ring--middle {
+  width: 1040px;
+  height: 1040px;
+}
+
+.what-makes-sense__ring--inner {
+  width: 840px;
+  height: 840px;
+}
+
+.what-makes-sense__graphics img {
+  width: 915px;
+  height: 881px;
+  object-fit: contain;
+  opacity: 0.22;
+}
+
+.what-makes-sense__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1288px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+  padding: 80px 0;
+}
+
+.what-makes-sense__header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.what-makes-sense__title,
+.what-makes-sense__description p {
+  margin: 0;
+}
+
+.what-makes-sense__title {
+  color: #fff;
+  font-family: 'PP Formula Narrow', sans-serif;
+  font-size: 64px;
+  font-weight: 600;
+  letter-spacing: -2.016px;
+  line-height: 72px;
+}
+
+.what-makes-sense__description {
+  width: 100%;
+  max-width: 660px;
+  color: #b3b3b3;
+  font-family: v.$hero-description-font-family;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: normal;
+  font-variant-ligatures: none;
+}
+
+.what-makes-sense__actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.what-makes-sense__button {
+  min-height: 72px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 40px;
+  border: 1px solid transparent;
+  border-radius: 80px;
+  font-family: v.$hero-button-font-family;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.36px;
+  line-height: normal;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.what-makes-sense__button:hover,
+.what-makes-sense__button:focus-visible {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+.what-makes-sense__button--primary {
+  min-width: 264px;
+  background: #fff;
+  color: #000;
+}
+
+.what-makes-sense__button--secondary {
+  min-width: 286px;
+  border-color: rgb(255 255 255 / 16%);
+  background: rgb(255 255 255 / 10%);
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .what-makes-sense {
+    padding: 72px 16px;
+  }
+
+  .what-makes-sense__inner {
+    gap: 40px;
+    padding: 0;
+  }
+
+  .what-makes-sense__title {
+    font-size: clamp(46px, 13vw, 56px);
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+  }
+
+  .what-makes-sense__actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .what-makes-sense__button,
+  .what-makes-sense__button--primary,
+  .what-makes-sense__button--secondary {
+    width: 100%;
+    min-width: 0;
+    min-height: 64px;
+    padding: 18px 24px;
+  }
+
+  .what-makes-sense__ring--outer {
+    width: 800px;
+    height: 800px;
+  }
+
+  .what-makes-sense__ring--middle {
+    width: 650px;
+    height: 650px;
+  }
+
+  .what-makes-sense__ring--inner {
+    width: 500px;
+    height: 500px;
+  }
+
+  .what-makes-sense__graphics img {
+    width: 560px;
+    height: 540px;
+  }
+}

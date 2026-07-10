@@ -61,6 +61,14 @@
   normal,
   'opentype'
 );
+@include local-font-face('PP Formula', 'PPFormula/PPFormula-Extrabold.otf', 800, normal, 'opentype');
+@include local-font-face(
+  'PP Formula Narrow',
+  'PPFormula/PPFormula-NarrowSemibold.otf',
+  600,
+  normal,
+  'opentype'
+);
 
 @include local-font-face('Poppins', 'Poppins/Poppins-100.ttf', 100);
 @include local-font-face('Poppins', 'Poppins/Poppins-100italic.ttf', 100, italic);
@@ -207,6 +215,15 @@
 @include meta.load-css('./VIPSolutions');
 @include meta.load-css('./Venue');
 @include meta.load-css('./Terms');
+@include meta.load-css('./TouringReality');
+@include meta.load-css('./BuiltForTouring');
+@include meta.load-css('./Focus');
+@include meta.load-css('./Process');
+@include meta.load-css('./TouringMoves');
+@include meta.load-css('./Starts');
+@include meta.load-css('./WhatMakesSense');
+@include meta.load-css('./B2BHero');
+@include meta.load-css('./B2B');
 
 .grecaptcha-badge {
   visibility: hidden;

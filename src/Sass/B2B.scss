@@ -1,0 +1,99 @@
+@use 'variables' as v;
+
+.b2bSection {
+  width: 100%;
+  overflow: hidden;
+  background: #0c0c0c;
+  max-width: v.$max-width;
+}
+
+.b2bSection > .container-fluid {
+  padding: 0;
+}
+
+.b2b-intro {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  min-height: 704px;
+  margin: 0 auto;
+  padding: 58px 50px 48px;
+  background: #0c0c0c;
+}
+
+.b2b-intro__copy,
+.b2b-intro__stats {
+  position: relative;
+  z-index: 2;
+}
+
+.b2b-intro__copy {
+  width: 51%;
+}
+
+.b2b-intro__stats {
+  width: 35%;
+}
+
+.b2b-intro__stats {
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+}
+
+.b2b-intro__visual {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  right: 0;
+  bottom: 0;
+  width: 68%;
+}
+
+.b2b-intro__visual .b2b-hero {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.home-ticker.b2b-home-ticker {
+  width: 100vw;
+  max-width: none;
+  margin: 25px 0 0 50%;
+  transform: translateX(-50%);
+}
+
+.b2b-home-ticker .home-ticker__viewport {
+  max-width: none;
+}
+
+@media (max-width: 991px) {
+  .b2b-intro {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 14px 48px;
+  }
+
+  .b2b-intro__copy,
+  .b2b-intro__stats {
+    width: 100%;
+  }
+
+  .b2b-intro__visual {
+    position: relative;
+    inset: auto;
+    width: calc(100% + 28px);
+    height: 270px;
+    margin: -8px -14px 0;
+  }
+
+  .b2b-intro__stats {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    z-index: 3;
+    margin-top: -12px;
+  }
+}

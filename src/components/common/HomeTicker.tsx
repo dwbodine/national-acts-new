@@ -26,6 +26,7 @@ type HomeTickerLogo =
 
 type HomeTickerProps = {
   className?: string;
+  logoSetRepeats?: number;
 };
 
 const tickerLogos: HomeTickerLogo[] = [
@@ -122,8 +123,12 @@ const renderTickerLogo = (logo: HomeTickerLogo, index: number, duplicate = false
   );
 };
 
-export default function HomeTicker({ className }: HomeTickerProps) {
+export default function HomeTicker({ className, logoSetRepeats = 1 }: HomeTickerProps) {
   const wrapperClassName = ['home-ticker', className].filter(Boolean).join(' ');
+  const repeatedTickerLogos = Array.from(
+    { length: Math.max(1, logoSetRepeats) },
+    () => tickerLogos,
+  ).flat();
 
   return (
     <section className={wrapperClassName} aria-label="Trusted by">
@@ -131,10 +136,10 @@ export default function HomeTicker({ className }: HomeTickerProps) {
       <div className="home-ticker__viewport">
         <div className="home-ticker__track">
           <div className="home-ticker__group">
-            {tickerLogos.map((logo, index) => renderTickerLogo(logo, index))}
+            {repeatedTickerLogos.map((logo, index) => renderTickerLogo(logo, index))}
           </div>
           <div className="home-ticker__group" aria-hidden="true">
-            {tickerLogos.map((logo, index) => renderTickerLogo(logo, index, true))}
+            {repeatedTickerLogos.map((logo, index) => renderTickerLogo(logo, index, true))}
           </div>
         </div>
       </div>
