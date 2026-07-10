@@ -10,7 +10,6 @@ import Contact from "../Contact";
 import Downloads from "../Downloads";
 import Events from "../Events";
 import FAQ from "../FAQ";
-import FAQs from "../FAQs";
 import FanMoments from "../Moments/FanMoments";
 import Footer from "./Footer";
 import MailingList from "../MailingList";
@@ -155,12 +154,6 @@ export default function PageLoader(props: PageProps) {
                 break;
             case PageTypeKey.FAQ:
                 return <FAQ page={page} />
-                break;
-            case PageTypeKey.FAQGeneral:
-                return <FAQs page={page} faqType={FAQType.General} />
-                break;
-            case PageTypeKey.FAQVIP:
-                return <FAQs page={page} faqType={FAQType.VIP} />
                 break;
             case PageTypeKey.MailingList:
                 return <MailingList page={page} />
