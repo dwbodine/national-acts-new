@@ -17,7 +17,7 @@ import Footer from './common/Footer';
 import HeroBottom from './common/HeroBottom';
 import HeroHeadline from './Home/HeroHeadline';
 import HeroSlider from './Home/HeroSlider';
-import HomeContact from './Home/HomeContact';
+import HomeContact from './common/HomeContact';
 import HomeMoments from './Home/Moments';
 import HomeTicker from './common/HomeTicker';
 import { Page } from '@/types/public';

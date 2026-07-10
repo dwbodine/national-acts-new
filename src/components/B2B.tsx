@@ -1,4 +1,5 @@
 import { Col, Container, Row } from 'react-bootstrap';
+import HomeContact, { HomeContactConversationType } from './common/HomeContact';
 import B2BHero from './B2B/B2BHero';
 import BuiltForTouring from './B2B/BuiltForTouring';
 import Focus from './B2B/Focus';
@@ -9,16 +10,36 @@ import Starts from './B2B/Starts';
 import TouringMoves from './B2B/TouringMoves';
 import TouringReality from './B2B/TouringReality';
 import WhatMakesSense from './B2B/WhatMakesSense';
+import { useState } from 'react';
 
 
 export default function B2B() {
+  const [openDialogRequest, setOpenDialogRequest] = useState<{
+      id: number;
+      type: HomeContactConversationType;
+    } | undefined>();
+
+  const openLetsTalkDialog = () => {
+    setOpenDialogRequest({
+      id: Date.now(),
+      type: 'Let\'s Talk B2B',
+    });
+  };
+
+  const openConversationDialog = () => {
+    setOpenDialogRequest({
+      id: Date.now(),
+      type: 'Start a Conversation B2B',
+    });
+  };
+
   return (
     <>
       <section className="b2bSection">
         <Container fluid>
           <div className="b2b-intro">
             <div className="b2b-intro__copy">
-              <TouringReality />
+              <TouringReality onLetsTalkClick={openLetsTalkDialog}  />
             </div>
             <div className="b2b-intro__visual">
               <B2BHero />
@@ -59,10 +80,11 @@ export default function B2B() {
           </Row>
           <Row>
             <Col xs={12}>
-              <WhatMakesSense />
+              <WhatMakesSense onConversationClick={openConversationDialog} />
             </Col>
           </Row>
         </Container>
+        <HomeContact dialogRequest={openDialogRequest} />
       </section>
     </>
   );

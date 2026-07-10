@@ -15,7 +15,9 @@ type HomeContactProps = {
 
 export type HomeContactConversationType =
   | 'Start a Conversation'
-  | 'Request a VIP Overview';
+  | 'Request a VIP Overview'
+  | 'Let\'s Talk B2B'
+  | 'Start a Conversation B2B';
 
 export type HomeContactDialogRequest = {
   id: number;

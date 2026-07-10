@@ -1,17 +1,27 @@
 import Link from 'next/link';
+import { MouseEvent } from 'react';
 
 type WhatMakesSenseProps = {
   className?: string;
-  conversationHref?: string;
   overviewHref?: string;
+  onConversationClick?: () => void;
 };
 
 export default function WhatMakesSense({
   className,
-  conversationHref = '/contact',
   overviewHref = '/contact?subject=VIP%20Overview',
+  onConversationClick,
 }: WhatMakesSenseProps) {
   const wrapperClassName = ['what-makes-sense', className].filter(Boolean).join(' ');
+
+  const handleConversationClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!onConversationClick) {
+      return;
+    }
+
+    event.preventDefault();
+    onConversationClick();
+  };
 
   return (
     <section className={wrapperClassName} aria-labelledby="what-makes-sense-title">
@@ -36,7 +46,8 @@ export default function WhatMakesSense({
         <div className="what-makes-sense__actions">
           <Link
             className="what-makes-sense__button what-makes-sense__button--primary"
-            href={conversationHref}
+            href="#"
+            onClick={handleConversationClick}
           >
             Start a Conversation
           </Link>

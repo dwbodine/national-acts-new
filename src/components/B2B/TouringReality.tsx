@@ -1,17 +1,27 @@
 import Link from 'next/link';
+import { MouseEvent } from 'react';
 
 type TouringRealityProps = {
   className?: string;
   howWeWorkHref?: string;
-  letsTalkHref?: string;
+  onLetsTalkClick?: () => void;
 };
 
 export default function TouringReality({
   className,
   howWeWorkHref = '#how-we-work',
-  letsTalkHref = '/contact',
+  onLetsTalkClick,
 }: TouringRealityProps) {
   const wrapperClassName = ['touring-reality', className].filter(Boolean).join(' ');
+
+  const handleLetsTalkClick = (event: MouseEvent<HTMLAnchorElement>) => {
+        if (!onLetsTalkClick) {
+          return;
+        }
+    
+        event.preventDefault();
+        onLetsTalkClick();
+      };
 
   return (
     <section className={wrapperClassName} aria-labelledby="touring-reality-title">
@@ -32,12 +42,13 @@ export default function TouringReality({
       <div className="touring-reality__actions">
         <Link
           className="touring-reality__button touring-reality__button--primary"
-          href={letsTalkHref}
+          href="#"
+          onClick={handleLetsTalkClick}
         >
           <span className="touring-reality__cta-desktop">Let&apos;s Talk</span>
           <span className="touring-reality__cta-mobile">Start a Conversation</span>
         </Link>
-        <Link
+        <Link hidden={true}
           className="touring-reality__button touring-reality__button--secondary"
           href={howWeWorkHref}
         >
