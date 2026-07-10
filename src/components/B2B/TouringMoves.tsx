@@ -31,7 +31,7 @@ export default function TouringMoves({ className }: TouringMovesProps) {
               Built for How Touring Actually Moves
             </h2>
             <div className="touring-moves__description">
-              <p>Tours change. Routing shifts. Markets expand.</p>
+              <p>Tours change. Routing shifts. Markets expand.</p><br />
               <p>National Acts is structured to scale with the tour—not slow it down.</p>
             </div>
           </header>

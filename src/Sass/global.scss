@@ -224,6 +224,7 @@
 @include meta.load-css('./WhatMakesSense');
 @include meta.load-css('./B2BHero');
 @include meta.load-css('./B2B');
+@include meta.load-css('./OnePager');
 
 .grecaptcha-badge {
   visibility: hidden;

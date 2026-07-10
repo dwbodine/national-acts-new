@@ -15,6 +15,7 @@ import FanMoments from "../Moments/FanMoments";
 import Footer from "./Footer";
 import MailingList from "../MailingList";
 import MyAccount from "../MyAccount";
+import OnePager from "../OnePager";
 import { PageTypeKey } from "@/constants";
 import { RootState } from "@/lib/store";
 import SiteHeader from "./SiteHeader";
@@ -22,7 +23,6 @@ import Terms from "../Terms";
 import VIPClients from "../VIPClients";
 import Venue from "../Venue";
 import { setPages } from "@/lib/globalSelectionSlice";
-
 
 const removeInjectedNodes = (nodes: Node[]) => {
     nodes.forEach((node) => {
@@ -186,6 +186,9 @@ export default function PageLoader(props: PageProps) {
             case PageTypeKey.Privacy:
                 return <ComingSoon />
                 break;
+            case PageTypeKey.OnePager:
+                return <OnePager page={page} />
+                break; 
             default:
                 return undefined;
                 break;

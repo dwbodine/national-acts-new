@@ -9,7 +9,7 @@ type WhatMakesSenseProps = {
 
 export default function WhatMakesSense({
   className,
-  overviewHref = '/contact?subject=VIP%20Overview',
+  overviewHref = '/one-pager',
   onConversationClick,
 }: WhatMakesSenseProps) {
   const wrapperClassName = ['what-makes-sense', className].filter(Boolean).join(' ');

@@ -16,6 +16,7 @@ export enum PageTypeKey {
   Management = 18,
   Moments = 31,
   MyAccount = 29,
+  OnePager = 35,
   OrderTickets = 25,
   Partner = 34,
   Privacy = 32,

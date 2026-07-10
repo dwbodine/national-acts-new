@@ -27,25 +27,37 @@ export default function Focus({ className }: FocusProps) {
           <h3 className="b2b-focus__details-title">At a high level, that includes:</h3>
           <ul className="b2b-focus__list">
             <li>
-              <strong>VIP experience</strong>&nbsp;design and package strategy
+              <p>
+                <strong>VIP experience</strong> design and package strategy
+              </p>
             </li>
             <li>
-              <strong>Ticketing and VIP integrations</strong>&nbsp;with major platforms
+              <p>
+                <strong>Ticketing and VIP integrations</strong> with major platforms
+              </p>
             </li>
             <li>
-              <strong>Secure</strong>&nbsp;payments, fraud <strong>&nbsp;protection</strong>, and customer&nbsp;
-              <strong>support</strong>
+              <p>
+                <strong>Secure</strong> payments, fraud <strong>protection</strong>, and customer{' '}
+                <strong>support</strong>
+              </p>
             </li>
             <li>
-              Fan&nbsp;<strong>communication</strong>,&nbsp;<strong>check-in</strong>, and&nbsp;
-              <strong>on-site</strong>&nbsp;workflows
+              <p>
+                Fan <strong>communication</strong>, <strong>check-in</strong>, and{' '}
+                <strong>on-site</strong> workflows
+              </p>
             </li>
             <li>
-              Venue&nbsp;<strong>coordination</strong>&nbsp;and show-day&nbsp;<strong>alignment</strong>
+              <p>
+                Venue <strong>coordination</strong> and show-day <strong>alignment</strong>
+              </p>
             </li>
             <li>
-              <strong>Visibility</strong>,&nbsp;<strong>reporting</strong>, and post-show&nbsp;
-              <strong>follow-through</strong>
+              <p>
+                <strong>Visibility</strong>, <strong>reporting</strong>, and post-show{' '}
+                <strong>follow-through</strong>
+              </p>
             </li>
           </ul>
         </div>

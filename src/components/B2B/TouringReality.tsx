@@ -9,7 +9,7 @@ type TouringRealityProps = {
 
 export default function TouringReality({
   className,
-  howWeWorkHref = '#how-we-work',
+  howWeWorkHref = '/one-pager',
   onLetsTalkClick,
 }: TouringRealityProps) {
   const wrapperClassName = ['touring-reality', className].filter(Boolean).join(' ');
@@ -48,7 +48,7 @@ export default function TouringReality({
           <span className="touring-reality__cta-desktop">Let&apos;s Talk</span>
           <span className="touring-reality__cta-mobile">Start a Conversation</span>
         </Link>
-        <Link hidden={true}
+        <Link 
           className="touring-reality__button touring-reality__button--secondary"
           href={howWeWorkHref}
         >
