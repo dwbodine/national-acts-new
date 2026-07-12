@@ -14,8 +14,8 @@ import Footer from "./Footer";
 import MailingList from "../MailingList";
 import MyAccount from "../MyAccount";
 import OnePager from "../OnePager";
-import { PageProps } from "@/types/props";
 import { PageTypeKey } from "@/constants";
+import Privacy from "../Privacy";
 import { RootState } from "@/lib/store";
 import SiteHeader from "./SiteHeader";
 import Terms from "../Terms";
@@ -69,7 +69,7 @@ const prependHtmlToElement = (target: HTMLElement, html: string): Node[] => {
     return nodes;
 };
 
-export default function PageLoader(props: PageProps) {
+export default function PageLoader(props: import('@/types/props').PageProps) {
     const { page } = props;
     const [pageTypeId, setPageTypeId] = useState<number | undefined>(undefined);
     const injectedHeadNodesRef = useRef<Node[]>([]);
@@ -177,7 +177,7 @@ export default function PageLoader(props: PageProps) {
                 return <Venue page={page} />
                 break;
             case PageTypeKey.Privacy:
-                return <ComingSoon />
+                return <Privacy page={page} />
                 break;
             case PageTypeKey.OnePager:
                 return <OnePager page={page} />
