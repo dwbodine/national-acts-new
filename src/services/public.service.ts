@@ -353,11 +353,17 @@ export class PublicService {
 
     try {
       const res = await this.instance.post(url, data, { headers });
-      const subscriberId = JSON.stringify(res.data);
-      response.subscriberId = parseInt(subscriberId);
-      response.success = !isNaN(response.subscriberId) && response.subscriberId >= 0;
+      const subscriberId = res.data as string | 1 | -1;
+      response.subscriberId = subscriberId;
+      response.success =
+        (typeof subscriberId === 'string' && subscriberId.length > 0) || subscriberId === 1;
+
+      if (!response.success) {
+        response.errorMessage = 'An error occurred while subscribing. Please try again later.';
+      }
     } catch (e) {
       const err = e as AxiosError;
+      response.success = false;
       response.statusCode = err?.response?.status ?? 500;
       response.error =
         err?.message ??

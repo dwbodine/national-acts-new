@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { userPostSubscriber } from '@/hooks/userPostSubscriber';
 
-type EarlyAccessProps = {
+type MailingListControlsProps = {
   className?: string;
 };
 
@@ -17,7 +17,7 @@ const validateEmail = (email: string) => {
   return re.test(email);
 };
 
-export default function EarlyAccess({ className }: EarlyAccessProps) {
+export default function MailingListControls({ className }: MailingListControlsProps) {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { addOrConfirmSubscriber } = userPostSubscriber(email);
@@ -42,7 +42,7 @@ export default function EarlyAccess({ className }: EarlyAccessProps) {
     const subscriberResponse = await addOrConfirmSubscriber();
 
     if (subscriberResponse.success ) {
-      if (subscriberResponse.subscriberId !== undefined && subscriberResponse.subscriberId > 0) {
+      if (typeof subscriberResponse.subscriberId === 'string') {
         toast.success('Thank you for already being subscribed!');
       } else {
         toast.success('Thank you for subscribing!');

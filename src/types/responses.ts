@@ -60,5 +60,5 @@ export interface GetContactMessageResponse extends GetResponseBase {
 }
 
 export interface PostSubscriberResponse extends PostReponseBase {
-  subscriberId?: number;
+  subscriberId?: string | 1 | -1;
 }

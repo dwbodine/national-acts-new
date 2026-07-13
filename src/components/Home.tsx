@@ -12,7 +12,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import CurrentTours from './Home/CurrentTours';
-import EarlyAccess from './Home/EarlyAccess';
 import Footer from './common/Footer';
 import HeroBottom from './common/HeroBottom';
 import HeroHeadline from './Home/HeroHeadline';
@@ -20,6 +19,7 @@ import HeroSlider from './Home/HeroSlider';
 import HomeContact from './common/HomeContact';
 import HomeMoments from './Home/Moments';
 import HomeTicker from './common/HomeTicker';
+import MailingListControls from './common/MailingListControls';
 import { Page } from '@/types/public';
 import { PageTypeKey } from '@/constants';
 import { RootState } from '@/lib/store';
@@ -128,7 +128,7 @@ export default function Home() {
           </Row>
           <Row>
             <Col xs={12}>
-              <EarlyAccess />
+              <MailingListControls />
             </Col>
           </Row>
           <Row>
