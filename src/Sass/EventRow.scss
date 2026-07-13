@@ -1,20 +1,24 @@
 @use 'variables' as v;
 
-.event-row, .event-row-dark {
+.event-row,
+.event-row-dark {
   padding: 20px 0 10px 50px;
   border-bottom: 3px solid v.$event-row-separator-color;
   position: relative;
 }
 
-.event-row:last-child, .event-row-dark:last-child {
+.event-row:last-child,
+.event-row-dark:last-child {
   border-bottom: unset;
 }
 
-.event-row a, .event-row-dark a {
+.event-row a,
+.event-row-dark a {
   text-decoration: none;
 }
 
-.event-row h3, .event-row-dark h3 {
+.event-row h3,
+.event-row-dark h3 {
   color: v.$event-row-header-color;
   margin-top: 0;
   font-size: v.$event-row-h3-font-size;
@@ -154,7 +158,8 @@
   background-color: v.$event-row-tab-no-link-background-color;
 }
 
-.skewed-tab.nolink a, .ticket-tab.nolink a {
+.skewed-tab.nolink a,
+.ticket-tab.nolink a {
   color: v.$event-row-tab-no-link-text-color;
 }
 
@@ -290,19 +295,23 @@
     text-align: center;
   }
 
-  .event-row h3, .event-row-dark h3 {
+  .event-row h3,
+  .event-row-dark h3 {
     font-size: v.$event-row-h3-font-size-mobile;
   }
 
-  .event-row h4, .event-row-dark h4 {
+  .event-row h4,
+  .event-row-dark h4 {
     font-size: v.$event-row-h4-font-size-mobile;
   }
 
-  .event-row h5, .event-row-dark h5 {
+  .event-row h5,
+  .event-row-dark h5 {
     font-size: v.$event-row-h5-font-size-mobile;
   }
 
-  .map-icon, .map-icon-dark {
+  .map-icon,
+  .map-icon-dark {
     display: none;
   }
 
@@ -322,7 +331,8 @@
 }
 
 @media (max-width: 600px) {
-  .event-row, .event-row-dark {
+  .event-row,
+  .event-row-dark {
     padding-left: 15px;
   }
 }

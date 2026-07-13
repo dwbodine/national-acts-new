@@ -32,6 +32,7 @@
 
 .home-ticker__track {
   --home-ticker-gap: 64px;
+  --home-ticker-logo-set-repeats: 1;
   --home-ticker-start-offset: 0px;
 
   display: flex;
@@ -39,7 +40,7 @@
   gap: var(--home-ticker-gap);
   width: max-content;
   transform: translateX(var(--home-ticker-start-offset));
-  animation: home-ticker-scroll 24s linear infinite;
+  animation: home-ticker-scroll calc(24s * var(--home-ticker-logo-set-repeats)) linear infinite;
   will-change: transform;
 }
 
@@ -84,7 +85,8 @@
   mask-size: var(--home-ticker-mask-width) var(--home-ticker-mask-height);
   -webkit-mask-image: var(--home-ticker-mask-image);
   -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: var(--home-ticker-mask-offset-left) var(--home-ticker-mask-offset-top);
+  -webkit-mask-position: var(--home-ticker-mask-offset-left)
+    var(--home-ticker-mask-offset-top);
   -webkit-mask-size: var(--home-ticker-mask-width) var(--home-ticker-mask-height);
 }
 
@@ -94,7 +96,9 @@
   }
 
   to {
-    transform: translateX(calc(-50% - (var(--home-ticker-gap) / 2) + var(--home-ticker-start-offset)));
+    transform: translateX(
+      calc(-50% - (var(--home-ticker-gap) / 2) + var(--home-ticker-start-offset))
+    );
   }
 }
 
@@ -125,7 +129,7 @@
 
   .home-ticker__track {
     --home-ticker-gap: 28px;
-    animation-duration: 18s;
+    animation-duration: calc(18s * var(--home-ticker-logo-set-repeats));
   }
 
   .home-ticker__item {

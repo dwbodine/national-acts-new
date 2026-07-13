@@ -35,7 +35,7 @@
   right: 0;
   left: 0;
   text-align: center;
-  transition: background .25s;
+  transition: background 0.25s;
 }
 
 .featImgContainer:hover::after {
@@ -46,7 +46,7 @@
   right: 0;
   left: 0;
   text-align: center;
-  transition: background .25s;
+  transition: background 0.25s;
 }
 
 .featImgContainer:hover::before {
@@ -60,11 +60,11 @@
   padding: 1.5em;
   -ms-transform: translateY(-50%) translateX(-50%);
   transform: translateY(-50%) translateX(-50%);
-  transition: opacity .25s;
+  transition: opacity 0.25s;
   z-index: 6;
 }
 
-@media(max-width: 430px) {
+@media (max-width: 430px) {
   .featImgContainer {
     max-width: 360px;
     background-size: cover;

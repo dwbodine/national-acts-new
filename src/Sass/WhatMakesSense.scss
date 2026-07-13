@@ -132,7 +132,9 @@
   line-height: normal;
   text-decoration: none;
   white-space: nowrap;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .what-makes-sense__button:hover,

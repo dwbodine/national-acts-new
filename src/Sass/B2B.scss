@@ -17,7 +17,7 @@
   max-width: 1440px;
   min-height: 704px;
   margin: 0 auto;
-  padding: 58px 50px 48px;
+  padding: 58px 50px;
   background: #0c0c0c;
 }
 
@@ -60,8 +60,9 @@
 .home-ticker.b2b-home-ticker {
   width: 100vw;
   max-width: none;
-  margin: 25px 0 0 50%;
+  margin: 0 0 0 50%;
   transform: translateX(-50%);
+  padding: 25px 0;
 }
 
 .b2b-home-ticker .home-ticker__viewport {

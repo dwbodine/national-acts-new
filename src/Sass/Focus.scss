@@ -67,9 +67,7 @@
   position: absolute;
   inset: 0;
   content: '';
-  background:
-    linear-gradient(270deg, transparent 47.755%, #000 100%),
-    rgb(0 0 0 / 20%);
+  background: linear-gradient(270deg, transparent 47.755%, #000 100%), rgb(0 0 0 / 20%);
   pointer-events: none;
 }
 

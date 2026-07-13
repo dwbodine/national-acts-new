@@ -11,29 +11,6 @@
   isolation: isolate;
 }
 
-.home-contact::before,
-.home-contact::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  border: 1px solid rgb(255 255 255 / 5%);
-  border-radius: 50%;
-  background: rgb(255 255 255 / 4%);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-.home-contact::before {
-  width: min(86vw, 1240px);
-  height: min(86vw, 1240px);
-}
-
-.home-contact::after {
-  width: min(72vw, 1040px);
-  height: min(72vw, 1040px);
-}
-
 .home-contact__inner {
   position: relative;
   z-index: 1;

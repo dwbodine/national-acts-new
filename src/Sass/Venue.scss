@@ -90,7 +90,8 @@
   }
 }
 
-.fixed-width-control, input[type=text].fixed-width-control {
+.fixed-width-control,
+input[type='text'].fixed-width-control {
   width: 300px;
   max-width: unset;
 }

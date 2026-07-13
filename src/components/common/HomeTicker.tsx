@@ -125,16 +125,20 @@ const renderTickerLogo = (logo: HomeTickerLogo, index: number, duplicate = false
 
 export default function HomeTicker({ className, logoSetRepeats = 1 }: HomeTickerProps) {
   const wrapperClassName = ['home-ticker', className].filter(Boolean).join(' ');
+  const normalizedLogoSetRepeats = Math.max(1, Math.floor(logoSetRepeats));
   const repeatedTickerLogos = Array.from(
-    { length: Math.max(1, logoSetRepeats) },
+    { length: normalizedLogoSetRepeats },
     () => tickerLogos,
   ).flat();
+  const trackStyle = {
+    ['--home-ticker-logo-set-repeats' as string]: normalizedLogoSetRepeats,
+  } as CSSProperties;
 
   return (
     <section className={wrapperClassName} aria-label="Trusted by">
       <p className="home-ticker__label">Trusted by</p>
       <div className="home-ticker__viewport">
-        <div className="home-ticker__track">
+        <div className="home-ticker__track" style={trackStyle}>
           <div className="home-ticker__group">
             {repeatedTickerLogos.map((logo, index) => renderTickerLogo(logo, index))}
           </div>

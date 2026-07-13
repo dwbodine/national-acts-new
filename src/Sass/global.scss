@@ -61,7 +61,13 @@
   normal,
   'opentype'
 );
-@include local-font-face('PP Formula', 'PPFormula/PPFormula-Extrabold.otf', 800, normal, 'opentype');
+@include local-font-face(
+  'PP Formula',
+  'PPFormula/PPFormula-Extrabold.otf',
+  800,
+  normal,
+  'opentype'
+);
 @include local-font-face(
   'PP Formula Narrow',
   'PPFormula/PPFormula-NarrowSemibold.otf',
