@@ -175,6 +175,11 @@ export class PublicService {
       route: 'contact-us',
     });
 
+    menu.items.push({
+      displayText: 'Mailing List',
+      route: 'mailing-list',
+    });
+
     return menu;
   };
 

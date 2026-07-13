@@ -19,13 +19,6 @@ export default function B2B() {
       type: HomeContactConversationType;
     } | undefined>();
 
-  const openLetsTalkDialog = () => {
-    setOpenDialogRequest({
-      id: Date.now(),
-      type: 'Let\'s Talk B2B',
-    });
-  };
-
   const openConversationDialog = () => {
     setOpenDialogRequest({
       id: Date.now(),
@@ -39,7 +32,7 @@ export default function B2B() {
         <Container fluid>
           <div className="b2b-intro">
             <div className="b2b-intro__copy">
-              <TouringReality onLetsTalkClick={openLetsTalkDialog}  />
+              <TouringReality />
             </div>
             <div className="b2b-intro__visual">
               <B2BHero />
