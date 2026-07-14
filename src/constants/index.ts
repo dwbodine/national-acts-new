@@ -35,3 +35,9 @@ export const HOME_BANNER_LINK: string = 'HomeBannerLink';
 export const MOBILE_WIDTH_BREAKPOINT: number = 590;
 export const DEFAULT_COUNTRY_ID = 235;
 export const EVENT_RELOAD_TIMEOUT = 300;
+
+export enum ArtistTemplate {
+  Original = 1,
+  NewTemplateFullHeader = 2,
+  NewTemplateThumbnailHeader = 3,
+}

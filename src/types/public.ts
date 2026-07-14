@@ -231,6 +231,7 @@ export interface Page {
   lastUpdated?: number;
   extraHtmlHead?: string;
   extraHtmlBody?: string;
+  artistTemplateTypeId?: number;
 }
 
 export interface EmailMessage {

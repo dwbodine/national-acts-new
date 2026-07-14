@@ -1,7 +1,12 @@
 import { Faq, Page, SellerType, VipEvent } from './public';
+import { ArtistTemplate } from '@/constants';
 
 export interface PageProps {
   page: Page;
+}
+
+export interface ArtistPageProps extends PageProps {
+  ArtistTemplateType: ArtistTemplate;
 }
 
 export enum FAQType {

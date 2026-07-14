@@ -6,7 +6,7 @@ import { GetEventsResponse, GetSettingsResponse } from "@/types/responses";
 import { JSX, useCallback, useEffect, useMemo, useState } from "react";
 import { setEventReloadTime, setEvents, setIsLoading, setReloadEvents, setReloadSettings, setSettings } from "@/lib/globalSelectionSlice";
 import { useDispatch, useSelector } from "react-redux";
-import EventRow from "./EventRow";
+import EventRow from "./common/EventRow";
 import { PageProps } from "@/types/props";
 import { RingLoader } from 'react-spinners';
 import { RootState } from "@/lib/store";

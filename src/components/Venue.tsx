@@ -3,8 +3,8 @@
 import { Col, Container, Modal, Row } from "react-bootstrap";
 import { JSX, useState } from "react";
 import { PageSeller, SellerType, VipEvent } from "@/types/public";
-import ArtistBox from "./ArtistBox";
-import EventRow from "./EventRow";
+import ArtistBox from "./Artist/ArtistBox";
+import EventRow from "./common/EventRow";
 import { PageProps } from "@/types/props";
 import parse from 'html-react-parser';
 

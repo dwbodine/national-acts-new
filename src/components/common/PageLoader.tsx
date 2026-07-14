@@ -1,5 +1,6 @@
 "use client";
 
+import { ArtistTemplate, PageTypeKey } from "@/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import Artist from "../Artist";
@@ -14,7 +15,7 @@ import Footer from "./Footer";
 import MailingList from "../MailingList";
 import MyAccount from "../MyAccount";
 import OnePager from "../OnePager";
-import { PageTypeKey } from "@/constants";
+import { PageProps } from "@/types/props";
 import Privacy from "../Privacy";
 import { RootState } from "@/lib/store";
 import SiteHeader from "./SiteHeader";
@@ -69,8 +70,9 @@ const prependHtmlToElement = (target: HTMLElement, html: string): Node[] => {
     return nodes;
 };
 
-export default function PageLoader(props: import('@/types/props').PageProps) {
+export default function PageLoader(props: PageProps) {
     const { page } = props;
+    const artistTemplateType = (page.artistTemplateTypeId ?? ArtistTemplate.Original) as ArtistTemplate;
     const [pageTypeId, setPageTypeId] = useState<number | undefined>(undefined);
     const injectedHeadNodesRef = useRef<Node[]>([]);
     const injectedBodyNodesRef = useRef<Node[]>([]);
@@ -138,7 +140,7 @@ export default function PageLoader(props: import('@/types/props').PageProps) {
     const renderPage = (pageTypeKey: PageTypeKey) => {
         switch (pageTypeKey) {
             case PageTypeKey.Artist:
-                return <Artist page={page} />
+                return <Artist page={page} ArtistTemplateType={artistTemplateType} />
                 break;
             case PageTypeKey.B2B:
                 return <B2B />
