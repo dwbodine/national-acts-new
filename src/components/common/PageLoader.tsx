@@ -72,7 +72,7 @@ const prependHtmlToElement = (target: HTMLElement, html: string): Node[] => {
 
 export default function PageLoader(props: PageProps) {
     const { page } = props;
-    const artistTemplateType = (page.artistTemplateTypeId ?? ArtistTemplate.Original) as ArtistTemplate;
+    const artistTemplateType = (page.artistPageSettings?.artistTemplateTypeId ?? ArtistTemplate.Original) as ArtistTemplate;
     const [pageTypeId, setPageTypeId] = useState<number | undefined>(undefined);
     const injectedHeadNodesRef = useRef<Node[]>([]);
     const injectedBodyNodesRef = useRef<Node[]>([]);

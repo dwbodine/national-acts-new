@@ -96,7 +96,7 @@ export default function EventRowV2(props: EventRowProps) {
           <h3 className="event-row-v2__title">{title}</h3>
           <div className="event-row-v2__meta">
             <span>{eventDate}</span>
-            <span className="event-row-v2__dot" aria-hidden="true" />
+            <span className="event-row-v2__dot" aria-hidden="true" hidden={!eventTime} />
             <span>{eventTime}</span>
           </div>
 

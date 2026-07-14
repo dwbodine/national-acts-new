@@ -10,6 +10,11 @@ export enum SellerType {
   Promoter = 3,
 }
 
+export enum ArtistTitlePosition {
+  TOP = 0,
+  BOTTOM = 1
+}
+
 export interface SellerEventCategory {
   sellerId: number;
   ticketSocketId: number;
@@ -203,6 +208,13 @@ export interface Tour {
   href?: string;
 }
 
+export interface ArtistPageSettings {
+  artistTemplateTypeId: number;
+  showTitle: boolean;
+  titlePosition: ArtistTitlePosition;
+  lastUpdate: string;
+}
+
 export interface Page {
   pageId: number;
   route: string;
@@ -231,7 +243,7 @@ export interface Page {
   lastUpdated?: number;
   extraHtmlHead?: string;
   extraHtmlBody?: string;
-  artistTemplateTypeId?: number;
+  artistPageSettings?: ArtistPageSettings;
 }
 
 export interface EmailMessage {

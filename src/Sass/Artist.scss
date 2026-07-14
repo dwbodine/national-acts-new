@@ -26,13 +26,14 @@
 .artist-header-full-control__hero {
   position: relative;
   display: flex;
-  min-height: 280px;
+  width: 100%;
   justify-content: space-between;
   gap: 32px;
   padding: 24px;
   overflow: hidden;
   border-radius: 16px;
-  background-size: cover;
+  background-size: 100% auto;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -56,13 +57,25 @@
   min-width: 0;
 }
 
-.artist-header-full-control__title {
-  margin: 0 0 24px;
+.artist-header-full-control__title_top,
+.artist-header-full-control__title_bottom {
+  position: absolute;
+  left: 24px;
+  z-index: 1;
+  margin: 0;
   color: #fff;
   font-family: v.$hero-title-font-family;
   font-size: 64px;
   font-weight: 700;
   line-height: 0.95;
+}
+
+.artist-header-full-control__title_top {
+  top: 30px;
+}
+
+.artist-header-full-control__title_bottom {
+  bottom: 30px;
 }
 
 .artist-header-full-control__description {
@@ -355,8 +368,18 @@
     max-width: 305px;
   }
 
-  .artist-header-full-control__title {
+  .artist-header-full-control__title_top,
+  .artist-header-full-control__title_bottom {
+    left: 16px;
     font-size: 44px;
+  }
+
+  .artist-header-full-control__title_top {
+    top: 16px;
+  }
+
+  .artist-header-full-control__title_bottom {
+    bottom: 16px;
   }
 
   .artist-header-full-control__socials {
