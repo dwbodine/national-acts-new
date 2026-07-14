@@ -7,6 +7,7 @@ export interface PageProps {
 
 export interface ArtistPageProps extends PageProps {
   ArtistTemplateType: ArtistTemplate;
+  HasFanMoments?: boolean;
 }
 
 export enum FAQType {

@@ -10,7 +10,7 @@ import Contact from "../Contact";
 import Downloads from "../Downloads";
 import Events from "../Events";
 import FAQ from "../FAQ";
-import FanMoments from "../Moments/FanMoments";
+import FanMoments from "../FanMoments";
 import Footer from "./Footer";
 import MailingList from "../MailingList";
 import MyAccount from "../MyAccount";

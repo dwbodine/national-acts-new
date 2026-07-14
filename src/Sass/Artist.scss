@@ -4,6 +4,404 @@
   text-align: center;
   overflow: hidden;
   min-height: 80vh;
+  width: 100%;
+  max-width: v.$max-width;
+}
+
+.artist-header-full-control {
+  width: 100%;
+  background-color: v.$main-background-color;
+  color: v.$main-text-color;
+  padding: 50px;
+  text-align: left;
+}
+
+.artist-header-full-control__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 auto;
+}
+
+.artist-header-full-control__hero {
+  position: relative;
+  display: flex;
+  min-height: 280px;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 24px;
+  overflow: hidden;
+  border-radius: 16px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.artist-header-full-control__intro {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+
+.artist-header-full-control__image {
+  width: 305px;
+  height: 174px;
+  flex: 0 0 auto;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.artist-header-full-control__copy {
+  max-width: 564px;
+  min-width: 0;
+}
+
+.artist-header-full-control__title {
+  margin: 0 0 24px;
+  color: #fff;
+  font-family: v.$hero-title-font-family;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 0.95;
+}
+
+.artist-header-full-control__description {
+  max-width: 564px;
+  color: #b3b3b3;
+  font-family: v.$hero-description-font-family;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+}
+
+.artist-header-full-control__description p {
+  margin: 0;
+}
+
+.artist-header-full-control__socials {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  min-width: 260px;
+}
+
+.artist-header-full-control__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  text-decoration: none;
+  background-color: #050505;
+  border-radius: 50%;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.artist-header-full-control__social-link:hover {
+  color: #050505;
+  background-color: #fff;
+  transform: translateY(-1px);
+}
+
+.artist-header-full-control__social-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.artist-header-full-control__moments-link {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  color: #fff;
+  font-family: v.$hero-description-font-family;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  text-decoration: none;
+  border-bottom: 1px solid #fff;
+}
+
+.artist-header-full-control__included-title {
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  font-family: v.$hero-title-font-family;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.artist-header-full-control__included-panel {
+  min-height: 128px;
+  padding: 21px 16px;
+  border-radius: 12px;
+  background-color: rgb(43 43 43 / 48%);
+}
+
+.artist-header-full-control__included-panel h3 {
+  margin: 0;
+  color: #fff;
+  font-family: v.$hero-title-font-family;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.artist-header-thumbnail {
+  background-color: v.$main-background-color;
+  color: v.$main-text-color;
+  text-align: left;
+  width: 100%;
+  padding: 25px 50px;
+}
+
+.artist-header-thumbnail__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.artist-header-thumbnail__hero {
+  position: relative;
+  display: flex;
+  min-height: 280px;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 24px;
+  overflow: hidden;
+  border-radius: 16px;
+  background:
+    linear-gradient(180deg, rgb(59 73 56 / 95%) 0%, #0c0c0c 87%),
+    #0c0c0c;
+}
+
+.artist-header-thumbnail__intro {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+
+.artist-header-thumbnail__image {
+  width: 305px;
+  height: 174px;
+  flex: 0 0 auto;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.artist-header-thumbnail__copy {
+  max-width: 564px;
+  min-width: 0;
+}
+
+.artist-header-thumbnail__title {
+  margin: 0 0 24px;
+  color: #fff;
+  font-family: v.$hero-title-font-family;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 0.95;
+}
+
+.artist-header-thumbnail__description {
+  max-width: 564px;
+  color: #b3b3b3;
+  font-family: v.$hero-description-font-family;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+}
+
+.artist-header-thumbnail__description p {
+  margin: 0;
+}
+
+.artist-header-thumbnail__socials {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  min-width: 260px;
+}
+
+.artist-header-thumbnail__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  text-decoration: none;
+  background-color: #050505;
+  border-radius: 50%;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.artist-header-thumbnail__social-link:hover {
+  color: #050505;
+  background-color: #fff;
+  transform: translateY(-1px);
+}
+
+.artist-header-thumbnail__social-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.artist-header-thumbnail__moments-link {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  color: #fff;
+  font-family: v.$hero-description-font-family;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  text-decoration: none;
+  border-bottom: 1px solid #fff;
+}
+
+.artist-header-thumbnail__included-title {
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  font-family: v.$hero-title-font-family;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.artist-header-thumbnail__included-panel {
+  min-height: 128px;
+  padding: 21px 16px;
+  border-radius: 12px;
+  background-color: rgb(43 43 43 / 48%);
+}
+
+.artist-header-thumbnail__included-panel h3 {
+  margin: 0;
+  color: #fff;
+  font-family: v.$hero-title-font-family;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+@media (max-width: 1100px) {
+  .artist-header-full-control {
+    padding: 32px 24px;
+  }
+
+  .artist-header-full-control__hero {
+    flex-direction: column;
+  }
+
+  .artist-header-full-control__socials {
+    justify-content: flex-start;
+    min-width: 0;
+    padding-bottom: 56px;
+  }
+
+  .artist-header-thumbnail {
+    padding: 32px 24px;
+  }
+
+  .artist-header-thumbnail__hero {
+    flex-direction: column;
+  }
+
+  .artist-header-thumbnail__socials {
+    justify-content: flex-start;
+    min-width: 0;
+    padding-bottom: 56px;
+  }
+}
+
+@media (max-width: 720px) {
+  .artist-header-full-control {
+    padding: 24px 16px;
+  }
+
+  .artist-header-full-control__hero {
+    padding: 16px;
+  }
+
+  .artist-header-full-control__intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .artist-header-full-control__image {
+    width: 100%;
+    max-width: 305px;
+  }
+
+  .artist-header-full-control__title {
+    font-size: 44px;
+  }
+
+  .artist-header-full-control__socials {
+    flex-wrap: wrap;
+  }
+
+  .artist-header-full-control__moments-link {
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+    justify-content: space-between;
+  }
+
+  .artist-header-thumbnail {
+    padding: 24px 16px;
+  }
+
+  .artist-header-thumbnail__hero {
+    padding: 16px;
+  }
+
+  .artist-header-thumbnail__intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .artist-header-thumbnail__image {
+    width: 100%;
+    max-width: 305px;
+  }
+
+  .artist-header-thumbnail__title {
+    font-size: 44px;
+  }
+
+  .artist-header-thumbnail__socials {
+    flex-wrap: wrap;
+  }
+
+  .artist-header-thumbnail__moments-link {
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+    justify-content: space-between;
+  }
 }
 
 .artist-info-row {
@@ -16,6 +414,7 @@
 .artist_title_2,
 .artist_text {
   color: v.$header-color;
+  font-family: v.$artist-title-font-family;
 }
 
 .artist_title_1 {
@@ -55,6 +454,7 @@
   text-align: center;
   font-weight: bold;
   margin: 25px 0 15px 0;
+  font-family: v.$artist-title-font-family;
 }
 
 .wait-spinner-container {

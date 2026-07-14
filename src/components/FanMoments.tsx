@@ -2,10 +2,10 @@
 
 import { Col, Container, Row } from "react-bootstrap";
 import type { FanMoment, MomentsFilterOption } from "@/types/moments";
-import MomentsFilterDialog, { type MomentsFilterValues } from "./MomentsFilterDialog";
-import MomentsFilter from "./MomentsFilter";
-import MomentsHeader from "./MomentsHeader";
-import MomentsPhotoViewer from "./MomentsPhotoViewer";
+import MomentsFilterDialog, { type MomentsFilterValues } from "./Moments/MomentsFilterDialog";
+import MomentsFilter from "./Moments/MomentsFilter";
+import MomentsHeader from "./Moments/MomentsHeader";
+import MomentsPhotoViewer from "./Moments/MomentsPhotoViewer";
 import { RingLoader } from 'react-spinners';
 import { useState } from "react";
 
