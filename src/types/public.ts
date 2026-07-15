@@ -12,7 +12,7 @@ export enum SellerType {
 
 export enum ArtistTitlePosition {
   TOP = 0,
-  BOTTOM = 1
+  BOTTOM = 1,
 }
 
 export interface SellerEventCategory {

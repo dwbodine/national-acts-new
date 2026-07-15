@@ -361,10 +361,12 @@ export class PublicService {
       const subscriberId = res.data as string | 1 | -1;
       response.subscriberId = subscriberId;
       response.success =
-        (typeof subscriberId === 'string' && subscriberId.length > 0) || subscriberId === 1;
+        (typeof subscriberId === 'string' && subscriberId.length > 0) ||
+        subscriberId === 1;
 
       if (!response.success) {
-        response.errorMessage = 'An error occurred while subscribing. Please try again later.';
+        response.errorMessage =
+          'An error occurred while subscribing. Please try again later.';
       }
     } catch (e) {
       const err = e as AxiosError;
