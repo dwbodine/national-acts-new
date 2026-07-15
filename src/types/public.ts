@@ -78,6 +78,7 @@ export interface VipEvent {
   doorsOpen?: string;
   meetAndGreetTime?: string;
   isSoldOut?: boolean;
+  eventNote?: string;
 }
 
 export interface SiteSetting {
@@ -212,6 +213,9 @@ export interface ArtistPageSettings {
   artistTemplateTypeId: number;
   showTitle: boolean;
   titlePosition: ArtistTitlePosition;
+  vipPackageContents?: string;
+  gradientStartColor?: string;
+  artistDescription?: string;
   lastUpdate: string;
 }
 

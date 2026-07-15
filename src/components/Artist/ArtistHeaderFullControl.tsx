@@ -6,6 +6,7 @@ import { FaFacebookF, FaGlobe, FaInstagram, FaSpotify, FaYoutube } from 'react-i
 import { useEffect, useState } from 'react';
 import { ArtistPageProps } from '@/types/props';
 import Link from 'next/link';
+import parse from 'html-react-parser';
 
 type SocialLink = {
   href?: string;
@@ -46,6 +47,9 @@ export default function ArtistHeaderFullControl(props: ArtistPageProps) {
   ];
   const visibleSocialLinks = socialLinks.filter((socialLink) => socialLink.href);
 
+  const vipPackageContents = page.artistPageSettings?.vipPackageContents ?? undefined;
+  const artistDescription = page.artistPageSettings?.artistDescription ?? undefined;
+
   return (
     <header className="artist-header-full-control">
       <div className="artist-header-full-control__inner">
@@ -58,7 +62,13 @@ export default function ArtistHeaderFullControl(props: ArtistPageProps) {
           }}
         >
           <div className="artist-header-full-control__intro">
-            <div className="artist-header-full-control__copy">
+            <div
+              className={`artist-header-full-control__copy ${
+                page.artistPageSettings?.titlePosition === ArtistTitlePosition.TOP
+                  ? 'artist-header-full-control__copy_top'
+                  : 'artist-header-full-control__copy_bottom'
+              }`}
+            >
               <h1
                 className={
                   page.artistPageSettings?.titlePosition === ArtistTitlePosition.TOP
@@ -70,6 +80,7 @@ export default function ArtistHeaderFullControl(props: ArtistPageProps) {
               >
                 {title}
               </h1>
+              <p className="artist-header-full-control__description" hidden={!artistDescription}>{artistDescription}</p>
             </div>
           </div>
 
@@ -105,7 +116,7 @@ export default function ArtistHeaderFullControl(props: ArtistPageProps) {
           </Link>
         </section>
 
-        <section
+        <section hidden={!vipPackageContents}
           className="artist-header-full-control__included"
           aria-labelledby="artist-header-full-control-included-title"
         >
@@ -116,7 +127,7 @@ export default function ArtistHeaderFullControl(props: ArtistPageProps) {
             What&apos;s included
           </h2>
           <div className="artist-header-full-control__included-panel">
-            <h3>Meet and Greet</h3>
+            {parse(vipPackageContents || '')}
           </div>
         </section>
       </div>

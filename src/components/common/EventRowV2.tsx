@@ -83,7 +83,7 @@ export default function EventRowV2(props: EventRowProps) {
 
   const ticketUnavailable = !ticketUrl || ticketDisabled;
   const vipUnavailable = !vipUrl || vipDisabled;
-  const noteText = eventRow?.disableLinkReason || eventRow?.disableVipLinkReason;
+  const noteText = eventRow?.eventNote;
   const thumbnail = getEventThumbnail(eventRow?.thumbnail, eventRow?.externalThumbnail);
   const venueAddress = getVenueAddress(eventRow);
 

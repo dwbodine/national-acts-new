@@ -5,6 +5,7 @@ import { FaFacebookF, FaGlobe, FaInstagram, FaSpotify, FaYoutube } from 'react-i
 import { ArtistPageProps } from '@/types/props';
 import Link from 'next/link';
 import { PageSeller } from '@/types/public';
+import parse from 'html-react-parser';
 
 type SocialLink = {
   href?: string;
@@ -33,12 +34,23 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
   ];
   const visibleSocialLinks = socialLinks.filter((socialLink) => socialLink.href);
 
+  const vipPackageContents = page.artistPageSettings?.vipPackageContents ?? undefined;
+  const gradientStartColor = page.artistPageSettings?.gradientStartColor ?? null;
+  const artistDescription = page.artistPageSettings?.artistDescription ?? undefined;
+
   return (
     <header className="artist-header-thumbnail">
       <div className="artist-header-thumbnail__inner">
         <section
           className="artist-header-thumbnail__hero"
           aria-labelledby="artist-header-thumbnail-title"
+          style={
+            gradientStartColor
+              ? {
+                  background: `linear-gradient(180deg, color-mix(in srgb, #${gradientStartColor} 75%, #303030) 0%, #0c0c0c 100%), #0c0c0c`,
+                }
+              : undefined
+          }
         >
           <div className="artist-header-thumbnail__intro">
             <img className="artist-header-thumbnail__image" src={pageImage} alt={title} />
@@ -50,6 +62,7 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
               >
                 {title}
               </h1>
+              <p className="artist-header-thumbnail__description" hidden={!artistDescription}>{artistDescription}</p>
             </div>
           </div>
 
@@ -88,6 +101,7 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
         <section
           className="artist-header-thumbnail__included"
           aria-labelledby="artist-header-thumbnail-included-title"
+          hidden={!vipPackageContents}
         >
           <h2
             className="artist-header-thumbnail__included-title"
@@ -96,7 +110,7 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
             What&apos;s included
           </h2>
           <div className="artist-header-thumbnail__included-panel">
-            <h3>Meet and Greet</h3>
+            {parse(vipPackageContents || '')}
           </div>
         </section>
       </div>
