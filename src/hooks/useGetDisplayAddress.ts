@@ -17,7 +17,7 @@ export const useGetDisplayAddress = () => {
         address += `, ${props.State}`;
         if (props.Zip) {
           address += ` ${props.Zip}`;
-          if (props.Country) {
+          if (props.Country && props.Country !== 'USA') {
             address += `<br /> ${props.Country}`;
             if (props.Phone) {
               address += `<br /> ${props.Phone}`;

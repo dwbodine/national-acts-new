@@ -214,7 +214,6 @@ export interface ArtistPageSettings {
   showTitle: boolean;
   titlePosition: ArtistTitlePosition;
   vipPackageContents?: string;
-  gradientStartColor?: string;
   artistDescription?: string;
   lastUpdate: string;
 }
@@ -248,6 +247,7 @@ export interface Page {
   extraHtmlHead?: string;
   extraHtmlBody?: string;
   artistPageSettings?: ArtistPageSettings;
+  gradientStartColor?: string;
 }
 
 export interface EmailMessage {

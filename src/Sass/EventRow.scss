@@ -484,9 +484,10 @@
   }
 
   .event-row-v2__poster {
+    align-self: center;
     width: 100%;
+    max-width: 360px;
     height: auto;
-    aspect-ratio: 180.8 / 226;
   }
 
   .event-row-v2__body {

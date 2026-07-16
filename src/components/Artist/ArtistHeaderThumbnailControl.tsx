@@ -11,6 +11,7 @@ type SocialLink = {
   href?: string;
   icon: React.ComponentType<{ className?: string }>;
   label: string;
+  className?: string;
 };
 
 const getPrimaryArtist = (artists: PageSeller[]): PageSeller | undefined =>
@@ -25,17 +26,47 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
     : '/images/crowd-web-color.jpg';
   const title = page.title1 ?? primaryArtist?.displayName ?? page.title;
   const socialLinks: SocialLink[] = [
-    { href: primaryArtist?.spotify, icon: FaSpotify, label: 'Spotify' },
-    { href: primaryArtist?.facebook, icon: FaFacebookF, label: 'Facebook' },
-    { href: primaryArtist?.instagram, icon: FaInstagram, label: 'Instagram' },
-    { href: primaryArtist?.twitter, icon: FaXTwitter, label: 'X' },
-    { href: primaryArtist?.youtube, icon: FaYoutube, label: 'YouTube' },
-    { href: primaryArtist?.website, icon: FaGlobe, label: 'Website' },
+    {
+      className: 'icoSpotify',
+      href: primaryArtist?.spotify,
+      icon: FaSpotify,
+      label: 'Spotify',
+    },
+    {
+      className: 'icoFacebook',
+      href: primaryArtist?.facebook,
+      icon: FaFacebookF,
+      label: 'Facebook',
+    },
+    {
+      className: 'icoInstagram',
+      href: primaryArtist?.instagram,
+      icon: FaInstagram,
+      label: 'Instagram',
+    },
+    {
+      className: 'icoTwitter',
+      href: primaryArtist?.twitter,
+      icon: FaXTwitter,
+      label: 'X',
+    },
+    {
+      className: 'icoYouTube',
+      href: primaryArtist?.youtube,
+      icon: FaYoutube,
+      label: 'YouTube',
+    },
+    {
+      className: 'icoWebsite',
+      href: primaryArtist?.website,
+      icon: FaGlobe,
+      label: 'Website',
+    },
   ];
   const visibleSocialLinks = socialLinks.filter((socialLink) => socialLink.href);
 
   const vipPackageContents = page.artistPageSettings?.vipPackageContents ?? undefined;
-  const gradientStartColor = page.artistPageSettings?.gradientStartColor ?? null;
+  const gradientStartColor = page.gradientStartColor ?? null;
   const artistDescription = page.artistPageSettings?.artistDescription ?? undefined;
 
   return (
@@ -62,10 +93,16 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
               >
                 {title}
               </h1>
-              <p className="artist-header-thumbnail__description" hidden={!artistDescription}>{artistDescription}</p>
+              <p
+                className="artist-header-thumbnail__description"
+                hidden={!artistDescription}
+              >
+                {artistDescription}
+              </p>
             </div>
           </div>
-
+        </section>
+        <section className="artist-header-thumbnail__socials-container">
           <nav
             className="artist-header-thumbnail__socials"
             aria-label={`${title} social links`}
@@ -73,10 +110,14 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
             {visibleSocialLinks.map((socialLink) => {
               const Icon = socialLink.icon;
 
+              const className = socialLink.className
+                ? `artist-header-thumbnail__social-link ${socialLink.className}`
+                : 'artist-header-thumbnail__social-link';
+
               return (
                 <a
                   key={socialLink.label}
-                  className="artist-header-thumbnail__social-link"
+                  className={className}
                   href={socialLink.href}
                   target="_blank"
                   rel="noreferrer"
@@ -91,13 +132,15 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
               );
             })}
           </nav>
-
-          <Link className="artist-header-thumbnail__moments-link" href="/moments" hidden={!props.HasFanMoments}>
+          <Link
+            className="artist-header-thumbnail__moments-link"
+            href="/moments"
+            hidden={!props.HasFanMoments}
+          >
             <span>Meet and Greet photos</span>
             <FaArrowRight aria-hidden="true" />
           </Link>
         </section>
-
         <section
           className="artist-header-thumbnail__included"
           aria-labelledby="artist-header-thumbnail-included-title"

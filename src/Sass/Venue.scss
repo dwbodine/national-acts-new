@@ -1,7 +1,149 @@
+@use 'variables' as v;
+
 .venueSection {
   margin-top: -25px;
   text-align: center;
   min-height: 80vh;
+  width: 100%;
+  max-width: v.$max-width;
+}
+
+.venue-header {
+  width: 100%;
+  padding: 50px 10px;
+  text-align: left;
+}
+
+.venue-header__hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  width: 100%;
+  padding: 24px;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.venue-header__intro {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+
+.venue-header__image {
+  width: 305px;
+  height: 174px;
+  flex: 0 0 auto;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.venue-header__copy {
+  min-width: 0;
+}
+
+.venue-header__title {
+  color: #fff;
+  font-family: v.$hero-title-font-family;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 72px;
+  letter-spacing: -1.92px;
+  margin: 0;
+}
+
+.venue-header__description {
+  max-width: 564px;
+  margin: 0;
+  color: #b3b3b3;
+  font-family: v.$hero-description-font-family;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+}
+
+.venue-header__description > :last-child {
+  margin-bottom: 0;
+}
+
+.venue-header__socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex: 0 0 auto;
+  margin: 25px 0 0 0;
+}
+
+.venue-header__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  text-decoration: none;
+  background-color: #050505;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.venue-header__social-link:hover {
+  color: #050505;
+  background-color: #fff;
+  transform: translateY(-1px);
+}
+
+.venue-header__social-icon {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 960px) {
+  .venue-header {
+    padding: 32px 24px;
+  }
+
+  .venue-header__hero {
+    flex-direction: column;
+  }
+
+  .venue-header__socials {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 720px) {
+  .venue-header {
+    padding: 24px 16px;
+  }
+
+  .venue-header__hero {
+    padding: 16px;
+    align-items: center;
+  }
+
+  .venue-header__intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .venue-header__image {
+    width: 100%;
+    max-width: 305px;
+  }
+
+  .venue-header__title {
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: -1.32px;
+  }
+
+  .venue-header__socials {
+    flex-wrap: wrap;
+  }
 }
 
 .venue_title_1 {
@@ -74,6 +216,7 @@
   text-align: center;
   font-weight: bold;
   margin: 25px 0 15px 0;
+  font-family: v.$artist-title-font-family;
 }
 
 .seller-thumb {

@@ -12,6 +12,7 @@ type SocialLink = {
   href?: string;
   icon: React.ComponentType<{ className?: string }>;
   label: string;
+  className?: string;
 };
 
 const getPrimaryArtist = (artists: PageSeller[]): PageSeller | undefined =>
@@ -38,12 +39,12 @@ export default function ArtistHeaderFullControl(props: ArtistPageProps) {
 
   const title = page.title1 ?? primaryArtist?.displayName ?? page.title;
   const socialLinks: SocialLink[] = [
-    { href: primaryArtist?.spotify, icon: FaSpotify, label: 'Spotify' },
-    { href: primaryArtist?.facebook, icon: FaFacebookF, label: 'Facebook' },
-    { href: primaryArtist?.instagram, icon: FaInstagram, label: 'Instagram' },
-    { href: primaryArtist?.twitter, icon: FaXTwitter, label: 'X' },
-    { href: primaryArtist?.youtube, icon: FaYoutube, label: 'YouTube' },
-    { href: primaryArtist?.website, icon: FaGlobe, label: 'Website' },
+    { className: 'icoSpotify', href: primaryArtist?.spotify, icon: FaSpotify, label: 'Spotify' },
+    { className: 'icoFacebook', href: primaryArtist?.facebook, icon: FaFacebookF, label: 'Facebook' },
+    { className: 'icoInstagram', href: primaryArtist?.instagram, icon: FaInstagram, label: 'Instagram' },
+    { className: 'icoTwitter', href: primaryArtist?.twitter, icon: FaXTwitter, label: 'X' },
+    { className: 'icoYouTube', href: primaryArtist?.youtube, icon: FaYoutube, label: 'YouTube' },
+    { className: 'icoWebsite', href: primaryArtist?.website, icon: FaGlobe, label: 'Website' },
   ];
   const visibleSocialLinks = socialLinks.filter((socialLink) => socialLink.href);
 
@@ -80,10 +81,18 @@ export default function ArtistHeaderFullControl(props: ArtistPageProps) {
               >
                 {title}
               </h1>
-              <p className="artist-header-full-control__description" hidden={!artistDescription}>{artistDescription}</p>
+              <p
+                className="artist-header-full-control__description"
+                hidden={!artistDescription}
+              >
+                {artistDescription}
+              </p>
             </div>
           </div>
 
+          
+        </section>
+        <section className="artist-header-full-control__socials-container">
           <nav
             className="artist-header-full-control__socials"
             aria-label={`${title} social links`}
@@ -91,10 +100,14 @@ export default function ArtistHeaderFullControl(props: ArtistPageProps) {
             {visibleSocialLinks.map((socialLink) => {
               const Icon = socialLink.icon;
 
+              const className = socialLink.className
+                ? `artist-header-thumbnail__social-link ${socialLink.className}`
+                : 'artist-header-thumbnail__social-link';
+
               return (
                 <a
                   key={socialLink.label}
-                  className="artist-header-full-control__social-link"
+                  className={className}
                   href={socialLink.href}
                   target="_blank"
                   rel="noreferrer"
@@ -109,14 +122,17 @@ export default function ArtistHeaderFullControl(props: ArtistPageProps) {
               );
             })}
           </nav>
-
-          <Link className="artist-header-full-control__moments-link" href="/moments" hidden={!props.HasFanMoments}>
+          <Link
+            className="artist-header-full-control__moments-link"
+            href="/moments"
+            hidden={!props.HasFanMoments}
+          >
             <span>Meet and Greet Photos</span>
             <FaArrowRight aria-hidden="true" />
           </Link>
         </section>
-
-        <section hidden={!vipPackageContents}
+        <section
+          hidden={!vipPackageContents}
           className="artist-header-full-control__included"
           aria-labelledby="artist-header-full-control-included-title"
         >
