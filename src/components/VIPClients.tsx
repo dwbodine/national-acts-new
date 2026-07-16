@@ -1,28 +1,31 @@
 "use client";
 
-import { Col, Container, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { JSX, useEffect } from "react";
-import { setArtists, setPages, setReloadArtists } from "@/lib/globalSelectionSlice";
+import { setArtists, setIsLoading, setPages, setReloadArtists } from "@/lib/globalSelectionSlice";
 import { useDispatch, useSelector } from "react-redux";
+import ConcertExperiences from "./common/ConcertExperiences";
 import { GetPagesResponse } from "@/types/responses";
 import { Page } from "@/types/public";
 import { PageProps } from "@/types/props";
 import { PageTypeKey } from "@/constants";
+import { RingLoader } from "react-spinners";
 import { RootState } from "@/lib/store";
+import VipClient from "./VIPClients/VipClient";
+import VipClientHeader from "./VIPClients/VipClientHeader";
 import { useGetPagesByType } from "@/hooks/useGetPagesByType";
-import { useRouter } from 'next/navigation';
 
 export default function VIPClients(props: PageProps) {
     const globalSelection = useSelector((state: RootState) => state.globalSelection);
     const dispatch = useDispatch();
     const { page } = props;
-    const router = useRouter();
     const { getPagesByType } = useGetPagesByType();
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             if (!globalSelection.artists && globalSelection.reloadArtists) {
                 dispatch(setReloadArtists(false));
+                dispatch(setIsLoading(true));
                 getPagesByType(PageTypeKey.Artist).then((response: GetPagesResponse) => {
                     if (response.pages && !response.error) {
                         const currentPages = globalSelection.pages ? [...globalSelection.pages] : [];
@@ -42,6 +45,7 @@ export default function VIPClients(props: PageProps) {
                         dispatch(setArtists([]));
                     }
                     document.title = "VIP Clients";
+                    dispatch(setIsLoading(false));
                 });
             }
             document.title = page?.title;
@@ -51,16 +55,14 @@ export default function VIPClients(props: PageProps) {
         };        
     }, [page?.title, dispatch, getPagesByType, globalSelection.artists, globalSelection.reloadArtists, globalSelection.pages]);
 
-    const goToClient = (route: string) => {
-        router.push(`/${route}`);
-    };
+    
 
     const artistCols: JSX.Element[] = [];
     if (globalSelection.artists && globalSelection.artists.length > 0) {
         globalSelection.artists.forEach((artistPage: Page, i: number) => {
             if (artistPage.thumbnail) {
                 artistCols.push(
-                    <Col key={`artistCol_${i}`} lg={6} xl={4} className="featImgContainer" onClick={() => goToClient(artistPage.route)} style={{backgroundImage: `url(${process.env.NEXT_PUBLIC_THUMBNAILS_URL}${artistPage.thumbnail})`}}></Col>
+                    <VipClient key={`artistCol_${i}`} page={artistPage} />
                 );
             }
         });
@@ -69,14 +71,14 @@ export default function VIPClients(props: PageProps) {
     return (
         <section className="clientSection">
             <Container>
-                <Row className="justify-content-center">
-                    <Col>
-                        <h1 className="text-center">Click below for VIP package details</h1>
-                    </Col>
-                </Row>
-                 <Row className="justify-content-center">
+                <VipClientHeader />
+                <div className="spinner-container" hidden={!globalSelection.isLoading}>
+                    <RingLoader size={150} color="#d12610" />
+                </div>
+                 <Row className="justify-content-center" hidden={globalSelection.isLoading}>
                     {artistCols}
                 </Row>
+                <ConcertExperiences hidden={globalSelection.isLoading} />
             </Container>
         </section>
     );

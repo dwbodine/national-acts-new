@@ -1,8 +1,9 @@
 'use client';
 
-import { setFeaturedArtists, setReloadFeaturedArtists } from '@/lib/globalSelectionSlice';
+import { setFeaturedArtists, setIsLoading, setReloadFeaturedArtists } from '@/lib/globalSelectionSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetFeaturedArtistsResponse } from '@/types/responses';
+import { RingLoader } from 'react-spinners';
 import { RootState } from '@/lib/store';
 import { useEffect } from 'react';
 import { useGetFeaturedArtists } from '@/hooks/useGetFeaturedArtists';
@@ -41,11 +42,13 @@ export default function HeroSlider({ className }: HeroSliderProps) {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (!globalSelection.featuredArtists && globalSelection.reloadFeaturedArtists) {
+        dispatch(setIsLoading(true));
         dispatch(setReloadFeaturedArtists(false));
         getFeaturedArtists().then((response: GetFeaturedArtistsResponse) => {
           if (response.featuredArtists && !response.error) {
             dispatch(setFeaturedArtists(response.featuredArtists));
           }
+          dispatch(setIsLoading(false));
         });
       }
     }, 250);
@@ -79,10 +82,10 @@ export default function HeroSlider({ className }: HeroSliderProps) {
 
   return (
     <div className={wrapperClassName} aria-label="Featured artists">
-      <div className="featured-artists__title">
-        <h2>Featured artists</h2>
+      <div className="spinner-container" hidden={!globalSelection.isLoading}>
+          <RingLoader size={150} color="#d12610" />
       </div>
-      {heroSliderRows.length &&
+      {!globalSelection.isLoading && heroSliderRows.length &&
         heroSliderRows.map((row, rowIndex) => (
           <div
             key={rowModifiers[rowIndex]}

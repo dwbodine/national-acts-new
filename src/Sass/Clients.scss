@@ -2,6 +2,57 @@
   min-height: 80vh;
 }
 
+.vipClientHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  margin: 0 auto;
+  padding: 0 0 54px;
+  text-align: center;
+}
+
+.vipClientHeader__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: center;
+}
+
+.vipClientHeader__eyebrow,
+.vipClientHeader__title,
+.vipClientHeader__description {
+  margin: 0;
+}
+
+.vipClientHeader__eyebrow {
+  color: #9a9a9a;
+  font-family: 'PP Formula', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.56px;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.vipClientHeader__title {
+  max-width: 642px;
+  color: #fff;
+  font-family: 'PP Formula Narrow', sans-serif;
+  font-size: 64px;
+  font-weight: 600;
+  letter-spacing: -1.92px;
+  line-height: 72px;
+}
+
+.vipClientHeader__description {
+  max-width: 564px;
+  color: #b3b3b3;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+}
+
 .clientSection div {
   overflow: hidden;
 }
@@ -20,6 +71,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   margin: 10px !important;
+  border-radius: 16px;
 }
 
 .featImgContainer:hover {
@@ -65,6 +117,21 @@
 }
 
 @media (max-width: 430px) {
+  .vipClientHeader {
+    gap: 20px;
+    padding-bottom: 40px;
+  }
+
+  .vipClientHeader__heading {
+    gap: 16px;
+  }
+
+  .vipClientHeader__title {
+    font-size: 44px;
+    letter-spacing: -1.32px;
+    line-height: 50px;
+  }
+
   .featImgContainer {
     max-width: 360px;
     background-size: cover;

@@ -1,3 +1,5 @@
+"use client";
+
 import { Col, Container, Modal, Row } from 'react-bootstrap';
 import { SellerType, VipEvent } from '@/types/public';
 import EventRowV2 from '../common/EventRowV2';

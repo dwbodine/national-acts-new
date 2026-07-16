@@ -3,6 +3,7 @@
 import ArtistEventsControl from "./ArtistEventsControl";
 import ArtistHeaderOriginalControl from "./ArtistHeaderOriginalControl";
 import { ArtistPageProps } from "@/types/props";
+import ConcertExperiences from "../common/ConcertExperiences";
 
 export default function ArtistOriginal(props: ArtistPageProps) {
     const { page } = props;	
@@ -11,6 +12,7 @@ export default function ArtistOriginal(props: ArtistPageProps) {
         <section className="artistSection" hidden={!page}>
 			<ArtistHeaderOriginalControl {...props} />
 			<ArtistEventsControl {...props} />
+			<ConcertExperiences />
 		</section>
 	);
 

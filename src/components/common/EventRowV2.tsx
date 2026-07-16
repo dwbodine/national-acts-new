@@ -1,6 +1,6 @@
 "use client";
 
-import { FaInfoCircle, FaMapMarkerAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaInfoCircle, FaMapMarkerAlt } from "react-icons/fa";
 import { EventRowProps } from "@/types/props";
 import { MouseEvent } from "react";
 import { SellerType } from "@/types/public";
@@ -95,6 +95,7 @@ export default function EventRowV2(props: EventRowProps) {
         <div className="event-row-v2__details">
           <h3 className="event-row-v2__title">{title}</h3>
           <div className="event-row-v2__meta">
+            <FaCalendarAlt aria-hidden="true" className="event-row-v2__meta-icon" />
             <span>{eventDate}</span>
             <span className="event-row-v2__dot" aria-hidden="true" hidden={!eventTime} />
             <span>{eventTime}</span>
