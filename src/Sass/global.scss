@@ -232,6 +232,7 @@
 @include meta.load-css('./B2BHero');
 @include meta.load-css('./B2B');
 @include meta.load-css('./OnePager');
+@include meta.load-css('./MyAccount');
 
 .grecaptcha-badge {
   visibility: hidden;
