@@ -8,18 +8,20 @@ import { toast } from 'react-toastify';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { useSendContactEmail } from '@/hooks/useSendContactEmail';
 
-type B2BContactProps = {
+type ContactFormProps = {
   className?: string;
-  dialogRequest?: B2BContactDialogRequest;
+  dialogRequest?: ContactDialogRequest;
 };
 
-export type B2BContactConversationType =
+export type ContactConversationType =
+  | 'Start a Conversation'
+  | 'Request a VIP Overview'
   | 'Let\'s Talk B2B'
   | 'Start a Conversation B2B';
 
-export type B2BContactDialogRequest = {
+export type ContactDialogRequest = {
   id: number;
-  type: B2BContactConversationType;
+  type: ContactConversationType;
 };
 
 const roleOptions = [
@@ -59,14 +61,14 @@ const validateEmail = (email: string) => {
   return re.test(email);
 };
 
-export default function B2BContact({ className, dialogRequest }: B2BContactProps) {
+export default function ContactForm({ className, dialogRequest }: ContactFormProps) {
   const wrapperClassName = ['b2b-contact', className].filter(Boolean).join(' ');
   const { executeRecaptcha } = useGoogleReCaptcha();
   const { sendContactEmail } = useSendContactEmail();
 
   const [showDialog, setShowDialog] = useState(false);
   const [conversationType, setConversationType] =
-    useState<B2BContactConversationType>('Start a Conversation B2B');
+    useState<ContactConversationType>('Start a Conversation');
   const [fullName, setFullName] = useState('');
   const [organization, setOrganization] = useState('');
   const [role, setRole] = useState('');

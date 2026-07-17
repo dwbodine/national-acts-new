@@ -11,12 +11,13 @@ import {
 } from '@/lib/globalSelectionSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import ConcertExperiences from './common/ConcertExperiences';
+import ContactForm from './common/ContactForm';
 import CurrentTours from './Home/CurrentTours';
 import Footer from './common/Footer';
 import HeroBottom from './common/HeroBottom';
 import HeroHeadline from './Home/HeroHeadline';
 import HeroSlider from './Home/HeroSlider';
-import HomeContact from './Home/HomeContact';
 import HomeMoments from './Home/Moments';
 import HomeTicker from './common/HomeTicker';
 import MailingListControls from './common/MailingListControls';
@@ -25,7 +26,6 @@ import { PageTypeKey } from '@/constants';
 import { RootState } from '@/lib/store';
 import SiteHeader from './common/SiteHeader';
 import VIPSolutions from './Home/VIPSolutions';
-import VipExperience from './Home/VipExperience';
 import { useGetPagesByType } from '@/hooks/useGetPagesByType';
 import { useGetSettings } from '@/hooks/useGetSettings';
 
@@ -138,11 +138,11 @@ export default function Home() {
           </Row>
           <Row>
             <Col xs={12}>
-              <VipExperience />
+              <ConcertExperiences />
             </Col>
           </Row>
         </Container>
-        <HomeContact dialogRequest={homeContactDialogRequest} />
+        <ContactForm dialogRequest={homeContactDialogRequest} />
       </section>
       <Footer />
     </>

@@ -1,5 +1,5 @@
-import B2BContact, { B2BContactConversationType } from './B2B/B2BContact';
 import { Col, Container, Row } from 'react-bootstrap';
+import ContactForm, { ContactConversationType } from './common/ContactForm';
 import B2BHero from './B2B/B2BHero';
 import BuiltForTouring from './B2B/BuiltForTouring';
 import Focus from './B2B/Focus';
@@ -16,7 +16,7 @@ import { useState } from 'react';
 export default function B2B() {
   const [openDialogRequest, setOpenDialogRequest] = useState<{
       id: number;
-      type: B2BContactConversationType;
+      type: ContactConversationType;
     } | undefined>();
 
   const openConversationDialog = () => {
@@ -77,7 +77,7 @@ export default function B2B() {
             </Col>
           </Row>
         </Container>
-        <B2BContact dialogRequest={openDialogRequest} />
+        <ContactForm dialogRequest={openDialogRequest} />
       </section>
     </>
   );
