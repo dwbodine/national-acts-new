@@ -3,11 +3,12 @@
 import { Col, Container, Row } from "react-bootstrap";
 import type { FanMoment, MomentsFilterOption } from "@/types/moments";
 import MomentsFilterDialog, { type MomentsFilterValues } from "./Moments/MomentsFilterDialog";
+import { useCallback, useEffect, useState } from "react";
 import MomentsFilter from "./Moments/MomentsFilter";
 import MomentsHeader from "./Moments/MomentsHeader";
 import MomentsPhotoViewer from "./Moments/MomentsPhotoViewer";
 import { RingLoader } from 'react-spinners';
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const emptyFilterValues: MomentsFilterValues = {
     date: '',
@@ -221,6 +222,7 @@ const getMomentItems = async (values?: MomentRequestValues): Promise<FanMoment[]
 };
 
 export default function FanMoments() {
+    const router = useRouter();
     const [filterOptions, setFilterOptions] = useState<MomentFilterOptions>(emptyFilterOptions);
     const [filterValues, setFilterValues] = useState<MomentsFilterValues>(emptyFilterValues);
     const [moments, setMoments] = useState<FanMoment[]>([]);
@@ -229,7 +231,7 @@ export default function FanMoments() {
     const [isLoadingMoments, setIsLoadingMoments] = useState(false);
     const [showFilterDialog, setShowFilterDialog] = useState(false);
 
-    const selectSeller = async (sellerId: string) => {
+    const selectSeller = useCallback(async (sellerId: string) => {
         setSelectedSellerId(sellerId);
         setFilterValues(emptyFilterValues);
         setFilterOptions(emptyFilterOptions);
@@ -246,7 +248,15 @@ export default function FanMoments() {
         } finally {
             setIsLoadingMoments(false);
         }
-    };
+    }, []);
+
+    useEffect(() => {
+        const sellerId = new URLSearchParams(window.location.search).get('sellerId')?.trim();
+
+        if (sellerId) {
+            selectSeller(sellerId).catch(() => undefined);
+        }
+    }, [selectSeller]);
 
     const applyFilters = async (values: MomentsFilterValues) => {
         if (!selectedSellerId) {
@@ -276,6 +286,7 @@ export default function FanMoments() {
         setMoments([]);
         setShowFilterDialog(false);
         setPhotoViewerKey((currentKey) => currentKey + 1);
+        router.replace('/moments');
     };
 
     const hasSelectedSeller = Boolean(selectedSellerId);

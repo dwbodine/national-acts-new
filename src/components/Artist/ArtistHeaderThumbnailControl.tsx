@@ -134,7 +134,7 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
           </nav>
           <Link
             className="artist-header-thumbnail__moments-link"
-            href="/moments"
+            href={primaryArtist?.sellerId ? `/moments?sellerId=${primaryArtist?.sellerId}` : `/moments`}
             hidden={!props.HasFanMoments}
           >
             <span>Meet and Greet photos</span>

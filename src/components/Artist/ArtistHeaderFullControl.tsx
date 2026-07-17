@@ -124,7 +124,7 @@ export default function ArtistHeaderFullControl(props: ArtistPageProps) {
           </nav>
           <Link
             className="artist-header-full-control__moments-link"
-            href="/moments"
+            href={primaryArtist?.sellerId ? `/moments?sellerId=${primaryArtist?.sellerId}` : `/moments`}
             hidden={!props.HasFanMoments}
           >
             <span>Meet and Greet Photos</span>
