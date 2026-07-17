@@ -850,6 +850,10 @@
     grid-template-columns: repeat(2, 230px);
     gap: 48px 16px;
   }
+
+  .one-pager__feature-list article:before {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {

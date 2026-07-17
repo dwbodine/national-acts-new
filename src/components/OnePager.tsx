@@ -136,7 +136,7 @@ export default function OnePager(props: PageProps) {
           ))}
         </div>
         <p className="one-pager__callout">
-          If it touches the fan or shows up on show day, it’s already built into the
+          If it touches the fan or shows up on show day, it&amp;s already built into the
           process.
         </p>
       </section>
@@ -234,7 +234,7 @@ export default function OnePager(props: PageProps) {
           <article>
             <h3>Built for Scale &amp; Conversion</h3>
             <p>
-              Bundled offers operate within Ticketmaster’s commercial framework and
+              Bundled offers operate within Ticketmaster&amp;s commercial framework and
               consistently outperform standalone VIP sales, leveraging platform reach and
               built-in demand.
             </p>
