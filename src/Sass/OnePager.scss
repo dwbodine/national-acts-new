@@ -124,6 +124,57 @@
 .one-pager__collage img:nth-child(n + 7):nth-child(-n + 9) {
   transform: translateY(63px);
 }
+
+@media (min-width: 1101px) and (max-width: 1359px) {
+  .one-pager__hero-copy {
+    width: clamp(460px, 40vw, 527px);
+  }
+
+  .one-pager__collage {
+    width: min(52vw, 740px);
+    height: auto;
+    aspect-ratio: 740 / 755;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+
+  .one-pager__collage img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .one-pager__hero {
+    min-height: 0;
+    align-items: center;
+    flex-direction: column;
+    gap: 48px;
+    padding: 40px 24px 0;
+  }
+
+  .one-pager__hero-copy {
+    width: min(527px, 100%);
+  }
+
+  .one-pager__collage {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    flex: 0 0 auto;
+    width: min(740px, 100%);
+    height: auto;
+    aspect-ratio: 740 / 755;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+
+  .one-pager__collage img {
+    width: 100%;
+    height: 100%;
+  }
+}
 .one-pager__partners {
   padding: 48px 60px;
   text-align: center;
@@ -457,15 +508,11 @@
   font-size: 18px;
   line-height: 28px;
 }
-.one-pager__merch-image {
-  width: 403px;
-  height: 538px;
-  overflow: hidden;
-}
+
 .one-pager__merch-image img {
-  width: 538px;
-  max-width: none;
-  height: 538px;
+  width: 100%;
+  max-width: 538px;
+  height: auto;
   object-fit: cover;
 }
 .one-pager__process {
@@ -734,11 +781,20 @@
   font-size: 14px;
 }
 
+@media (max-width: 1155px) {
+  .one-pager__merch {
+    grid-template-columns: 1fr;
+  }
+
+  .one-pager__merch-image {
+    margin: auto;
+  }
+}
+
 @media (max-width: 991px) {
   .one-pager__hero {
-    min-height: 760px;
-    align-items: flex-start;
     padding: 32px 24px;
+    padding-bottom: 0;
   }
   .one-pager__hero-copy {
     width: 100%;
@@ -748,17 +804,7 @@
     line-height: 1.05;
   }
   .one-pager__collage {
-    top: 420px;
-    right: auto;
-    left: 15%;
-    width: 519px;
-    height: 520px;
-    grid-template-columns: repeat(4, 120px);
-    grid-template-rows: repeat(3, 160px);
-  }
-  .one-pager__collage img {
-    width: 120px;
-    height: 160px;
+    width: min(620px, 100%);
   }
   .one-pager__hero-stats {
     width: 100%;
@@ -777,12 +823,10 @@
   .one-pager__card-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .one-pager__split,
-  .one-pager__merch {
+  .one-pager__split {
     grid-template-columns: 1fr;
   }
-  .one-pager__product-mockup,
-  .one-pager__merch-image {
+  .one-pager__product-mockup {
     margin: auto;
   }
   .one-pager__three-cards {
@@ -810,7 +854,7 @@
 
 @media (max-width: 600px) {
   .one-pager__hero {
-    min-height: 830px;
+    gap: 32px;
   }
   .one-pager__hero-stats {
     grid-template-columns: 1fr;
@@ -822,8 +866,7 @@
     border: 0;
   }
   .one-pager__collage {
-    top: 510px;
-    left: 8%;
+    width: calc(100% + 16px);
   }
   .one-pager__partners {
     padding: 40px 16px;
@@ -854,16 +897,6 @@
     grid-template-columns: 1fr;
   }
 
-  .one-pager__merch-image {
-    width: 100%;
-    max-width: 403px;
-    height: auto;
-    aspect-ratio: 403 / 538;
-  }
-  .one-pager__merch-image img {
-    width: 133.5%;
-    height: 100%;
-  }
   .one-pager__steps {
     grid-template-columns: 1fr;
     height: auto;

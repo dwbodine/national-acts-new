@@ -1,18 +1,35 @@
 import Link from 'next/link';
 import { MouseEvent } from 'react';
 
+type CalendlyWindow = Window & {
+  Calendly?: {
+    initPopupWidget: (options: { url: string }) => void;
+  };
+};
+
 type WhatMakesSenseProps = {
   className?: string;
   overviewHref?: string;
   onConversationClick?: () => void;
+  calendlyUrl?: string;
 };
 
 export default function WhatMakesSense({
   className,
   overviewHref = '/one-pager',
   onConversationClick,
+  calendlyUrl = 'https://calendly.com/tj-nationalactsvip/30min',
 }: WhatMakesSenseProps) {
   const wrapperClassName = ['what-makes-sense', className].filter(Boolean).join(' ');
+
+  const handleDemoClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    const calendly = (window as CalendlyWindow).Calendly;
+
+    if (calendly) {
+      event.preventDefault();
+      calendly.initPopupWidget({ url: calendlyUrl });
+    }
+  };
 
   const handleConversationClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (!onConversationClick) {
@@ -55,7 +72,14 @@ export default function WhatMakesSense({
             className="what-makes-sense__button what-makes-sense__button--secondary"
             href={overviewHref}
           >
-            Request a VIP Overview
+            How We Work
+          </Link>
+          <Link
+            className="what-makes-sense__button what-makes-sense__button--secondary"
+            href={calendlyUrl}
+            onClick={handleDemoClick}
+          >
+            Book a Demo
           </Link>
         </div>
       </div>

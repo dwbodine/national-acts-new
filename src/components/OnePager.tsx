@@ -12,8 +12,10 @@ import {
   LuTrendingUp,
 } from 'react-icons/lu';
 import HeroBottom from './common/HeroBottom';
+import HomeTicker from './common/HomeTicker';
 import { PageProps } from '@/types/props';
 import { useEffect } from 'react';
+
 
 const detailCards = [
   [LuSparkles, 'VIP experience design and package structure'],
@@ -82,15 +84,6 @@ const artistTiles = Array.from(
   (_, index) => `/images/one-pager/artist-tile-${String(index + 1).padStart(2, '0')}.png`,
 );
 
-const partnerLogos = [
-  ['/images/ticker/ticketmaster.png', 'Ticketmaster'],
-  ['/images/ticker/ln-logo-white.svg', 'Live Nation'],
-  ['/images/ticker/fm.png', 'FM Music Management'],
-  ['/images/ticker/bsa.png', 'BSA'],
-  ['/images/ticker/m7ent.png', 'M7 Entertainment'],
-  ['/images/ticker/awa.png', 'Artist Worldwide Agency'],
-];
-
 export default function OnePager(props: PageProps) {
   const { page } = props;
 
@@ -121,14 +114,7 @@ export default function OnePager(props: PageProps) {
         </div>
       </section>
 
-      <section className="one-pager__partners">
-        <p>Trusted by</p>
-        <div>
-          {partnerLogos.map(([src, alt]) => (
-            <img src={src} alt={alt} key={alt} />
-          ))}
-        </div>
-      </section>
+      <HomeTicker className="b2b-home-ticker" logoSetRepeats={2} />
 
       <section className="one-pager__section one-pager__details">
         <header>

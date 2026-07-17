@@ -2,32 +2,26 @@ import Link from 'next/link';
 import { MouseEvent } from 'react';
 import Script from 'next/script';
 
-type CalendlyWindow = Window & {
-  Calendly?: {
-    initPopupWidget: (options: { url: string }) => void;
-  };
-};
-
 type TouringRealityProps = {
   className?: string;
-  calendlyUrl?: string;
   howWeWorkHref?: string;
+  onConversationClick?: () => void;
 };
 
 export default function TouringReality({
   className,
-  calendlyUrl = 'https://calendly.com/tj-nationalactsvip/30min',
   howWeWorkHref = '/one-pager',
+  onConversationClick,
 }: TouringRealityProps) {
   const wrapperClassName = ['touring-reality', className].filter(Boolean).join(' ');
 
-  const handleLetsTalkClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    const calendly = (window as CalendlyWindow).Calendly;
-
-    if (calendly) {
-      event.preventDefault();
-      calendly.initPopupWidget({ url: calendlyUrl });
+  const handleConversationClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!onConversationClick) {
+      return;
     }
+
+    event.preventDefault();
+    onConversationClick();
   };
 
   return (
@@ -45,8 +39,12 @@ export default function TouringReality({
           Flexible by design. Built to work whether it&apos;s one show or an entire run.
         </p>
         <h2 className="touring-reality__title" id="touring-reality-title">
-          <span className="touring-reality__title-desktop">Built for Touring Reality</span>
-          <span className="touring-reality__title-mobile">VIP, Built for Touring Reality</span>
+          <span className="touring-reality__title-desktop">
+            Built for Touring Reality
+          </span>
+          <span className="touring-reality__title-mobile">
+            VIP, Built for Touring Reality
+          </span>
         </h2>
         <p className="touring-reality__description">
           National Acts designs and operates VIP experiences for artists, managers, and
@@ -57,13 +55,13 @@ export default function TouringReality({
       <div className="touring-reality__actions">
         <Link
           className="touring-reality__button touring-reality__button--primary"
-          href={calendlyUrl}
-          onClick={handleLetsTalkClick}
+          href="#"
+          onClick={handleConversationClick}
         >
-          <span className="touring-reality__cta-desktop">Let&apos;s Talk</span>
+          <span className="touring-reality__cta-desktop">Start a Conversation</span>
           <span className="touring-reality__cta-mobile">Start a Conversation</span>
         </Link>
-        <Link 
+        <Link
           className="touring-reality__button touring-reality__button--secondary"
           href={howWeWorkHref}
         >

@@ -16,7 +16,7 @@ import Footer from './common/Footer';
 import HeroBottom from './common/HeroBottom';
 import HeroHeadline from './Home/HeroHeadline';
 import HeroSlider from './Home/HeroSlider';
-import HomeContact from './common/HomeContact';
+import HomeContact from './Home/HomeContact';
 import HomeMoments from './Home/Moments';
 import HomeTicker from './common/HomeTicker';
 import MailingListControls from './common/MailingListControls';

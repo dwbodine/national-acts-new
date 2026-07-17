@@ -1,5 +1,5 @@
+import B2BContact, { B2BContactConversationType } from './B2B/B2BContact';
 import { Col, Container, Row } from 'react-bootstrap';
-import HomeContact, { HomeContactConversationType } from './common/HomeContact';
 import B2BHero from './B2B/B2BHero';
 import BuiltForTouring from './B2B/BuiltForTouring';
 import Focus from './B2B/Focus';
@@ -16,7 +16,7 @@ import { useState } from 'react';
 export default function B2B() {
   const [openDialogRequest, setOpenDialogRequest] = useState<{
       id: number;
-      type: HomeContactConversationType;
+      type: B2BContactConversationType;
     } | undefined>();
 
   const openConversationDialog = () => {
@@ -32,7 +32,7 @@ export default function B2B() {
         <Container fluid>
           <div className="b2b-intro">
             <div className="b2b-intro__copy">
-              <TouringReality />
+              <TouringReality onConversationClick={openConversationDialog} />
             </div>
             <div className="b2b-intro__visual">
               <B2BHero />
@@ -77,7 +77,7 @@ export default function B2B() {
             </Col>
           </Row>
         </Container>
-        <HomeContact dialogRequest={openDialogRequest} />
+        <B2BContact dialogRequest={openDialogRequest} />
       </section>
     </>
   );
