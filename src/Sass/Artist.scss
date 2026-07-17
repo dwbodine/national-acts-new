@@ -454,6 +454,41 @@
   }
 }
 
+@media (max-width: 1228px) {
+  .artist-header-thumbnail__hero {
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .artist-header-thumbnail__intro {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .artist-header-thumbnail__socials-container {
+    position: static;
+    width: 100%;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .artist-header-thumbnail__socials {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .artist-header-thumbnail__moments-link {
+    margin-top: 0;
+  }
+
+  .artist-header-thumbnail__image {
+    width: 100%;
+    max-height: unset;
+    height: auto;
+  }
+}
+
 
 @media (max-width: 720px) {
   .artist-header-full-control {
@@ -510,16 +545,8 @@
     left: 16px;
   }
 
-  .artist-header-thumbnail__intro {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .artist-header-thumbnail__image {
-    width: 100%;
-    max-height: unset;
-    height: auto;
-  }
+  
+  
 
   .artist-header-thumbnail__title {
     font-size: 44px;
