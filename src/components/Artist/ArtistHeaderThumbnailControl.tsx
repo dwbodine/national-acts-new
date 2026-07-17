@@ -2,6 +2,7 @@
 
 import { FaArrowRight, FaXTwitter } from 'react-icons/fa6';
 import { FaFacebookF, FaGlobe, FaInstagram, FaSpotify, FaYoutube } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
 import { ArtistPageProps } from '@/types/props';
 import Link from 'next/link';
 import { PageSeller } from '@/types/public';
@@ -24,6 +25,18 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
   const pageImage = page.image
     ? `${process.env.NEXT_PUBLIC_HEADERS_URL}${page.image}`
     : '/images/crowd-web-color.jpg';
+  const [imageAspectRatio, setImageAspectRatio] = useState<number>();
+
+  useEffect(() => {
+    const image = new Image();
+    image.onload = () => setImageAspectRatio(image.naturalWidth / image.naturalHeight);
+    image.src = pageImage;
+
+    return () => {
+      image.onload = null;
+    };
+  }, [pageImage]);
+
   const title = page.title1 ?? primaryArtist?.displayName ?? page.title;
   const socialLinks: SocialLink[] = [
     {
@@ -84,7 +97,12 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
           }
         >
           <div className="artist-header-thumbnail__intro">
-            <img className="artist-header-thumbnail__image" src={pageImage} alt={title} />
+            <img
+              className="artist-header-thumbnail__image"
+              src={pageImage}
+              alt={title}
+              style={{ aspectRatio: imageAspectRatio }}
+            />
             <div className="artist-header-thumbnail__copy">
               <h1
                 className="artist-header-thumbnail__title"
@@ -101,45 +119,49 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
               </p>
             </div>
           </div>
-        </section>
-        <section className="artist-header-thumbnail__socials-container">
-          <nav
-            className="artist-header-thumbnail__socials"
-            aria-label={`${title} social links`}
-          >
-            {visibleSocialLinks.map((socialLink) => {
-              const Icon = socialLink.icon;
+          <section className="artist-header-thumbnail__socials-container">
+            <nav
+              className="artist-header-thumbnail__socials"
+              aria-label={`${title} social links`}
+            >
+              {visibleSocialLinks.map((socialLink) => {
+                const Icon = socialLink.icon;
 
-              const className = socialLink.className
-                ? `artist-header-thumbnail__social-link ${socialLink.className}`
-                : 'artist-header-thumbnail__social-link';
+                const className = socialLink.className
+                  ? `artist-header-thumbnail__social-link ${socialLink.className}`
+                  : 'artist-header-thumbnail__social-link';
 
-              return (
-                <a
-                  key={socialLink.label}
-                  className={className}
-                  href={socialLink.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  title={socialLink.label}
-                >
-                  <Icon
-                    aria-hidden="true"
-                    className="artist-header-thumbnail__social-icon"
-                  />
-                  <span className="visually-hidden">{socialLink.label}</span>
-                </a>
-              );
-            })}
-          </nav>
-          <Link
-            className="artist-header-thumbnail__moments-link"
-            href={primaryArtist?.sellerId ? `/moments?sellerId=${primaryArtist?.sellerId}` : `/moments`}
-            hidden={!props.HasFanMoments}
-          >
-            <span>Meet and Greet photos</span>
-            <FaArrowRight aria-hidden="true" />
-          </Link>
+                return (
+                  <a
+                    key={socialLink.label}
+                    className={className}
+                    href={socialLink.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    title={socialLink.label}
+                  >
+                    <Icon
+                      aria-hidden="true"
+                      className="artist-header-thumbnail__social-icon"
+                    />
+                    <span className="visually-hidden">{socialLink.label}</span>
+                  </a>
+                );
+              })}
+            </nav>
+            <Link
+              className="artist-header-thumbnail__moments-link"
+              href={
+                primaryArtist?.sellerId
+                  ? `/moments?sellerId=${primaryArtist?.sellerId}`
+                  : `/moments`
+              }
+              hidden={!props.HasFanMoments}
+            >
+              <span>Meet and Greet photos</span>
+              <FaArrowRight aria-hidden="true" />
+            </Link>
+          </section>
         </section>
         <section
           className="artist-header-thumbnail__included"
