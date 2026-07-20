@@ -68,8 +68,8 @@ export default function Contact({ page }: PageProps) {
 
       <div className="contact-page__layout" hidden={emailSent}>
         <aside className="contact-page__sidebar">
-          <article className="contact-page__info-card"><span><LuMail /></span><h2>Email Us</h2><p>Send us an email and we&apos;ll respond within 24–48 hours.</p><a href={`mailto:${contactEmail}`}>{contactEmail}</a></article>
-          <article className="contact-page__info-card"><span><LuClock3 /></span><h2>Response Times</h2><p>We aim to respond to all inquiries within <strong>24–48 hours</strong>. During peak tour periods, response times may be slightly longer.</p></article>
+          <article className="contact-page__info-card"><span><LuMail /></span><h2>Email Us</h2><p>Please note that all tickets and VIP packages are sold on a final-sale basis and are nonrefundable unless the event is canceled. Service fees are nonrefundable under all circumstances, including event cancellations. Refund requests for events that have not been canceled cannot be accommodated and will not receive a response.</p><a href={`mailto:${contactEmail}`}>{contactEmail}</a></article>
+          <article className="contact-page__info-card"><span><LuClock3 /></span><h2>Response Times</h2><p>We aim to respond to all inquiries within <strong>24-48 hours</strong>. During peak tour periods, response times may be slightly longer.</p></article>
           <article className="contact-page__info-card"><span><LuMessageCircle /></span><h2>Before You Reach Out</h2><p>Many questions are answered in our FAQ. Check there first for the fastest response.</p><Link href="/faq">Browse FAQ <LuArrowRight /></Link></article>
           <div className="contact-page__notice"><LuCircleAlert /><div><strong>Need to resend a confirmation?</strong><p>Include your name, last 4 digits of the card used, order ID, and the event name.</p></div></div>
         </aside>
@@ -92,7 +92,7 @@ export default function Contact({ page }: PageProps) {
       </div>
 
       <section className="contact-page__success" hidden={!emailSent}>
-        <span><LuMail /></span><h2>Message received</h2><p>Thanks for reaching out. Our support team typically responds within 24–48 hours.</p><Link href="/faq">Browse frequently asked questions</Link>
+        <span><LuMail /></span><h2>Message received</h2><p>Thanks for reaching out. Our support team typically responds within 24-48 hours.</p><Link href="/faq">Browse frequently asked questions</Link>
       </section>
     </main>
   );

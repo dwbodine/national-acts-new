@@ -106,7 +106,8 @@ export default function Home() {
                 <HeroHeadline />
                 <HeroBottom />
               </Col>
-              <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6}>
+              <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6} className="home-slider-container">
+                <h1 className="home-slider-title">Featured Artists</h1>
                 <HeroSlider />
               </Col>
             </Row>

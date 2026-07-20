@@ -2,7 +2,6 @@
 
 import { FaArrowRight, FaXTwitter } from 'react-icons/fa6';
 import { FaFacebookF, FaGlobe, FaInstagram, FaSpotify, FaYoutube } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
 import { ArtistPageProps } from '@/types/props';
 import Link from 'next/link';
 import { PageSeller } from '@/types/public';
@@ -25,17 +24,6 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
   const pageImage = page.image
     ? `${process.env.NEXT_PUBLIC_HEADERS_URL}${page.image}`
     : '/images/crowd-web-color.jpg';
-  const [imageAspectRatio, setImageAspectRatio] = useState<number>();
-
-  useEffect(() => {
-    const image = new Image();
-    image.onload = () => setImageAspectRatio(image.naturalWidth / image.naturalHeight);
-    image.src = pageImage;
-
-    return () => {
-      image.onload = null;
-    };
-  }, [pageImage]);
 
   const title = page.title1 ?? primaryArtist?.displayName ?? page.title;
   const socialLinks: SocialLink[] = [
@@ -88,21 +76,16 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
         <section
           className="artist-header-thumbnail__hero"
           aria-labelledby="artist-header-thumbnail-title"
-          style={
-            gradientStartColor
+          style={{
+            ...(gradientStartColor
               ? {
                   background: `linear-gradient(180deg, color-mix(in srgb, #${gradientStartColor} 75%, #303030) 0%, #0c0c0c 100%), #0c0c0c`,
                 }
-              : undefined
-          }
+              : {}),
+          }}
         >
           <div className="artist-header-thumbnail__intro">
-            <img
-              className="artist-header-thumbnail__image"
-              src={pageImage}
-              alt={title}
-              style={{ aspectRatio: imageAspectRatio }}
-            />
+            <img className="artist-header-thumbnail__image" src={pageImage} alt={title} />
             <div className="artist-header-thumbnail__copy">
               <h1
                 className="artist-header-thumbnail__title"

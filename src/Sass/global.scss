@@ -197,6 +197,8 @@
 @include meta.load-css('./Footer');
 @include meta.load-css('./About');
 @include meta.load-css('./Artist');
+@include meta.load-css('./ArtistHeaderFull');
+@include meta.load-css('./ArtistHeaderThumbnail');
 @include meta.load-css('./ArtistBox');
 @include meta.load-css('./Clients');
 @include meta.load-css('./Contact');
