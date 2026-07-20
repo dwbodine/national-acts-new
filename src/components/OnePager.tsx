@@ -64,18 +64,18 @@ const accountCards = [
 ] as const;
 
 const heroImages = [
-  '/images/hero_collage/Lord3.jpg',
-  '/images/moments/deathtoall_bg.jpg',
-  '/images/moments/orpheum_bg.jpg',
-  '/images/hero_collage/Ex1.jpg',
-  '/images/moments/lordofthelost_bg.jpg',
-  '/images/moments/exodus_bg.jpg',
-  '/images/moments/testament_bg.jpg',
-  '/images/moments/deathtoall_fg.jpg',
-  '/images/moments/lordofthelost2_bg.jpg',
-  '/images/moments/exodus2_bg.jpg',
-  '/images/moments/testament3_bg.jpg',
-  '/images/crowd-web-color.jpg',
+  '/images/one-pager/hero-collage/01.jpg',
+  '/images/one-pager/hero-collage/02.jpg',
+  '/images/one-pager/hero-collage/03.jpg',
+  '/images/one-pager/hero-collage/04.jpg',
+  '/images/one-pager/hero-collage/05.jpg',
+  '/images/one-pager/hero-collage/06.jpg',
+  '/images/one-pager/hero-collage/07.jpg',
+  '/images/one-pager/hero-collage/08.jpg',
+  '/images/one-pager/hero-collage/09.jpg',
+  '/images/one-pager/hero-collage/10.jpg',
+  '/images/one-pager/hero-collage/11.jpg',
+  '/images/one-pager/hero-collage/12.jpg',
 ];
 
 export default function OnePager(props: PageProps) {
