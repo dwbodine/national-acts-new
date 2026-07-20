@@ -37,7 +37,7 @@
 .artist-header-thumbnail__image {
   width: 100%;
   height: auto;
-  max-width: 400px;
+  max-width: 500px;
   flex: 0 0 auto;
   border-radius: 24px;
   object-fit: cover;
@@ -54,7 +54,7 @@
   margin: 0 0 24px;
   color: #fff;
   font-family: v.$hero-title-font-family;
-  font-size: 64px;
+  font-size: 50px;
   font-weight: 700;
   line-height: 0.95;
 }

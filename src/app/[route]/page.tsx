@@ -28,7 +28,9 @@ const getPageData = async (route: string): Promise<Page | undefined> => {
   }
 
   const page: Page = await res.json();
-  page.lastUpdated = moment().unix();
+  if (page) {
+    page.lastUpdated = moment().unix();
+  }  
   return page;
 };
 
