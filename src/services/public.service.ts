@@ -6,6 +6,7 @@ import {
   Menu,
   MenuItem,
   Page,
+  PostSubscriberRequest,
   Seller,
   SiteSetting,
   Tour,
@@ -344,12 +345,14 @@ export class PublicService {
     return response;
   };
 
-  addOrConfirmSubscriber = async (email: string): Promise<PostSubscriberResponse> => {
+  addOrConfirmSubscriber = async (
+    request: PostSubscriberRequest,
+  ): Promise<PostSubscriberResponse> => {
     const url = `/public/addOrConfirmSubscriber`;
 
     const response: PostSubscriberResponse = {};
 
-    const data = JSON.stringify({ email });
+    const data = JSON.stringify(request);
 
     const headers = {
       'Content-Type': 'application/json',

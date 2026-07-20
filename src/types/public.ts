@@ -270,3 +270,13 @@ export interface FeaturedArtist {
   logoImage: string;
   href: string;
 }
+
+export interface PostSubscriberRequest {
+  email: string;
+  firstName: string;
+  lastName: string;
+  city: string;
+  state: string;
+  country: string;
+  favoriteBand: string;
+}

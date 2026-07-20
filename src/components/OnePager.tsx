@@ -16,7 +16,6 @@ import HomeTicker from './common/HomeTicker';
 import { PageProps } from '@/types/props';
 import { useEffect } from 'react';
 
-
 const detailCards = [
   [LuSparkles, 'VIP experience design and package structure'],
   [LuMonitor, 'Ticketing and VIP platform integrations'],
@@ -78,11 +77,6 @@ const heroImages = [
   '/images/moments/testament3_bg.jpg',
   '/images/crowd-web-color.jpg',
 ];
-
-const artistTiles = Array.from(
-  { length: 10 },
-  (_, index) => `/images/one-pager/artist-tile-${String(index + 1).padStart(2, '0')}.png`,
-);
 
 export default function OnePager(props: PageProps) {
   const { page } = props;
@@ -323,15 +317,6 @@ export default function OnePager(props: PageProps) {
         </div>
       </section>
 
-      <section className="one-pager__section one-pager__artists">
-        <h2 className="one-pager__center-title">Artists and Teams We Support</h2>
-        <div>
-          {artistTiles.map((image) => (
-            <img src={image} alt="Supported artist or team" key={image} />
-          ))}
-        </div>
-      </section>
-
       <section className="one-pager__metrics">
         <span className="one-pager__metrics-watermark" aria-hidden="true">
           n
@@ -358,11 +343,11 @@ export default function OnePager(props: PageProps) {
         </div>
         <address>
           <strong>TJ Chopelas</strong>
-          <a href="tel:+19168388986">
-            <span aria-hidden="true">📞</span>916-838-8986
+          <a href="tel:+19165428424">
+            <span aria-hidden="true">📞</span>916-542-8424
           </a>
-          <a href="mailto:tj@nationalactsvip.com">
-            <span aria-hidden="true">✉️</span>tj@nationalactsvip.com
+          <a href="mailto:info@nationalactsvip.com">
+            <span aria-hidden="true">✉️</span>info@nationalactsvip.com
           </a>
           <a href="https://nationalactsvip.com">
             <span aria-hidden="true">🌐</span>nationalactsvip.com

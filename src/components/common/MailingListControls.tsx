@@ -1,5 +1,7 @@
-"use client";
+'use client';
 
+import Modal from 'react-bootstrap/Modal';
+import { PostSubscriberRequest } from '@/types/public';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { userPostSubscriber } from '@/hooks/userPostSubscriber';
@@ -8,8 +10,7 @@ type MailingListControlsProps = {
   className?: string;
 };
 
-const earlyAccessImage =
-  'images/early_access.jpg';
+const earlyAccessImage = 'images/early_access.jpg';
 
 const validateEmail = (email: string) => {
   const re =
@@ -19,12 +20,19 @@ const validateEmail = (email: string) => {
 
 export default function MailingListControls({ className }: MailingListControlsProps) {
   const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [country, setCountry] = useState('');
+  const [favoriteBand, setFavoriteBand] = useState('');
+  const [showDialog, setShowDialog] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { addOrConfirmSubscriber } = userPostSubscriber(email);
+  const { addOrConfirmSubscriber } = userPostSubscriber();
 
   const wrapperClassName = ['early-access', className].filter(Boolean).join(' ');
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleEarlyAccessClick = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const normalizedEmail = email.trim();
@@ -37,27 +45,150 @@ export default function MailingListControls({ className }: MailingListControlsPr
       return;
     }
 
+    setEmail(normalizedEmail);
+    setShowDialog(true);
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     setIsSubmitting(true);
-    
-    const subscriberResponse = await addOrConfirmSubscriber();
+    try {
+      const request: PostSubscriberRequest = {
+        city,
+        country,
+        email,
+        favoriteBand,
+        firstName,
+        lastName,
+        state,
+      };
 
-    if (subscriberResponse.success ) {
-      if (typeof subscriberResponse.subscriberId === 'string') {
-        toast.success('Thank you for already being subscribed!');
+      // The additional subscriber fields can be passed here when the API is ready.
+      const subscriberResponse = await addOrConfirmSubscriber(request);
+
+      if (subscriberResponse.success) {
+        if (typeof subscriberResponse.subscriberId === 'string') {
+          toast.success('Thank you for already being subscribed!');
+        } else {
+          toast.success('Thank you for subscribing!');
+        }
+
+        setEmail('');
+        setFirstName('');
+        setLastName('');
+        setCity('');
+        setState('');
+        setCountry('');
+        setFavoriteBand('');
+        setShowDialog(false);
       } else {
-        toast.success('Thank you for subscribing!');
+        toast.error(
+          subscriberResponse.errorMessage ||
+            'An error occurred while subscribing. Please try again later.',
+        );
       }
-      
-      setEmail('');
-    } else {
-      toast.error(subscriberResponse.errorMessage || 'An error occurred while subscribing. Please try again later.');
+    } catch {
+      toast.error('An error occurred while subscribing. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setIsSubmitting(false); 
   };
 
   return (
     <section className={wrapperClassName} aria-labelledby="early-access-title">
+      <Modal
+        show={showDialog}
+        onHide={() => setShowDialog(false)}
+        centered
+        dialogClassName="early-access-dialog"
+        contentClassName="early-access-dialog__content"
+      >
+        <Modal.Body className="early-access-dialog__body">
+          <button
+            className="early-access-dialog__close"
+            type="button"
+            onClick={() => setShowDialog(false)}
+            aria-label="Close early access form"
+            disabled={isSubmitting}
+          >
+            &times;
+          </button>
+          <h3 className="early-access-dialog__title">Get VIP Early Access</h3>
+          <form className="early-access-dialog__form" onSubmit={handleSubmit}>
+            <label className="early-access-dialog__field">
+              <span>Email</span>
+              <input
+                type="email"
+                value={email}
+                onChange={(event) => setEmail(event.currentTarget.value)}
+                required
+              />
+            </label>
+            <label className="early-access-dialog__field">
+              <span>First Name</span>
+              <input
+                type="text"
+                value={firstName}
+                onChange={(event) => setFirstName(event.currentTarget.value)}
+                required
+              />
+            </label>
+            <label className="early-access-dialog__field">
+              <span>Last Name</span>
+              <input
+                type="text"
+                value={lastName}
+                onChange={(event) => setLastName(event.currentTarget.value)}
+                required
+              />
+            </label>
+            <label className="early-access-dialog__field">
+              <span>City</span>
+              <input
+                type="text"
+                value={city}
+                onChange={(event) => setCity(event.currentTarget.value)}
+                required
+              />
+            </label>
+            <label className="early-access-dialog__field">
+              <span>State</span>
+              <input
+                type="text"
+                value={state}
+                onChange={(event) => setState(event.currentTarget.value)}
+                required
+              />
+            </label>
+            <label className="early-access-dialog__field">
+              <span>Country</span>
+              <input
+                type="text"
+                value={country}
+                onChange={(event) => setCountry(event.currentTarget.value)}
+                required
+              />
+            </label>
+            <label className="early-access-dialog__field early-access-dialog__field--wide">
+              <span>Favorite Band</span>
+              <input
+                type="text"
+                value={favoriteBand}
+                onChange={(event) => setFavoriteBand(event.currentTarget.value)}
+                required
+              />
+            </label>
+            <button
+              className="early-access-dialog__submit"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit'}
+            </button>
+          </form>
+        </Modal.Body>
+      </Modal>
       <span className="early-access__glow" aria-hidden="true" />
       <div className="early-access__card">
         <div className="early-access__image-wrap" aria-hidden="true">
@@ -75,12 +206,11 @@ export default function MailingListControls({ className }: MailingListControlsPr
               Join the list and unlock <strong>exclusive early access</strong> plus a{' '}
               <strong>special VIP welcome offer</strong>.
               <br />
-              <strong>Get early access</strong> to VIP packages before they go
-              public.
+              <strong>Get early access</strong> to VIP packages before they go public.
             </p>
           </div>
 
-          <form className="early-access__form" onSubmit={handleSubmit}>
+          <form className="early-access__form" onSubmit={handleEarlyAccessClick}>
             <label className="early-access__field" htmlFor="early-access-email">
               <span className="visually-hidden">Enter email address</span>
               <input
@@ -92,7 +222,11 @@ export default function MailingListControls({ className }: MailingListControlsPr
                 disabled={isSubmitting}
               />
             </label>
-            <button className="early-access__button" type="submit" disabled={isSubmitting}>
+            <button
+              className="early-access__button"
+              type="submit"
+              disabled={isSubmitting}
+            >
               {isSubmitting ? 'Submitting...' : 'Get Early Access'}
             </button>
           </form>

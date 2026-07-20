@@ -35,8 +35,8 @@ const roleOptions = [
 
 const annualShowOptions = [
   'Under 25',
-  '25–50',
-  '50–100',
+  '25-50',
+  '50-100',
   '100+',
   'Touring is still being planned',
 ];
@@ -69,7 +69,11 @@ export default function ContactForm({ className, dialogRequest }: ContactFormPro
   const [showDialog, setShowDialog] = useState(false);
   const [conversationType, setConversationType] =
     useState<ContactConversationType>('Start a Conversation');
-  const [fullName, setFullName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [country, setCountry] = useState('');
   const [organization, setOrganization] = useState('');
   const [role, setRole] = useState('');
   const [website, setWebsite] = useState('');
@@ -94,8 +98,28 @@ export default function ContactForm({ className, dialogRequest }: ContactFormPro
   };
 
   const validateForm = () => {
-    if (!fullName.trim()) {
-      toast.warning('Full name is required');
+    if (!firstName.trim()) {
+      toast.warning('First name is required');
+      return false;
+    }
+
+    if (!lastName.trim()) {
+      toast.warning('Last name is required');
+      return false;
+    }
+
+    if (!city.trim()) {
+      toast.warning('City is required');
+      return false;
+    }
+
+    if (!state.trim()) {
+      toast.warning('State is required');
+      return false;
+    }
+
+    if (!country.trim()) {
+      toast.warning('Country is required');
       return false;
     }
 
@@ -148,7 +172,11 @@ export default function ContactForm({ className, dialogRequest }: ContactFormPro
   };
 
   const resetForm = () => {
-    setFullName('');
+    setFirstName('');
+    setLastName('');
+    setCity('');
+    setState('');
+    setCountry('');
     setOrganization('');
     setRole('');
     setWebsite('');
@@ -164,7 +192,11 @@ export default function ContactForm({ className, dialogRequest }: ContactFormPro
     const htmlMsg = [
       '<html><body>',
       `<p><b>Inquiry type:</b> ${conversationType}</p>`,
-      `<p><b>Full name:</b> ${fullName}</p>`,
+      `<p><b>First name:</b> ${firstName}</p>`,
+      `<p><b>Last name:</b> ${lastName}</p>`,
+      `<p><b>City:</b> ${city}</p>`,
+      `<p><b>State:</b> ${state}</p>`,
+      `<p><b>Country:</b> ${country}</p>`,
       `<p><b>Artist / Company Name:</b> ${organization}</p>`,
       `<p><b>Your Role:</b> ${role}</p>`,
       `<p><b>Website / Social Media:</b> ${website}</p>`,
@@ -175,6 +207,8 @@ export default function ContactForm({ className, dialogRequest }: ContactFormPro
       `<p><b>Decision timeline:</b> ${decisionTimeline}</p>`,
       '</body></html>',
     ].join('');
+
+    const fullName = `${firstName} ${lastName}`;
 
     const emailMsg: EmailMessage = {
       fromName: 'National Acts VIP',
@@ -258,12 +292,56 @@ export default function ContactForm({ className, dialogRequest }: ContactFormPro
 
           <form className="b2b-contact-dialog__form" onSubmit={handleSubmit}>
             <div className="b2b-contact-dialog__field">
-              <label htmlFor="b2b-contact-full-name">Full name</label>
+              <label htmlFor="b2b-contact-first-name">First name</label>
               <input
-                id="b2b-contact-full-name"
+                id="b2b-contact-first-name"
                 type="text"
-                value={fullName}
-                onChange={(event) => setFullName(event.currentTarget.value)}
+                value={firstName}
+                onChange={(event) => setFirstName(event.currentTarget.value)}
+                required
+              />
+            </div>
+
+            <div className="b2b-contact-dialog__field">
+              <label htmlFor="b2b-contact-last-name">Last name</label>
+              <input
+                id="b2b-contact-last-name"
+                type="text"
+                value={lastName}
+                onChange={(event) => setLastName(event.currentTarget.value)}
+                required
+              />
+            </div>
+
+            <div className="b2b-contact-dialog__field">
+              <label htmlFor="b2b-contact-city">City</label>
+              <input
+                id="b2b-contact-city"
+                type="text"
+                value={city}
+                onChange={(event) => setCity(event.currentTarget.value)}
+                required
+              />
+            </div>
+
+            <div className="b2b-contact-dialog__field">
+              <label htmlFor="b2b-contact-state">State</label>
+              <input
+                id="b2b-contact-state"
+                type="text"
+                value={state}
+                onChange={(event) => setState(event.currentTarget.value)}
+                required
+              />
+            </div>
+
+            <div className="b2b-contact-dialog__field">
+              <label htmlFor="b2b-contact-country">Country</label>
+              <input
+                id="b2b-contact-country"
+                type="text"
+                value={country}
+                onChange={(event) => setCountry(event.currentTarget.value)}
                 required
               />
             </div>
