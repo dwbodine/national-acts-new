@@ -3,7 +3,6 @@
 .b2bSection {
   width: 100%;
   overflow: hidden;
-  background: #0c0c0c;
   max-width: v.$max-width;
 }
 
@@ -18,7 +17,6 @@
   min-height: 704px;
   margin: 0 auto;
   padding: 58px 50px;
-  background: #0c0c0c;
 }
 
 .b2b-intro__copy,
@@ -96,5 +94,11 @@
     bottom: auto;
     z-index: 3;
     margin-top: -12px;
+  }
+}
+
+@media (max-width: 764px) {
+  .b2b-intro {
+    padding-bottom: 0;
   }
 }

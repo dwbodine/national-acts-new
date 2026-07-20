@@ -4,7 +4,7 @@
   max-width: 852px;
   aspect-ratio: 852 / 806;
   overflow: hidden;
-  background: #0c0c0c;
+  background: #000;
   mask-image: linear-gradient(
     to bottom,
     transparent 0%,
@@ -34,13 +34,13 @@
 .b2b-hero::before {
   left: 0;
   width: 38%;
-  background: linear-gradient(90deg, #0c0c0c, transparent);
+  background: linear-gradient(90deg, #000, transparent);
 }
 
 .b2b-hero::after {
   right: 0;
   width: 12%;
-  background: linear-gradient(270deg, #0c0c0c, transparent);
+  background: linear-gradient(270deg, #000, transparent);
 }
 
 .b2b-hero__image {
