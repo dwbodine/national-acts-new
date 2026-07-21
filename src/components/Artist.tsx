@@ -1,107 +1,74 @@
-"use client";
+'use client';
 
-import { Col, Container, Modal, Row } from "react-bootstrap";
-import { JSX, useState } from "react";
-import { PageSeller, SellerType, VipEvent } from "@/types/public";
-import ArtistBox from "./ArtistBox";
-import EventRow from "./EventRow";
-import { PageProps } from "@/types/props";
-import parse from 'html-react-parser';
+import { useEffect, useState } from 'react';
+import ArtistFullHeader from './Artist/ArtistFullHeader';
+import ArtistOriginal from './Artist/ArtistOriginal';
+import { ArtistPageProps } from '@/types/props';
+import { ArtistTemplate } from '@/constants';
+import ArtistThumbnailHeader from './Artist/ArtistThumbnailHeader';
 
+export default function Artist(props: ArtistPageProps) {
+  const { ArtistTemplateType, page } = props;
+  const [hasFanMomentsResult, setHasFanMomentsResult] = useState<boolean>(props.HasFanMoments ?? false);
 
-export default function Artist(props: PageProps) {
-    const { page } = props;
-    const [show, setShow] = useState<boolean>(false);
+  const hasFanMoments = async (sellerId: number): Promise<boolean> => {
+    const searchParams = new URLSearchParams();
+    searchParams.set('sellerId', sellerId.toString());
+    const queryString = searchParams.toString();
 
-    const internalDomain = `${process.env.NEXT_PUBLIC_DOMAIN}`;
-    const pageImage = page.image ? `${process.env.NEXT_PUBLIC_HEADERS_URL}${page.image}` : '/images/crowd-web-color.jpg';    
+    const response = await fetch(`/api/moments/filter?${queryString}`);
 
-    const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+    if (!response.ok) {
+      return false;
+    }
 
-    const openUrl = (url: string) => {
-		const isInternal = (url.indexOf(internalDomain) > 0);
-		if (isInternal) {
-			window.open(url);
-		} else {
-			handleShow();
-			setTimeout(() => {
-				window.open(url);
-				handleClose();
-			}, 1500);
-		}
-	};
+    const responseData = await response.json();
 
-    const artists: PageSeller[] = page?.sellers ?? [];
-	const events: VipEvent[] = page?.events ?? [];
+    return Array.isArray(responseData) && responseData.length > 0;
+  };
 
-	const artistBoxes = [];
-    for (const artist of artists) {
-		artistBoxes.push(<ArtistBox
-			key={`artist_box_${artist.sellerId}`}
-			SellerId={artist.sellerId}
-			DisplayName={artist.displayName}
-			ShowDisplayName={artist.showDisplayName}
-			Website={artist.website}
-			Facebook={artist.facebook}
-			Twitter={artist.twitter}
-			Instagram={artist.instagram}
-			Youtube={artist.youtube}
-			Spotify={artist.spotify}
-		/>);
-	}
+  useEffect(() => {
+    let isMounted = true;
 
-	const eventRows: JSX.Element[] = [];
-	for (const evt of events) {
-		eventRows.push(<EventRow key={evt.externalEventId} Event={evt} OpenUrl={openUrl} SellerType={SellerType.Artist} />);
-	}
+    const loadHasFanMoments = async () => {
+      const sellerIds = page.sellers?.map((seller) => seller.sellerId) ?? [];
 
-	const title1 = page?.title1;
-	const title2 = page?.title2;
-	const htmlText = page?.htmlText ? parse(page.htmlText) : '';
+      if (sellerIds.length === 0) {
+        if (isMounted) {
+          setHasFanMomentsResult(false);
+        }
+        return;
+      }
 
-	return (
-        <section className="artistSection" hidden={!page}>
-			<Container fluid>
-                <Row className="artist-header justify-content-center" hidden={!page.image}>
-                    <Col className="artist-image">
-                        <img src={pageImage} alt={page.title} /> 
-                    </Col>
-                </Row>
-				<Row className="artist-info-row">
-					{artistBoxes}
-				</Row>
-				<Row className="artist-header">
-					<Col>
-						<h1 hidden={!title1} className="artist_title_1">{title1}</h1>
-						<h2 hidden={!title2} className="artist_title_2">{title2}</h2>
-						<h3 hidden={!htmlText} className="artist_text">{htmlText}</h3>
-					</Col>
-				</Row>
-			</Container>
-			<Container className="artistSection">
-				<Row>
-					<Col><h3 className="upcoming-events">Upcoming Events</h3></Col>
-				</Row>
-				<Row>
-					<Col hidden={eventRows.length > 0} className="no-events">No events at this time</Col>
-					<Col hidden={eventRows.length === 0}>
-						{eventRows}
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						<Modal show={show} onHide={handleClose} centered dialogClassName="redirect-modal">
-							<Modal.Body className="redirect-box-container">
-								<div className="redirect-box">
-									<div>You are being redirected to an external website</div>
-								</div>
-							</Modal.Body>
-						</Modal>
-					</Col>
-				</Row>
-			</Container>
-		</section>
-	);
+      const sellerHasFanMoments = await Promise.all(sellerIds.map((sellerId) => hasFanMoments(sellerId)));
 
+      if (isMounted) {
+        setHasFanMomentsResult(sellerHasFanMoments.some(Boolean));
+      }
+    };
+
+    loadHasFanMoments().catch(() => {
+      if (isMounted) {
+        setHasFanMomentsResult(false);
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [page.sellers]);
+
+  const artistProps: ArtistPageProps = {
+    ...props,
+    HasFanMoments: hasFanMomentsResult,
+  };
+
+  switch (ArtistTemplateType) {
+    case ArtistTemplate.NewTemplateFullHeader:
+      return <ArtistFullHeader {...artistProps} />;
+    case ArtistTemplate.NewTemplateThumbnailHeader:
+      return <ArtistThumbnailHeader {...artistProps} />;
+    default:
+      return <ArtistOriginal {...artistProps} />;
+  }
 }

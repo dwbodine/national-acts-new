@@ -1,30 +1,31 @@
-import { FAQuestionProps } from "@/types/props";
+"use client";
+
+import { useId, useState } from 'react';
+import { FAQuestionProps } from '@/types/props';
 import parse from 'html-react-parser';
-import { useState } from "react";
 
-export default function FAQuestion(props: FAQuestionProps) {
-    const { question, index } = props;
-    const [expanded, setExpanded] = useState(false);
+export default function FAQuestion({ question, index }: FAQuestionProps) {
+  const [expanded, setExpanded] = useState(index === 0);
+  const answerId = useId();
+  const answer = question.answer ? parse(question.answer) : '';
 
-    const expandRow = () => {
-        setExpanded(!expanded);
-    };
+  if (!question.question) return null;
 
-    const answer = question?.answer ? parse(question.answer) : '';
-
-    return (
-        <div className="jag-faq-theme6 jag-faq-theme-blue" key={`faq_${index}`} hidden={!question.question}>
-            <div className="jag-faq-wrapper">
-                <div className="jag-faq-title" aria-expanded="true" onClick={() => expandRow()}>
-                    <i className="jag-faq-icon-2 fa float-right fa-plus"></i>
-                    {question.question}
-                </div>
-                <div aria-expanded="true" hidden={!expanded}>
-                    <div className="panel-body">
-                        {answer}
-                    </div>
-                </div>
-            </div>        
-        </div>
-    );
+  return (
+    <article className={['faq-accordion__item', expanded ? 'is-expanded' : null].filter(Boolean).join(' ')}>
+      <button
+        className="faq-accordion__trigger"
+        type="button"
+        aria-expanded={expanded}
+        aria-controls={answerId}
+        onClick={() => setExpanded((value) => !value)}
+      >
+        <span>{question.question}</span>
+        <span className="faq-accordion__chevron" aria-hidden="true" />
+      </button>
+      <div className="faq-accordion__answer" id={answerId} hidden={!expanded}>
+        {answer}
+      </div>
+    </article>
+  );
 }

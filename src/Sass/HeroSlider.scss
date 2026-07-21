@@ -1,0 +1,216 @@
+@use 'variables' as v;
+
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 913.17px;
+  --hero-slider-fade-size: 250px;
+}
+
+.hero-slider::before,
+.hero-slider::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  height: var(--hero-slider-fade-size);
+  pointer-events: none;
+}
+
+.hero-slider::before {
+  top: 0;
+  background: linear-gradient(180deg, v.$main-background-color 0%, rgb(0 0 0 / 0%) 100%);
+}
+
+.hero-slider::after {
+  bottom: 0;
+  background: linear-gradient(0deg, v.$main-background-color 0%, rgb(0 0 0 / 0%) 100%);
+}
+
+.hero-slider__row {
+  position: absolute;
+  overflow: hidden;
+  width: 199.107px;
+  bottom: 0;
+  --row-gap: 20.55px;
+}
+
+.hero-slider__row--left {
+  top: 0;
+  left: 0;
+  --row-gap: 18.27px;
+}
+
+.hero-slider__row--middle {
+  top: 91.87px;
+  left: 215.09px;
+  --row-gap: 19.85px;
+}
+
+.hero-slider__row--right {
+  top: 18.27px;
+  left: 430.18px;
+}
+
+.hero-slider__track,
+.hero-slider__set {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-slider__track {
+  width: 100%;
+}
+
+.hero-slider__set {
+  gap: var(--row-gap);
+}
+
+.hero-slider__row.up .hero-slider__track {
+  animation: hero-slider-move-up 36s linear infinite;
+}
+
+.hero-slider__row.down .hero-slider__track {
+  animation: hero-slider-move-down 36s linear infinite;
+  transform: translateY(-50%);
+}
+
+.hero-slider__row:hover .hero-slider__track,
+.hero-slider__row:focus-within .hero-slider__track {
+  animation-play-state: paused;
+}
+
+.hero-slider__card {
+  position: relative;
+  flex: 0 0 auto;
+  overflow: hidden;
+  width: 199.107px;
+  height: 260.3px;
+}
+
+.hero-slider__image,
+.hero-slider__overlay,
+.hero-slider__logo {
+  position: absolute;
+}
+
+.hero-slider__image {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-slider__overlay {
+  inset: 0;
+  background: rgb(0 0 0 / 20%);
+}
+
+.hero-slider__logo {
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  max-width: 85%;
+  max-height: 75px;
+}
+
+.featured-artists__title {
+  display: none;
+}
+
+@keyframes hero-slider-move-up {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes hero-slider-move-down {
+  from {
+    transform: translateY(-50%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slider__row.up .hero-slider__track,
+  .hero-slider__row.down .hero-slider__track {
+    animation: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 991px) {
+  .hero-slider {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    min-height: 0;
+    height: auto;
+  }
+
+  .hero-slider::before,
+  .hero-slider::after {
+    display: none;
+  }
+
+  .hero-slider__row,
+  .hero-slider__track,
+  .hero-slider__set {
+    display: contents;
+  }
+
+  .hero-slider__set--duplicate {
+    display: none;
+  }
+
+  .hero-slider__card {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 199.107 / 260.3;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-slider {
+    gap: 12px;
+  }
+
+  .hero-slider__logo {
+    max-width: 74%;
+    max-height: 30%;
+  }
+
+  .featured-artists__title {
+    line-height: 0.98;
+    display: flex;
+    grid-column: 1 / -1;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .featured-artists__title h2 {
+    color: v.$current-tours-title-color;
+    font-family: v.$current-tours-title-font-family;
+    font-size: 36px !important;
+    letter-spacing: -1px;
+    font-style: normal;
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,287 @@
+@use 'variables' as v;
+
+.moments {
+  position: relative;
+  width: 100%;
+  padding: 0 60px 48px;
+  background: v.$main-background-color;
+  color: v.$main-text-color;
+  overflow: hidden;
+}
+
+.moments__inner {
+  position: relative;
+  width: 100%;
+  max-width: v.$max-width;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 60px;
+  z-index: 1;
+}
+
+.moments__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.moments__title,
+.moments__description {
+  margin: 0;
+}
+
+.moments__title {
+  color: v.$moments-title-color;
+  font-family: v.$moments-title-font-family;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -1.44px;
+  line-height: 0.98;
+}
+
+.moments__description {
+  color: v.$moments-description-color;
+  font-family: v.$moments-description-font-family;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: -0.48px;
+  line-height: 1.5;
+}
+
+.moments__grid {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.moments__card {
+  position: relative;
+  min-width: 0;
+  height: 416px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #141414;
+}
+
+.moments__card-image {
+  position: absolute;
+  display: block;
+  max-width: none;
+  object-fit: cover;
+}
+
+.moments__card-image--background {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.moments__card-image--foreground {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.moments__card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 72%) 100%);
+}
+
+.moments__grid-fade {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 349px;
+  background: linear-gradient(180deg, rgb(12 12 12 / 0%) 0%, #0c0c0c 100%);
+  pointer-events: none;
+}
+
+.moments__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  padding: 24px 40px;
+  border-radius: 80px;
+  background: v.$moments-button-background-color;
+  color: v.$moments-button-text-color;
+  font-family: v.$moments-button-font-family;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.36px;
+  line-height: normal;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.moments__button:hover,
+.moments__button:focus-visible {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+.moments__orb,
+.moments__ring {
+  position: absolute;
+  pointer-events: none;
+}
+
+.moments__orb {
+  border-radius: 999px;
+  background-size: cover;
+  background-position: center;
+}
+
+.moments__orb--left {
+  top: 256px;
+  left: 179px;
+  width: 115px;
+  height: 115px;
+  opacity: 0.67;
+}
+
+.moments__orb--right {
+  top: 35px;
+  left: 478px;
+  width: 111.67px;
+  height: 111.67px;
+  opacity: 0.5;
+}
+
+.moments__ring {
+  left: 50%;
+  top: 50%;
+  border-style: solid;
+  transform: translate(-50%, -50%);
+  opacity: 0.1;
+}
+
+.moments__ring--inner {
+  width: 840px;
+  height: 840px;
+  border-width: 1px;
+  border-color: rgb(255 255 255 / 50%);
+  border-radius: 420px;
+  background: rgb(255 255 255 / 4%);
+}
+
+.moments__ring--outer {
+  width: 970px;
+  height: 970px;
+  border-width: 1px;
+  border-color: rgb(255 255 255 / 30%);
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 4%);
+}
+
+@media (max-width: 1199px) {
+  .moments {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .moments__inner {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .moments__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 991px) {
+  .moments__title {
+    font-size: 42px;
+    letter-spacing: -1.2px;
+  }
+
+  .moments__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .moments__orb--left,
+  .moments__orb--right {
+    display: none;
+  }
+
+  .moments__ring--inner {
+    width: 680px;
+    height: 680px;
+  }
+
+  .moments__ring--outer {
+    width: 820px;
+    height: 820px;
+  }
+}
+
+@media (max-width: 767px) {
+  .moments {
+    padding: 0 16px 40px;
+  }
+
+  .moments__inner {
+    gap: 32px;
+    padding-top: 32px;
+    padding-bottom: 0;
+  }
+
+  .moments__header {
+    gap: 12px;
+  }
+
+  .moments__title {
+    font-size: 36px;
+    letter-spacing: -1px;
+  }
+
+  .moments__description {
+    max-width: 320px;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .moments__grid {
+    gap: 16px;
+  }
+
+  .moments__card {
+    height: 300px;
+    border-radius: 14px;
+  }
+
+  .moments__button {
+    width: 100%;
+    min-height: 64px;
+    padding: 18px 24px;
+  }
+
+  .moments__grid-fade {
+    height: 220px;
+  }
+
+  .moments__ring--inner {
+    width: 520px;
+    height: 520px;
+  }
+
+  .moments__ring--outer {
+    width: 620px;
+    height: 620px;
+  }
+}

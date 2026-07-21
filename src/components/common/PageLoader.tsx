@@ -1,20 +1,24 @@
 "use client";
 
-import { FAQType, PageProps } from "@/types/props";
+import { ArtistTemplate, PageTypeKey } from "@/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import Artist from "../Artist";
+import B2B from "../B2B";
+import ComingSoon from "./ComingSoon";
 import Contact from "../Contact";
 import Downloads from "../Downloads";
 import Events from "../Events";
 import FAQ from "../FAQ";
-import FAQs from "../FAQs";
+import FanMoments from "../FanMoments";
 import Footer from "./Footer";
-import Header from "./Header";
 import MailingList from "../MailingList";
 import MyAccount from "../MyAccount";
-import { PageTypeKey } from "@/constants";
+import OnePager from "../OnePager";
+import { PageProps } from "@/types/props";
+import Privacy from "../Privacy";
 import { RootState } from "@/lib/store";
+import SiteHeader from "./SiteHeader";
 import Terms from "../Terms";
 import VIPClients from "../VIPClients";
 import Venue from "../Venue";
@@ -68,6 +72,7 @@ const prependHtmlToElement = (target: HTMLElement, html: string): Node[] => {
 
 export default function PageLoader(props: PageProps) {
     const { page } = props;
+    const artistTemplateType = (page.artistPageSettings?.artistTemplateTypeId ?? ArtistTemplate.Original) as ArtistTemplate;
     const [pageTypeId, setPageTypeId] = useState<number | undefined>(undefined);
     const injectedHeadNodesRef = useRef<Node[]>([]);
     const injectedBodyNodesRef = useRef<Node[]>([]);
@@ -135,7 +140,10 @@ export default function PageLoader(props: PageProps) {
     const renderPage = (pageTypeKey: PageTypeKey) => {
         switch (pageTypeKey) {
             case PageTypeKey.Artist:
-                return <Artist page={page} />
+                return <Artist page={page} ArtistTemplateType={artistTemplateType} />
+                break;
+            case PageTypeKey.B2B:
+                return <B2B />
                 break;
             case PageTypeKey.Contact:
                 return <Contact page={page} />
@@ -149,17 +157,17 @@ export default function PageLoader(props: PageProps) {
             case PageTypeKey.FAQ:
                 return <FAQ page={page} />
                 break;
-            case PageTypeKey.FAQGeneral:
-                return <FAQs page={page} faqType={FAQType.General} />
-                break;
-            case PageTypeKey.FAQVIP:
-                return <FAQs page={page} faqType={FAQType.VIP} />
-                break;
             case PageTypeKey.MailingList:
                 return <MailingList page={page} />
                 break;
+            case PageTypeKey.Moments:
+                return <FanMoments />
+                break;
             case PageTypeKey.MyAccount:
                 return <MyAccount page={page} />
+                break;
+            case PageTypeKey.Partner:
+                return <ComingSoon />
                 break;
             case PageTypeKey.Terms:
                 return <Terms page={page} />
@@ -170,6 +178,12 @@ export default function PageLoader(props: PageProps) {
             case PageTypeKey.Venue:
                 return <Venue page={page} />
                 break;
+            case PageTypeKey.Privacy:
+                return <Privacy page={page} />
+                break;
+            case PageTypeKey.OnePager:
+                return <OnePager page={page} />
+                break; 
             default:
                 return undefined;
                 break;
@@ -181,7 +195,7 @@ export default function PageLoader(props: PageProps) {
     return (
        pageToRender ?
         <>
-            <Header />
+            <SiteHeader />
             {pageToRender}
             <Footer />
         </>

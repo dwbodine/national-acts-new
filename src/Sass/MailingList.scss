@@ -1,59 +1,9 @@
+@use 'variables' as v;
+
 .mailListSection {
-  min-height: 80vh;
-}
-
-.mailListSection label {
-  width: 200px;
-  vertical-align: top;
-}
-
-.mailListSection .form-cell {
-  margin-bottom: 10px;
-}
-
-.mailListSection input[type='text'],
-.mailListSection input[type='email'],
-.mailListSection textarea {
+  padding: 0;
+  overflow: hidden;
   width: 100%;
-}
-
-.mailListSection h3 {
-  text-align: center;
-}
-
-.mailListSection .contact-header {
-  padding: 40px;
-  margin-bottom: 15px;
-}
-
-.mailListSection .contact-header h1 {
-  margin-bottom: 15px;
-}
-
-.mailListSection #btnSubmit {
-  background-color: rgb(76, 140, 216);
-  border-radius: 3px;
-  font-size: 16px;
-  color: white;
-  height: 46px;
-  width: 300px;
-}
-
-.mailListSection #btnSubmit:disabled {
-  background-color: rgb(0, 0, 255);
-  color: gray;
-}
-
-.mailingListLogo {
-  max-width: 100%;
-  align-self: center;
-  flex: 0 0 auto;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  border: 0;
-  height: auto;
-  outline: none;
-  text-decoration: none;
-  vertical-align: bottom;
-  box-sizing: border-box !important;
+  max-width: v.$max-width;
+  margin: 0 auto;
 }

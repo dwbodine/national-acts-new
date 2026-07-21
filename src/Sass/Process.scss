@@ -1,0 +1,48 @@
+.b2b-process {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 44px 60px;
+  background: #fff;
+  color: #000;
+}
+
+.b2b-process__statement {
+  width: 100%;
+  max-width: 874px;
+  margin: 0;
+  color: #000;
+  font-family: 'PP Formula Narrow', sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -1.44px;
+  line-height: normal;
+  text-align: center;
+}
+
+.b2b-process__highlight {
+  background: linear-gradient(transparent calc(100% - 8px), #c11e1e 8px);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+@media (max-width: 767px) {
+  .b2b-process {
+    padding: 56px 16px;
+  }
+
+  .b2b-process__statement {
+    font-size: 40px;
+    letter-spacing: -1.2px;
+    line-height: 1.08;
+  }
+
+  .b2b-process__line-break {
+    display: none;
+  }
+
+  .b2b-process__highlight {
+    background: linear-gradient(transparent calc(100% - 6px), #c11e1e 6px);
+  }
+}

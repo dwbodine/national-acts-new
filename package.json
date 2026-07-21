@@ -1,6 +1,6 @@
 {
   "name": "national-acts-www",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "resolutions": {
     "postcss": "npm:8.5.15"
@@ -9,8 +9,8 @@
     "dev": "next dev -p 4000",
     "build": "next build",
     "standalone": "next build && cp -r public/ .next/standalone && cp -r .next/static .next/standalone/.next",
-    "sass-watch": "sass src/Sass:src/Css --watch --no-source-map",
-    "sass": "sass src/Sass:src/Css",
+    "sass-watch": "sass --load-path=node_modules --quiet-deps src/Sass:src/Css --watch --no-source-map",
+    "sass": "sass --load-path=node_modules --quiet-deps src/Sass:src/Css",
     "start": "next start",
     "format": "prettier '**/*.{json,yaml,js,ts}' --write",
     "lint": "eslint",

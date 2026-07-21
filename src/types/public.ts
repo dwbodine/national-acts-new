@@ -10,6 +10,11 @@ export enum SellerType {
   Promoter = 3,
 }
 
+export enum ArtistTitlePosition {
+  TOP = 0,
+  BOTTOM = 1,
+}
+
 export interface SellerEventCategory {
   sellerId: number;
   ticketSocketId: number;
@@ -73,6 +78,7 @@ export interface VipEvent {
   doorsOpen?: string;
   meetAndGreetTime?: string;
   isSoldOut?: boolean;
+  eventNote?: string;
 }
 
 export interface SiteSetting {
@@ -104,11 +110,15 @@ export type GlobalSelection = {
   artists?: Page[];
   events?: VipEvent[];
   eventReloadTime?: number;
+  featuredArtists?: FeaturedArtist[];
   reloadArtists: boolean;
   reloadEvents: boolean;
+  reloadFeaturedArtists: boolean;
   reloadGeneralFaqs: boolean;
   reloadVIPFAQs: boolean;
+  reloadTours: boolean;
   pages?: Page[];
+  tours?: Tour[];
   settings?: SiteSetting[];
   reloadSettings: boolean;
   isLoading: boolean;
@@ -189,6 +199,25 @@ export interface Seller {
   sellerEventCategories?: SellerEventCategory[];
 }
 
+export interface Tour {
+  tourId: number;
+  sellers?: Seller[];
+  tourName: string;
+  isActive: boolean;
+  announceDate: string;
+  coverImage?: string;
+  href?: string;
+}
+
+export interface ArtistPageSettings {
+  artistTemplateTypeId: number;
+  showTitle: boolean;
+  titlePosition: ArtistTitlePosition;
+  vipPackageContents?: string;
+  artistDescription?: string;
+  lastUpdate: string;
+}
+
 export interface Page {
   pageId: number;
   route: string;
@@ -217,6 +246,8 @@ export interface Page {
   lastUpdated?: number;
   extraHtmlHead?: string;
   extraHtmlBody?: string;
+  artistPageSettings?: ArtistPageSettings;
+  gradientStartColor?: string;
 }
 
 export interface EmailMessage {
@@ -229,4 +260,23 @@ export interface EmailMessage {
   ccEmails?: string[];
   fromAddress?: string;
   fromName?: string;
+}
+
+export interface FeaturedArtist {
+  featuredArtistOrder: number;
+  title: string;
+  backgroundImage?: string;
+  previewImage: string;
+  logoImage: string;
+  href: string;
+}
+
+export interface PostSubscriberRequest {
+  email: string;
+  firstName: string;
+  lastName: string;
+  city: string;
+  state: string;
+  country: string;
+  favoriteBand: string;
 }

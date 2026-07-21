@@ -3,7 +3,9 @@
 .artistSection {
   text-align: center;
   overflow: hidden;
-  min-height: 80vh;
+  min-height: 35vh;
+  width: 100%;
+  max-width: v.$max-width;
 }
 
 .artist-info-row {
@@ -16,6 +18,7 @@
 .artist_title_2,
 .artist_text {
   color: v.$header-color;
+  font-family: v.$artist-title-font-family;
 }
 
 .artist_title_1 {
@@ -55,6 +58,7 @@
   text-align: center;
   font-weight: bold;
   margin: 25px 0 15px 0;
+  font-family: v.$artist-title-font-family;
 }
 
 .wait-spinner-container {

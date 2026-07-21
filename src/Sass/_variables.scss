@@ -1,29 +1,121 @@
 // Global
-$main-font-family: 'Calibri', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$main-text-color: #333333;
-$main-background-color: #ffffff;
+$main-font-family: 'Plus Jakarta Sans', sans-serif;
+$main-text-color: #fff;
+$main-background-color: black;
+$max-width: 1440px;
+$min-height: 80vh;
 
-$header-color: #000000;
+$header-color: #fff;
 $header-font-family: 'Impact', 'Carrois Gothic SC', sans-serif;
 $required-field: #ff0000;
 
 $input-border-color: grey;
 $input-highlight-color: white;
 
+$body-bg: $main-background-color;
+$body-color: $main-text-color;
+
+// Site Header
+$site-header-toggler-border: 1px solid rgb(255 255 255 / 28%);
+$site-header-dropdown-toggle-background-color: #fff;
+$site-header-dropdown-menu-border: 1px solid rgb(255 255 255 / 8%);
+$site-header-dropdown-menu-background-color: #111;
+$site-header-login-button-background-color: #fff;
+$site-header-login-button-text-color: #000;
+$site-header-nav-collapse-border: 1px solid rgb(255 255 255 / 12%);
+
+// Hero Headline
+$hero-headline-font-family: 'PP Formula Extended', sans-serif;
+$hero-title-font-family: 'PP Formula Semi Condensed', sans-serif;
+$hero-description-font-family: 'Poppins', sans-serif;
+$hero-button-font-family: 'Poppins', sans-serif;
+$hero-button-primary-background-color: #fff;
+$hero-button-primary-text-color: #000;
+$hero-button-secondary-background-color: rgb(255 255 255 / 10%);
+$hero-button-secondary-border-color: rgb(255 255 255 / 16%);
+$hero-button-secondary-text-color: #fff;
+
+// Current Tours
+$current-tours-title-font-family: $hero-title-font-family;
+$current-tours-title-color: #fff;
+$current-tours-description-font-family: $hero-description-font-family;
+$current-tours-description-color: #b3b3b3;
+$current-tours-card-background-color: #111;
+$current-tours-card-overlay-color: rgb(0 0 0 / 20%);
+$current-tours-card-title-font-family: $hero-title-font-family;
+$current-tours-card-title-color: #fff;
+$current-tours-button-font-family: $hero-button-font-family;
+$current-tours-button-background-color: #fff;
+$current-tours-button-text-color: #000;
+
+// Why Us
+$why-us-background-color: #0c0c0c;
+$why-us-title-font-family: $hero-title-font-family;
+$why-us-title-color: #fff;
+$why-us-description-font-family: $hero-description-font-family;
+$why-us-description-color: #b3b3b3;
+
+// Moments
+$moments-background-color: #0c0c0c;
+$moments-title-font-family: $hero-title-font-family;
+$moments-title-color: #fff;
+$moments-description-font-family: $hero-description-font-family;
+$moments-description-color: #b3b3b3;
+$moments-button-font-family: $hero-button-font-family;
+$moments-button-background-color: #fff;
+$moments-button-text-color: #000;
+
+// Early Access
+$early-access-title-strong-font-family: $hero-title-font-family;
+$early-access-title-light-font-family: $hero-title-font-family;
+$early-access-description-font-family: $hero-description-font-family;
+$early-access-description-color: #b3b3b3;
+$early-access-input-font-family: $hero-description-font-family;
+$early-access-button-font-family: $main-font-family;
+$early-access-footnote-font-family: $hero-description-font-family;
+$early-access-glow-color: #b45c31;
+
+// VIP Solutions
+$vip-solutions-eyebrow-font-family: $hero-headline-font-family;
+$vip-solutions-eyebrow-color: #9a9a9a;
+$vip-solutions-title-font-family: $hero-title-font-family;
+$vip-solutions-title-color: #fff;
+$vip-solutions-card-title-font-family: 'PP Formula Semi Extended', sans-serif;
+$vip-solutions-button-font-family: $hero-button-font-family;
+$vip-solutions-button-primary-background-color: #fff;
+$vip-solutions-button-primary-text-color: #000;
+$vip-solutions-button-secondary-background-color: rgb(255 255 255 / 10%);
+$vip-solutions-button-secondary-border-color: rgb(255 255 255 / 16%);
+$vip-solutions-button-secondary-text-color: #fff;
+$vip-solutions-note-font-family: $hero-description-font-family;
+$vip-solutions-note-color: #b3b3b3;
+
+// Vip Experience
+$vip-experience-background-color: rgb(207 0 0 / 90%);
+$vip-experience-title-font-family: 'PP Formula Semi Extended', sans-serif;
+$vip-experience-title-color: #fff;
+$vip-experience-button-font-family: $hero-button-font-family;
+$vip-experience-button-background-color: #fff;
+$vip-experience-button-text-color: #000;
+$vip-solutions-background-overlay: rgb(0 0 0 / 80%);
+
+// Hero Bottom
+$hero-bottom-text-color: #fff;
+$hero-bottom-separator-color: #cf0000;
+
 // Footer
-$footer-top-border-color: darkgray;
-$footer-background-color: #3b3b3b;
-$footer-text-color: #aaaaaa;
-$footer-font-family: 'Carrois Gothic SC', sans-serif;
+$footer-background-color: black;
+$footer-text-color: #e0e0e0;
+$footer-divider-color: rgb(79 79 79 / 80%);
+$footer-font-family: 'Plus Jakarta Sans', sans-serif;
 $footer-header-font-size: 14px;
-$footer-links-header-color: white;
+$footer-links-header-color: #bdbdbd;
 $footer-link-font-size: 14px;
-$footer-powered-by-background-color: rgba(14, 14, 14, 1);
-$footer-powered-by-background-gradient-color: rgba(125, 126, 125, 1);
-$footer-powered-by-ms-gradient-start: #7d7e7d;
-$footer-powered-by-ms-gradient-end: #0e0e0e;
-$footer-copyright-text-color: white;
+$footer-copyright-text-color: #bdbdbd;
 $footer-copyright-text-size: 10px;
+$footer-social-background-color: #fff;
+$footer-social-icon-color: #0c0c0c;
+$footer-social-icon-size: 40px;
 
 // FAQ
 $faq-font-size: 16px;
@@ -45,11 +137,12 @@ $redirect-box-background-color: white;
 $redirect-box-border-color: #fb515f;
 
 // Artist Box
-$artist-box-header-color: #000000;
-$artist-box-icon-color: #333333;
+$artist-title-font-family: 'PP Formula Semi Extended', sans-serif;
+$artist-box-header-color: white;
+$artist-box-icon-color: white;
 $artist-box-icon-hover-color: white;
 $artist-box-website-hover-color: #333333;
-$artist-box-twitter-hover-color: #33ccff;
+$artist-box-twitter-hover-color: #222222;
 $artist-box-facebook-hover-color: #3b5998;
 $artist-box-youtube-hover-color: #e62117;
 $artist-box-spotify-hover-color: #00db4d;
@@ -63,10 +156,11 @@ $artist-box-instagram-hover-background: -webkit-radial-gradient(
 );
 
 // Event Row
+$event-row-font-family: 'Poppins', sans-serif;
 $event-row-header-color: #d90617;
-$event-row-text-color: black;
+$event-row-text-color: white;
 $event-row-text-color-dark: white;
-$event-row-icon-color: black;
+$event-row-icon-color: white;
 $event-row-icon-color-dark: white;
 $event-row-separator-color: #dddddd;
 $event-row-h3-font-size: 24px;

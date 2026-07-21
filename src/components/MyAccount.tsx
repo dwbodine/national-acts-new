@@ -14,12 +14,6 @@ export default function MyAccount(props: PageProps) {
         document.title = page?.title;
     }, [page?.title]);
 
-    const usaTitle = page?.title1 || "USA";
-    const usaText = page?.subtitle1 || "";
-
-    const europeTitle = page?.title2 || "Europe";
-    const europeText = page?.subtitle2 || "";
-
     const openUrl = (url: string) => {
         if (windowSize.isMobile) {
             window.location.href = url;
@@ -29,28 +23,50 @@ export default function MyAccount(props: PageProps) {
     };
 
     return (
-        <section className="faqSection">
+        <section className="my-account-section">
             <Container fluid>
-                <Row className="justify-content-center">
-                    <Col className="text-center">
+                <Row>
+                    <Col className="my-account-title">
                         <h1>My Account</h1>
                     </Col>
                 </Row>
-                <Row className="justify-content-center">
-                    <Col xl={4} lg={5} md={6} sm={12}>
-                        <div className="faq-card" onClick={() => openUrl('https://secure.nationalactsvip.com/my-account')}>
-                            <img alt="USA Accounts" src="/images/logo_icon.jpg" />
-                            <h3>{usaTitle}</h3>
-                            <p hidden={!usaText}>{usaText}</p>
-                            <button>Go</button>
+                <Row>
+                    <Col>
+                        <div title="USA Accounts" className="my-account-card" onClick={() => openUrl('https://secure.nationalactsvip.com/my-account')}>
+                            <h3>North America</h3>
+                            <p>VIPs for North America</p>
                         </div>
                     </Col>
-                    <Col xl={4} lg={5} md={6} sm={12}>
-                        <div className="faq-card" onClick={() => openUrl('https://europe.nationalactsvip.com/my-account')}>
-                            <img alt="Europe Accounts" src="/images/logo_icon.jpg" />
-                            <h3>{europeTitle}</h3>
-                            <p hidden={!europeText}>{europeText}</p>
-                            <button>Go</button>
+                </Row>
+                <Row>
+                    <Col>
+                        <div title="Europe Accounts" className="my-account-card" onClick={() => openUrl('https://europe.nationalactsvip.com/my-account')}>
+                            <h3>Europe/UK</h3>
+                            <p>VIPs for Europe/UK</p>
+                        </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <div title="Australia Accounts" className="my-account-card" onClick={() => openUrl('https://australia.nationalactsvip.com/my-account')}>
+                            <h3>Australia</h3>
+                            <p>VIPs for Australia</p>
+                        </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <div title="USA Tickets" className="my-account-card" onClick={() => openUrl('https://tickets.nationalactsvip.com/my-account')}>
+                            <h3>USA Tickets</h3>
+                            <p>Non-VIP Tickets for USA</p>
+                        </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <div title="Japan Accounts" className="my-account-card" onClick={() => openUrl('https://japan.nationalactsvip.com/my-account')}>
+                            <h3>Japan</h3>
+                            <p>VIPs for Japan</p>
                         </div>
                     </Col>
                 </Row>

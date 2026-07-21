@@ -1,12 +1,13 @@
 "use client";
 
-import { Col, Container, Modal, Row } from "react-bootstrap";
-import { EVENT_RELOAD_TIMEOUT, HOME_BANNER, HOME_BANNER_LINK } from "@/constants";
 import { GetEventsResponse, GetSettingsResponse } from "@/types/responses";
 import { JSX, useCallback, useEffect, useMemo, useState } from "react";
 import { setEventReloadTime, setEvents, setIsLoading, setReloadEvents, setReloadSettings, setSettings } from "@/lib/globalSelectionSlice";
 import { useDispatch, useSelector } from "react-redux";
-import EventRow from "./EventRow";
+import { EVENT_RELOAD_TIMEOUT } from "@/constants";
+import EventRowV2 from "./common/EventRowV2";
+import { FaSearch } from "react-icons/fa";
+import { Modal } from "react-bootstrap";
 import { PageProps } from "@/types/props";
 import { RingLoader } from 'react-spinners';
 import { RootState } from "@/lib/store";
@@ -16,6 +17,8 @@ import moment from "moment";
 import { useGetSettings } from "@/hooks/useGetSettings";
 import { useSearchEvents } from "@/hooks/useSearchEvents";
 import { useWindowSize } from "@/hooks/useWindowSize";
+
+
 
 export default function Events(props: PageProps) {
     const globalSelection = useSelector((state: RootState) => state.globalSelection);
@@ -131,74 +134,45 @@ export default function Events(props: PageProps) {
     const filteredEvents: VipEvent[] = filterEvents(visibleEvents);
     const eventRows: JSX.Element[] = [];
     for (const evt of filteredEvents) {
-        eventRows.push(<EventRow key={evt.externalEventId} Event={evt} OpenUrl={openUrl} DarkMode={true} SellerType={evt.sellerType} />);
+        eventRows.push(<EventRowV2 key={evt.externalEventId} Event={evt} OpenUrl={openUrl} DarkMode={true} SellerType={evt.sellerType} />);
     }
-
-    const homeBannerSetting = globalSelection.settings?.find(x => x.name === HOME_BANNER);
-    const homeBannerLinkSetting = globalSelection.settings?.find(x => x.name === HOME_BANNER_LINK);
-
-    const homeBannerImage = homeBannerSetting ? `${process.env.NEXT_PUBLIC_HOMEBANNERS_URL}${homeBannerSetting.value}` : '';
-    const homeBannerLink = homeBannerLinkSetting ? `${process.env.NEXT_PUBLIC_SITE_URL}${homeBannerLinkSetting?.value}` : '';
-
 
     return (
         <section className="searchSection">
-            <Container fluid>
-                <Row>
-                    <Col className="hero-image" hidden={!homeBannerImage || !homeBannerLink}>
-                        <a href={homeBannerLink}>
-                            { homeBannerImage && <img id="crowdPic" src={homeBannerImage} alt="Home" /> }
-                        </a>
-                    </Col>
-                </Row>
-                <Row className="justify-content-center">
-                    <Col className="select-col">
-                    { <img id="home_select_500" src="/images/select_vip_500.jpg" alt="Select artist below to see VIP package details" /> }
-                    </Col>
-                </Row>
-            </Container>
-            <Container fluid hidden={!globalSelection.isLoading}>
-                <Row>
-                    <Col className="spinner-container">
-                        <RingLoader size={150} color="#d12610" />
-                    </Col>
-                </Row>
-            </Container>
-            <Container hidden={globalSelection.isLoading}>
-                <Row className="justify-content-center">
-                    <Col sm={12} md={8} lg={6} className="front-page-search">
-                        <div className="jumbotron">
-                            <h1>Find an event</h1>
-                            <input
-                                name="search"
-                                type="text" 
-                                value={searchTerm ?? ''}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="form-control search-text-input no-print"
-                                placeholder="Search for events..."
-                                hidden={!visibleEvents || visibleEvents.length === 0}
-                                />
-                        </div>
-                    </Col>
-                </Row>
-                <Row>
-					<Col hidden={eventRows.length > 0} className="no-events">No events at this time</Col>
-					<Col hidden={eventRows.length === 0}>
-						{eventRows}
-					</Col>
-				</Row>
-                <Row>
-					<Col>
-						<Modal show={show} onHide={handleClose} centered dialogClassName="redirect-modal">
-							<Modal.Body className="redirect-box-container">
-								<div className="redirect-box">
-									<div>You are being redirected to an external website</div>
-								</div>
-							</Modal.Body>
-						</Modal>
-					</Col>
-				</Row>
-            </Container>
+            <div className="events-page">
+                <h1 className="events-page__title">Upcoming Events</h1>
+
+                <label className="events-page__search" hidden={!visibleEvents.length}>
+                    <span className="visually-hidden">Search for events</span>
+                    <input
+                        name="search"
+                        type="search"
+                        value={searchTerm ?? ''}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        placeholder="Search for events"
+                    />
+                    <span className="events-page__search-button" aria-hidden="true">
+                        <FaSearch />
+                    </span>
+                </label>
+
+                <div className="spinner-container" hidden={!globalSelection.isLoading}>
+                    <RingLoader size={150} color="#d12610" />
+                </div>
+
+                <div className="events-page__results" hidden={globalSelection.isLoading}>
+                    <p className="no-events" hidden={eventRows.length > 0}>No events at this time</p>
+                    <div hidden={eventRows.length === 0}>{eventRows}</div>
+                </div>
+            </div>
+
+            <Modal show={show} onHide={handleClose} centered dialogClassName="redirect-modal">
+                <Modal.Body className="redirect-box-container">
+                    <div className="redirect-box">
+                        <div>You are being redirected to an external website</div>
+                    </div>
+                </Modal.Body>
+            </Modal>
         </section>
     );
 }

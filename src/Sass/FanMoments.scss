@@ -1,0 +1,972 @@
+@use 'variables' as v;
+
+.fan-moments-section {
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  max-width: v.$max-width;
+  margin: 0 auto;
+}
+
+.fan-moments {
+  position: relative;
+  width: 100%;
+  padding: 0 60px 48px;
+  background: v.$main-background-color;
+  color: v.$main-text-color;
+  overflow: hidden;
+}
+
+.fan-moments__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.fan-moments__title,
+.fan-moments__description,
+.fan-moments__caption {
+  margin: 0;
+}
+
+.fan-moments__title {
+  color: v.$moments-title-color;
+  font-family: v.$moments-title-font-family;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -1.44px;
+  line-height: 0.98;
+}
+
+.fan-moments__description {
+  color: v.$moments-description-color;
+  font-family: v.$moments-description-font-family;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: -0.48px;
+  line-height: 1;
+}
+
+.fan-moments__caption {
+  color: v.$moments-description-color;
+  font-family: v.$moments-description-font-family;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: 1;
+}
+
+.fan-moments-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: min(100%, 1040px);
+  margin: 25px auto 50px auto;
+}
+
+.fan-moments-filter__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.fan-moments-filter__selected-band {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 320px);
+}
+
+.fan-moments-filter__selected-band-logo {
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  max-height: 96px;
+  object-fit: contain;
+}
+
+.fan-moments-filter__selected-band-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  color: #fff;
+  font-family: v.$moments-title-font-family;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.fan-moments-filter__search,
+.fan-moments-filter__button {
+  min-height: 40px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 8px;
+  background: rgb(255 255 255 / 8%);
+  color: #fff;
+}
+
+.fan-moments-filter__search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1 1 285px;
+  min-width: 0;
+}
+
+.fan-moments-filter__input {
+  width: 100%;
+  height: 40px;
+  padding: 11px 48px 11px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  font-family: v.$moments-description-font-family;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  outline: none;
+}
+
+.fan-moments-filter__input::placeholder {
+  color: rgb(255 255 255 / 68%);
+  opacity: 1;
+}
+
+.fan-moments-filter__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.fan-moments-filter__search-icon {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: rgb(255 255 255 / 78%);
+  pointer-events: none;
+}
+
+.fan-moments-filter__search-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.fan-moments-filter__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 93px;
+  gap: 8px;
+  padding: 11px 16px;
+  font-family: v.$moments-description-font-family;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.fan-moments-filter__button:hover,
+.fan-moments-filter__button:focus-visible,
+.fan-moments-filter__search:focus-within {
+  border-color: rgb(255 255 255 / 32%);
+  background: rgb(255 255 255 / 12%);
+  box-shadow: none;
+}
+
+.fan-moments-filter__button:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+.fan-moments-filter__button-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.fan-moments-filter__bands {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.fan-moments-filter__band-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 250px;
+  max-width: 250px;
+  padding: 16px 12px 14px;
+  overflow: hidden;
+  background-color: rgb(255 255 255 / 7%);
+  background-position: center;
+  background-size: cover;
+  border: 0;
+  border-radius: 8px;
+}
+
+.fan-moments-filter__band-tile::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(0 0 0 / 18%) 0%, rgb(0 0 0 / 62%) 100%);
+  content: '';
+  pointer-events: none;
+}
+
+.fan-moments-filter__band-tile:hover,
+.fan-moments-filter__band-tile:focus-visible {
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 36%);
+}
+
+.fan-moments-filter__band-logo {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  max-height: 125px;
+  filter: drop-shadow(0 2px 10px rgb(0 0 0 / 80%));
+  object-fit: contain;
+}
+
+.fan-moments-filter__band-fallback {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  color: #fff;
+  font-family: v.$moments-title-font-family;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.fan-moments-filter-dialog {
+  --bs-modal-width: 465px;
+}
+
+.fan-moments-filter-dialog__content {
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 5px;
+  background: #262626;
+  color: #fff;
+  box-shadow: 0 24px 80px rgb(0 0 0 / 45%);
+}
+
+.fan-moments-filter-dialog__body {
+  padding: 25px 22px 23px;
+}
+
+.fan-moments-filter-dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.fan-moments-filter-dialog__title {
+  margin: 0;
+  color: #fff;
+  font-family: v.$main-font-family;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.fan-moments-filter-dialog__reset {
+  min-height: 38px;
+  padding: 8px 16px;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 80px;
+  background: transparent;
+  color: #fff;
+  font-family: v.$main-font-family;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.fan-moments-filter-dialog__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.fan-moments-filter-dialog__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #fff;
+  font-family: v.$main-font-family;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.fan-moments-filter-dialog__select-shell,
+.fan-moments-filter-dialog__date-shell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 7px;
+  background: #3c3c3c;
+  color: rgb(255 255 255 / 60%);
+}
+
+.fan-moments-filter-dialog__select-shell select,
+.fan-moments-filter-dialog__date-shell input {
+  width: 100%;
+  min-height: 46px;
+  border: 0;
+  background: transparent;
+  color: rgb(255 255 255 / 72%);
+  font-family: v.$main-font-family;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  outline: none;
+}
+
+.fan-moments-filter-dialog__select-shell select {
+  appearance: none;
+  padding: 12px 46px 12px 12px;
+}
+
+.fan-moments-filter-dialog__select-shell svg {
+  position: absolute;
+  right: 16px;
+  width: 16px;
+  height: 16px;
+  color: #fff;
+  pointer-events: none;
+}
+
+.fan-moments-filter-dialog__select-shell option {
+  color: #111;
+}
+
+.fan-moments-filter-dialog__date-shell {
+  gap: 12px;
+  padding: 0 13px;
+}
+
+.fan-moments-filter-dialog__date-shell svg {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.fan-moments-filter-dialog__date-shell input {
+  position: relative;
+  z-index: 1;
+  padding: 12px 12px 12px 0;
+  color-scheme: dark;
+}
+
+.fan-moments-filter-dialog__date-shell--empty input {
+  color: transparent;
+}
+
+.fan-moments-filter-dialog__date-placeholder {
+  position: absolute;
+  left: 47px;
+  color: rgb(255 255 255 / 60%);
+  font-family: v.$main-font-family;
+  font-size: 16px;
+  line-height: 24px;
+  pointer-events: none;
+}
+
+.fan-moments-filter-dialog__date-shell:not(.fan-moments-filter-dialog__date-shell--empty)
+  .fan-moments-filter-dialog__date-placeholder {
+  display: none;
+}
+
+.fan-moments-filter-dialog__date-value {
+  color: rgb(255 255 255 / 72%);
+  font-family: v.$main-font-family;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.fan-moments-filter-dialog__calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fan-moments-filter-dialog__calendar-header {
+  display: grid;
+  grid-template-columns: 36px 1fr 36px;
+  align-items: center;
+  gap: 8px;
+}
+
+.fan-moments-filter-dialog__calendar-title {
+  color: #fff;
+  font-family: v.$main-font-family;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 22px;
+  text-align: center;
+}
+
+.fan-moments-filter-dialog__calendar-nav,
+.fan-moments-filter-dialog__calendar-day {
+  border: 1px solid rgb(255 255 255 / 14%);
+  background: rgb(255 255 255 / 7%);
+  color: #fff;
+  font-family: v.$main-font-family;
+}
+
+.fan-moments-filter-dialog__calendar-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+}
+
+.fan-moments-filter-dialog__calendar-nav svg {
+  width: 13px;
+  height: 13px;
+}
+
+.fan-moments-filter-dialog__calendar-weekdays,
+.fan-moments-filter-dialog__calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.fan-moments-filter-dialog__calendar-weekdays span {
+  color: rgb(255 255 255 / 46%);
+  font-family: v.$main-font-family;
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+}
+
+.fan-moments-filter-dialog__calendar-day {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  min-width: 0;
+  border-radius: 7px;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.fan-moments-filter-dialog__calendar-day:disabled {
+  border-color: rgb(255 255 255 / 7%);
+  background: rgb(0 0 0 / 18%);
+  color: rgb(255 255 255 / 22%);
+  cursor: not-allowed;
+}
+
+.fan-moments-filter-dialog__calendar-day--outside {
+  opacity: 0.5;
+}
+
+.fan-moments-filter-dialog__calendar-day--selected {
+  border-color: #e51d2a;
+  background: #e51d2a;
+  color: #fff;
+}
+
+.fan-moments-filter-dialog__calendar-nav:hover,
+.fan-moments-filter-dialog__calendar-nav:focus-visible,
+.fan-moments-filter-dialog__calendar-day:not(:disabled):hover,
+.fan-moments-filter-dialog__calendar-day:not(:disabled):focus-visible {
+  border-color: rgb(255 255 255 / 32%);
+  box-shadow: none;
+  opacity: 0.9;
+}
+
+.fan-moments-filter-dialog__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.fan-moments-filter-dialog__action {
+  min-height: 44px;
+  padding: 9px 20px;
+  border-radius: 80px;
+  font-family: v.$main-font-family;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.fan-moments-filter-dialog__action--secondary {
+  border: 1px solid rgb(255 255 255 / 16%);
+  background: transparent;
+  color: #fff;
+}
+
+.fan-moments-filter-dialog__action--primary {
+  border: 1px solid #e51d2a;
+  background: #e51d2a;
+  color: #fff;
+}
+
+.fan-moments-filter-dialog__reset:hover,
+.fan-moments-filter-dialog__reset:focus-visible,
+.fan-moments-filter-dialog__action:hover,
+.fan-moments-filter-dialog__action:focus-visible {
+  box-shadow: none;
+  opacity: 0.88;
+}
+
+.fan-moments-filter-dialog__select-shell:focus-within,
+.fan-moments-filter-dialog__date-shell:focus-within {
+  border-color: rgb(255 255 255 / 42%);
+  box-shadow: 0 0 0 3px rgb(255 255 255 / 8%);
+}
+
+.fan-moments-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 416px;
+  padding: 48px 0;
+}
+
+.fan-moments-photo-viewer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.fan-moments-photo-viewer__toolbar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto 20px;
+}
+
+.fan-moments-photo-viewer__selected-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin: 0 auto 24px;
+  text-align: center;
+}
+
+.fan-moments-photo-viewer__selected-title {
+  margin: 0;
+  color: #fff;
+  font-family: v.$main-font-family;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.fan-moments-photo-viewer__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 9px 18px;
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 80px;
+  background: rgb(255 255 255 / 8%);
+  color: #fff;
+  font-family: v.$main-font-family;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.fan-moments-photo-viewer__back:hover,
+.fan-moments-photo-viewer__back:focus-visible {
+  box-shadow: none;
+  opacity: 0.88;
+}
+
+.fan-moments-photo-viewer__back-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.fan-moments-photo-viewer__column {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.fan-moments-photo-viewer__column--offset-medium {
+  padding-top: 72px;
+}
+
+.fan-moments-photo-viewer__column--offset-large {
+  padding-top: 112px;
+}
+
+.fan-moments-photo-viewer__card {
+  position: relative;
+  min-width: 0;
+  height: 416px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #141414;
+}
+
+.fan-moments-photo-viewer__card-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+.fan-moments-photo-viewer__card-button:hover,
+.fan-moments-photo-viewer__card-button:focus-visible {
+  box-shadow: 0 0 0 2px rgb(255 255 255 / 24%);
+}
+
+.fan-moments-photo-viewer__image {
+  position: absolute;
+  display: block;
+  max-width: none;
+  object-fit: cover;
+}
+
+.fan-moments-photo-viewer__image--background {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fan-moments-photo-viewer__image--foreground {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.fan-moments-photo-viewer__card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 24px 16px;
+  background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 72%) 100%);
+  color: #fff;
+  font-family: v.$main-font-family;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+  text-align: center;
+}
+
+.fan-moments-photo-viewer__image-dialog {
+  --bs-modal-width: fit-content;
+  --bs-modal-margin: 0;
+
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.fan-moments-photo-viewer__image-dialog-content {
+  width: auto;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.fan-moments-photo-viewer__image-dialog-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.fan-moments-photo-viewer__image-dialog-frame {
+  position: relative;
+  display: inline-flex;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+.fan-moments-photo-viewer__image-dialog-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 70%);
+  color: #fff;
+  font-family: v.$main-font-family;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.fan-moments-photo-viewer__image-dialog-close:hover,
+.fan-moments-photo-viewer__image-dialog-close:focus-visible {
+  background: rgb(0 0 0 / 88%);
+  box-shadow: 0 0 0 2px rgb(255 255 255 / 36%);
+}
+
+.fan-moments-photo-viewer__image-dialog-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 75px;
+  height: 75px;
+  padding: 0;
+  border: 0;
+  background: rgb(0 0 0 / 34%);
+  color: #fff;
+  transform: translateY(-50%);
+}
+
+.fan-moments-photo-viewer__image-dialog-nav--previous {
+  left: 12px;
+}
+
+.fan-moments-photo-viewer__image-dialog-nav--next {
+  right: 12px;
+}
+
+.fan-moments-photo-viewer__image-dialog-nav svg {
+  width: 42px;
+  height: 42px;
+  filter: drop-shadow(0 2px 5px rgb(0 0 0 / 70%));
+}
+
+.fan-moments-photo-viewer__image-dialog-nav:hover,
+.fan-moments-photo-viewer__image-dialog-nav:focus-visible {
+  background: rgb(0 0 0 / 56%);
+  box-shadow: 0 0 0 2px rgb(255 255 255 / 30%);
+}
+
+.fan-moments-photo-viewer__image-dialog-image {
+  display: block;
+  max-width: 100vw;
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.fan-moments-photo-viewer__fade {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 349px;
+  background: linear-gradient(180deg, rgb(12 12 12 / 0%) 0%, #0c0c0c 100%);
+  pointer-events: none;
+}
+
+.fan-moments-button-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25px auto;
+}
+
+.fan-moments-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 174px;
+  min-height: 61px;
+  padding: 20px 40px;
+  border: 0;
+  border-radius: 80px;
+  background: v.$moments-button-background-color;
+  color: v.$moments-button-text-color;
+  font-family: v.$moments-button-font-family;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.36px;
+  line-height: normal;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.fan-moments-button:hover,
+.fan-moments-button:focus-visible {
+  transform: translateY(-1px);
+  opacity: 0.92;
+  box-shadow: none;
+}
+
+@media (max-width: 1199px) {
+  .fan-moments {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .fan-moments-photo-viewer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .fan-moments-photo-viewer__column {
+    display: contents;
+  }
+
+  .fan-moments-photo-viewer__column--offset-medium,
+  .fan-moments-photo-viewer__column--offset-large {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .fan-moments__title {
+    font-size: 42px;
+    letter-spacing: -1.2px;
+  }
+
+  .fan-moments-photo-viewer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .fan-moments {
+    padding: 0 16px 40px;
+  }
+
+  .fan-moments__header {
+    gap: 12px;
+  }
+
+  .fan-moments__title {
+    font-size: 36px;
+    letter-spacing: -1px;
+  }
+
+  .fan-moments__description {
+    max-width: 320px;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .fan-moments-filter {
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .fan-moments-filter__actions {
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .fan-moments-filter__selected-band {
+    align-self: center;
+  }
+
+  .fan-moments-filter__search,
+  .fan-moments-filter__button {
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  .fan-moments-filter__bands {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fan-moments-filter__band-tile {
+    min-height: 124px;
+  }
+
+  .fan-moments-filter-dialog {
+    --bs-modal-margin: 16px;
+  }
+
+  .fan-moments-filter-dialog__body {
+    padding: 24px;
+  }
+
+  .fan-moments-filter-dialog__header,
+  .fan-moments-filter-dialog__actions {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+
+  .fan-moments-photo-viewer {
+    gap: 16px;
+  }
+
+  .fan-moments-photo-viewer__card {
+    height: 300px;
+    border-radius: 14px;
+  }
+
+  .fan-moments-button {
+    width: 100%;
+    min-height: 64px;
+    padding: 18px 24px;
+  }
+
+  .fan-moments-photo-viewer__fade {
+    height: 220px;
+  }
+}

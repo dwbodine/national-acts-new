@@ -2,11 +2,14 @@ import {
   EmailMessage,
   Faq,
   FaqCategory,
+  FeaturedArtist,
   Menu,
   MenuItem,
   Page,
+  PostSubscriberRequest,
   Seller,
   SiteSetting,
+  Tour,
   VipEvent,
 } from '@/types/public';
 import {
@@ -14,9 +17,12 @@ import {
   GetEventsResponse,
   GetFaqCategoriesResponse,
   GetFaqsResponse,
+  GetFeaturedArtistsResponse,
   GetPagesResponse,
   GetSellersResponse,
   GetSettingsResponse,
+  GetToursResponse,
+  PostSubscriberResponse,
 } from '@/types/responses';
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import { PageTypeKey } from '@/constants';
@@ -122,17 +128,12 @@ export class PublicService {
     };
 
     menu.items.push({
-      displayText: 'Home',
-      route: '',
-    });
-
-    menu.items.push({
       displayText: 'Search Events',
       route: 'events',
     });
 
     menu.items.push({
-      displayText: 'VIP Roster',
+      displayText: 'Artists',
       route: 'vipclients',
     });
 
@@ -180,11 +181,6 @@ export class PublicService {
       route: 'mailing-list',
     });
 
-    menu.items.push({
-      displayText: 'My Account',
-      route: 'my-account',
-    });
-
     return menu;
   };
 
@@ -212,6 +208,31 @@ export class PublicService {
       response.error =
         err?.message ??
         'Unknown error while fetching pages by type - please contact your administrator';
+    }
+
+    return response;
+  };
+
+  getFeaturedArtists = async (): Promise<GetFeaturedArtistsResponse> => {
+    const url = `/public/featuredArtists`;
+
+    const response: GetFeaturedArtistsResponse = {};
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'x-api-key': `${process.env.NEXT_PUBLIC_API_KEY}`,
+    };
+
+    try {
+      const res = await this.instance.get(url, { headers });
+      response.statusCode = res.status;
+      response.featuredArtists = res.data ? (res.data as FeaturedArtist[]) : [];
+    } catch (e) {
+      const err = e as AxiosError;
+      response.statusCode = err?.response?.status ?? 500;
+      response.error =
+        err?.message ??
+        'Unknown error while fetching featured artists - please contact your administrator';
     }
 
     return response;
@@ -267,6 +288,31 @@ export class PublicService {
     return response;
   };
 
+  getTours = async (): Promise<GetToursResponse> => {
+    const url = `/public/tours`;
+
+    const response: GetToursResponse = {};
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'x-api-key': `${process.env.NEXT_PUBLIC_API_KEY}`,
+    };
+
+    try {
+      const res = await this.instance.get(url, { headers });
+      response.statusCode = res.status;
+      response.tours = res.data ? (res.data as Tour[]) : [];
+    } catch (e) {
+      const err = e as AxiosError;
+      response.statusCode = err?.response?.status ?? 500;
+      response.error =
+        err?.message ??
+        'Unknown error while fetching tours - please contact your administrator';
+    }
+
+    return response;
+  };
+
   sendContactEmail = async (
     message: EmailMessage,
   ): Promise<GetContactMessageResponse> => {
@@ -294,6 +340,44 @@ export class PublicService {
       response.error =
         err?.message ??
         'Unknown error while sending email - please contact your administrator';
+    }
+
+    return response;
+  };
+
+  addOrConfirmSubscriber = async (
+    request: PostSubscriberRequest,
+  ): Promise<PostSubscriberResponse> => {
+    const url = `/public/addOrConfirmSubscriber`;
+
+    const response: PostSubscriberResponse = {};
+
+    const data = JSON.stringify(request);
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'x-api-key': `${process.env.NEXT_PUBLIC_API_KEY}`,
+    };
+
+    try {
+      const res = await this.instance.post(url, data, { headers });
+      const subscriberId = res.data as string | 1 | -1;
+      response.subscriberId = subscriberId;
+      response.success =
+        (typeof subscriberId === 'string' && subscriberId.length > 0) ||
+        subscriberId === 1;
+
+      if (!response.success) {
+        response.errorMessage =
+          'An error occurred while subscribing. Please try again later.';
+      }
+    } catch (e) {
+      const err = e as AxiosError;
+      response.success = false;
+      response.statusCode = err?.response?.status ?? 500;
+      response.error =
+        err?.message ??
+        'Unknown error while adding to mailing list - please contact the administrator';
     }
 
     return response;

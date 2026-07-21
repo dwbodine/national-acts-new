@@ -1,110 +1,18 @@
-"use client";
+'use client';
 
-import { Col, Container, Modal, Row } from "react-bootstrap";
-import { JSX, useState } from "react";
-import { PageSeller, SellerType, VipEvent } from "@/types/public";
-import ArtistBox from "./ArtistBox";
-import EventRow from "./EventRow";
-import { PageProps } from "@/types/props";
-import parse from 'html-react-parser';
-
+import ConcertExperiences from './common/ConcertExperiences';
+import { PageProps } from '@/types/props';
+import VenueEventsControl from './Venue/VenueEventsControl';
+import VenueHeader from './Venue/VenueHeader';
 
 export default function Venue(props: PageProps) {
-    const { page } = props;
-        const [show, setShow] = useState<boolean>(false);
-    
-        const internalDomain = `${process.env.NEXT_PUBLIC_DOMAIN}`;
-        const pageImage = page.image ? `${process.env.NEXT_PUBLIC_HEADERS_URL}${page.image}` : '/images/crowd-web-color.jpg';    
-    
-        const handleClose = () => setShow(false);
-        const handleShow = () => setShow(true);
-    
-        const openUrl = (url: string) => {
-            const isInternal = (url.indexOf(internalDomain) > 0);
-            if (isInternal) {
-                window.open(url);
-            } else {
-                handleShow();
-                setTimeout(() => {
-                    window.open(url);
-                    handleClose();
-                }, 1500);
-            }
-        };
-    
-        const venue: PageSeller | undefined = page?.sellers && page.sellers.length > 0 ? page.sellers[0] : undefined;
-        const events: VipEvent[] = page?.events ?? [];
+  const { page } = props; 
 
-        const eventRows: JSX.Element[] = [];
-            for (const evt of events) {
-                eventRows.push(<EventRow key={evt.externalEventId} Event={evt} OpenUrl={openUrl} SellerType={SellerType.Venue} />);
-            }
-        
-        const title1 = page?.title1;
-        const title2 = page?.title2;
-        const htmlText = page?.htmlText ? parse(page.htmlText) : '';
-
-        const countryName = venue?.country && venue.country?.countryName && venue.country.countryName !== 'USA' ? venue.country.countryName : '';
-
-        return (
-             <section className="artistSection" hidden={!page}>
-                <Container fluid>
-                    <Row className="artist-header justify-content-center" hidden={!page.image}>
-                        <Col className="artist-image">
-                            <img src={pageImage} alt={page.title} /> 
-                        </Col>
-                    </Row>
-                    <Row className="artist-info-row">
-                        { venue && <ArtistBox
-                            key={`artist_box_${venue.sellerId}`}
-                            SellerId={venue.sellerId}
-                            DisplayName={venue.displayName}
-                            ShowDisplayName={venue.showDisplayName}
-                            Website={venue.website}
-                            Facebook={venue.facebook}
-                            Twitter={venue.twitter}
-                            Instagram={venue.instagram}
-                            Youtube={venue.youtube}
-                            Spotify={venue.spotify}
-                            Address={venue.address}
-                            City={venue.city}
-                            State={venue.state}
-                            Zip={venue.zip}
-                            Country={countryName}
-                            Phone={venue.phone}
-                            Email={venue.email}
-                        /> }
-                    </Row>
-                    <Row className="artist-header">
-                        <Col>
-                            <h1 hidden={!title1} className="artist_title_1">{title1}</h1>
-                            <h2 hidden={!title2} className="artist_title_2">{title2}</h2>
-                            <h3 hidden={!htmlText} className="artist_text">{htmlText}</h3>
-                        </Col>
-                    </Row>
-                </Container>
-                <Container className="artistSection">
-                    <Row>
-                        <Col><h3 className="upcoming-events">Upcoming Events</h3></Col>
-                    </Row>
-                    <Row>
-                        <Col hidden={eventRows.length > 0} className="no-events">No events at this time</Col>
-                        <Col hidden={eventRows.length === 0}>
-                            {eventRows}
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Modal show={show} onHide={handleClose} centered dialogClassName="redirect-modal">
-                                <Modal.Body className="redirect-box-container">
-                                    <div className="redirect-box">
-                                        <div>You are being redirected to an external website</div>
-                                    </div>
-                                </Modal.Body>
-                            </Modal>
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
-        );
+  return (
+    <section className="venueSection" hidden={!page}>
+      <VenueHeader {...props} />
+      <VenueEventsControl {...props } />
+      <ConcertExperiences />
+    </section>
+  );
 }

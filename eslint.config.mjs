@@ -28,6 +28,7 @@ const eslintConfig = [
       "one-var": "off",
       "prefer-named-capture-group": "off",
       "radix": "off",
+      "react-hooks/set-state-in-effect": "off",
       "require-unicode-regexp": "off",
     }
   }
