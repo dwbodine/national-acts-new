@@ -5,14 +5,13 @@
   color: v.$main-text-color;
   text-align: left;
   width: 100%;
-  padding: 25px 50px;
+  margin: 0 auto 50px auto;
 }
 
 .artist-header-thumbnail__inner {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-width: 1320px;
   margin: 0;
 }
 
@@ -51,12 +50,12 @@
 }
 
 .artist-header-thumbnail__title {
-  margin: 0 0 24px;
   color: #fff;
   font-family: v.$hero-title-font-family;
-  font-size: 50px;
+  font-size: 42px;
   font-weight: 700;
   line-height: 0.95;
+  min-height: 15px;
 }
 
 .artist-header-thumbnail__description {
@@ -230,6 +229,15 @@
     width: 100%;
     max-height: unset;
     height: auto;
+  }
+
+  .artist-header-thumbnail__title {
+    text-align: center;
+    min-height: unset;
+  }
+
+  .artist-header-thumbnail__description {
+    text-align: justify;
   }
 }
 

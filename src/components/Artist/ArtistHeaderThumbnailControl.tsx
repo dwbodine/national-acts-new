@@ -25,7 +25,7 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
     ? `${process.env.NEXT_PUBLIC_HEADERS_URL}${page.image}`
     : '/images/crowd-web-color.jpg';
 
-  const title = page.title1 ?? primaryArtist?.displayName ?? page.title;
+  const title = page.artistPageSettings?.showTitle ? (page.title1 ?? primaryArtist?.displayName ?? page.title) : ' ';
   const socialLinks: SocialLink[] = [
     {
       className: 'icoSpotify',
@@ -85,12 +85,16 @@ export default function ArtistHeaderThumbnailControl(props: ArtistPageProps) {
           }}
         >
           <div className="artist-header-thumbnail__intro">
-            <img className="artist-header-thumbnail__image" src={pageImage} alt={title} />
+            <img
+              className="artist-header-thumbnail__image"
+              src={pageImage}
+              alt={title}
+              style={{ margin: title === ' ' ? 0 : '0 0 24px' }}
+            />
             <div className="artist-header-thumbnail__copy">
               <h1
                 className="artist-header-thumbnail__title"
                 id="artist-header-thumbnail-title"
-                hidden={!(page.artistPageSettings?.showTitle ?? false)}
               >
                 {title}
               </h1>
