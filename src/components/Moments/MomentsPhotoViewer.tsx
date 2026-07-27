@@ -1,6 +1,6 @@
 'use client';
 
-import { FaChevronLeft, FaChevronRight, FaLongArrowAltLeft } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaDownload, FaLongArrowAltLeft } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import type { FanMoment } from '@/types/moments';
 import Modal from 'react-bootstrap/Modal';
@@ -89,6 +89,9 @@ const getDownloadFilename = (imageUrl: string): string => {
     return filename;
   }
 };
+
+const getDownloadUrl = (imageUrl: string): string =>
+  `/api/moments/download?url=${encodeURIComponent(imageUrl)}`;
 
 const getPhotoViewerItem = (fm: FanMoment, image: string): PhotoViewerItem => ({
   alt: getMomentAltText(fm),
@@ -281,11 +284,12 @@ export default function MomentsPhotoViewer({
             <div className="fan-moments-photo-viewer__image-dialog-frame">
               <a
                 className="fan-moments-photo-viewer__image-dialog-download"
-                href={displayedImage.foregroundImage}
+                href={getDownloadUrl(displayedImage.foregroundImage)}
                 download={getDownloadFilename(displayedImage.foregroundImage)}
+                aria-label="Download image"
                 title="Download"
               >
-                Download
+                <FaDownload aria-hidden="true" />
               </a>
               <button
                 className="fan-moments-photo-viewer__image-dialog-close"
