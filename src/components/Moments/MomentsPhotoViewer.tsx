@@ -1,7 +1,7 @@
 'use client';
 
 import { FaChevronLeft, FaChevronRight, FaDownload, FaLongArrowAltLeft } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { FanMoment } from '@/types/moments';
 import Modal from 'react-bootstrap/Modal';
 import moment from 'moment';
@@ -113,12 +113,15 @@ const getTileItems = (moments: FanMoment[]): PhotoViewerItem[] =>
 const getSelectedMomentItems = (fm: FanMoment): PhotoViewerItem[] =>
   getMomentImages(fm).map((image) => getPhotoViewerItem(fm, image));
 
+const swipeThreshold = 50;
+
 export default function MomentsPhotoViewer({
   className,
   moments = [],
 }: PhotoViewerProps) {
   const [selectedMomentKey, setSelectedMomentKey] = useState<string>();
   const [selectedImage, setSelectedImage] = useState<PhotoViewerItem>();
+  const touchStart = useRef<{ x: number; y: number } | undefined>(undefined);
   const wrapperClassName = ['fan-moments-photo-viewer', className]
     .filter(Boolean)
     .join(' ');
@@ -144,6 +147,41 @@ export default function MomentsPhotoViewer({
   const showNextImage = () => {
     if (hasNextImage) {
       setSelectedImage(items[selectedImageIndex + 1]);
+    }
+  };
+
+  const handleTouchStart = (event: React.TouchEvent) => {
+    const touch = event.touches.item(0);
+
+    if (touch) {
+      touchStart.current = { x: touch.clientX, y: touch.clientY };
+    }
+  };
+
+  const handleTouchEnd = (event: React.TouchEvent) => {
+    const start = touchStart.current;
+    const touch = event.changedTouches.item(0);
+
+    touchStart.current = undefined;
+
+    if (!start || !touch) {
+      return;
+    }
+
+    const horizontalDistance = touch.clientX - start.x;
+    const verticalDistance = touch.clientY - start.y;
+
+    if (
+      Math.abs(horizontalDistance) < swipeThreshold ||
+      Math.abs(horizontalDistance) <= Math.abs(verticalDistance)
+    ) {
+      return;
+    }
+
+    if (horizontalDistance > 0) {
+      showPreviousImage();
+    } else {
+      showNextImage();
     }
   };
 
@@ -281,7 +319,14 @@ export default function MomentsPhotoViewer({
       >
         <Modal.Body className="fan-moments-photo-viewer__image-dialog-body">
           {displayedImage ? (
-            <div className="fan-moments-photo-viewer__image-dialog-frame">
+            <div
+              className="fan-moments-photo-viewer__image-dialog-frame"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              onTouchCancel={() => {
+                touchStart.current = undefined;
+              }}
+            >
               <a
                 className="fan-moments-photo-viewer__image-dialog-download"
                 href={getDownloadUrl(displayedImage.foregroundImage)}

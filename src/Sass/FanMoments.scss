@@ -743,6 +743,7 @@
   display: inline-flex;
   max-width: 100vw;
   max-height: 100vh;
+  touch-action: pan-y;
 }
 
 .fan-moments-photo-viewer__image-dialog-close {
