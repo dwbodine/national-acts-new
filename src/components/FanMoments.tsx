@@ -11,7 +11,6 @@ import { RingLoader } from 'react-spinners';
 import { useRouter } from "next/navigation";
 
 const emptyFilterValues: MomentsFilterValues = {
-    date: '',
     location: '',
 };
 
@@ -33,10 +32,6 @@ const momentImageCollectionKeys = ['images', 'Images'];
 
 const getMomentFilterUrl = (values?: MomentRequestValues): string => {
     const searchParams = new URLSearchParams();
-
-    if (values?.date) {
-        searchParams.set('startDate', values.date);
-    }
 
     if (values?.sellerId) {
         searchParams.set('sellerId', values.sellerId);

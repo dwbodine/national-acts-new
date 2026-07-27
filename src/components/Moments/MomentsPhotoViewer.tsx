@@ -157,6 +157,9 @@ export default function MomentsPhotoViewer({
               Back
             </button>
           </div>
+          <div className="fan-moments-photo-viewer-instructions">
+            Click on an image to enlarge or browse photos
+          </div>
         </div>
       ) : undefined}
       <div className={wrapperClassName}>

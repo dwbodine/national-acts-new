@@ -617,6 +617,17 @@
   line-height: 20px;
 }
 
+.fan-moments-photo-viewer-instructions {
+  display: flex;
+  color: v.$moments-description-color;
+  font-family: v.$moments-description-font-family;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.42px;
+  line-height: 1;
+}
+
 .fan-moments-photo-viewer__back:hover,
 .fan-moments-photo-viewer__back:focus-visible {
   box-shadow: none;
