@@ -26,6 +26,7 @@ export const GET = async (request: Request): Promise<NextResponse> => {
     });
 
     const response = await fetch(url, {
+      cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': apiKey,
@@ -40,7 +41,11 @@ export const GET = async (request: Request): Promise<NextResponse> => {
       );
     }
 
-    return NextResponse.json(await response.json());
+    return NextResponse.json(await response.json(), {
+      headers: {
+        'Cache-Control': 'no-store',
+      },
+    });
   } catch {
     return NextResponse.json({ error: 'Unable to fetch moments' }, { status: 500 });
   }

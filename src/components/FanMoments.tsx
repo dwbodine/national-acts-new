@@ -205,7 +205,9 @@ const getMomentResponseItems = (responseData: unknown): FanMoment[] => {
 };
 
 const getMomentItems = async (values?: MomentRequestValues): Promise<FanMoment[]> => {
-    const response = await fetch(getMomentFilterUrl(values));
+    const response = await fetch(getMomentFilterUrl(values), {
+        cache: 'no-store',
+    });
 
     if (!response.ok) {
         return [];
