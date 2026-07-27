@@ -8,7 +8,7 @@ ENV HOSTNAME="0.0.0.0"
 ENV NEXT_TELEMETRY_DISABLED=1
 
 COPY package.json yarn.lock .yarnrc.yml ./
-RUN npm install -g corepack && corepack enable && corepack prepare yarn@4.17.0 --activate && yarn install --immutable
+RUN npm install -g corepack && corepack enable && corepack prepare yarn@4.17.1 --activate && yarn install --immutable
 
 COPY . .
 
