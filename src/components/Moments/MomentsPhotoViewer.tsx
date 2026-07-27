@@ -76,6 +76,20 @@ const getMomentKey = (fm: FanMoment): string =>
     .filter(Boolean)
     .join(':');
 
+const getDownloadFilename = (imageUrl: string): string => {
+  const filename = imageUrl.split('/').pop()?.split('?')[0];
+
+  if (!filename) {
+    return 'fan-moment';
+  }
+
+  try {
+    return decodeURIComponent(filename);
+  } catch {
+    return filename;
+  }
+};
+
 const getPhotoViewerItem = (fm: FanMoment, image: string): PhotoViewerItem => ({
   alt: getMomentAltText(fm),
   foregroundHeight: 416,
@@ -265,11 +279,20 @@ export default function MomentsPhotoViewer({
         <Modal.Body className="fan-moments-photo-viewer__image-dialog-body">
           {displayedImage ? (
             <div className="fan-moments-photo-viewer__image-dialog-frame">
+              <a
+                className="fan-moments-photo-viewer__image-dialog-download"
+                href={displayedImage.foregroundImage}
+                download={getDownloadFilename(displayedImage.foregroundImage)}
+                title="Download"
+              >
+                Download
+              </a>
               <button
                 className="fan-moments-photo-viewer__image-dialog-close"
                 type="button"
                 aria-label="Close image"
                 onClick={() => setSelectedImage(undefined)}
+                title="Close"
               >
                 X
               </button>

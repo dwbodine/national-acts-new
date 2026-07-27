@@ -766,6 +766,32 @@
   line-height: 1;
 }
 
+.fan-moments-photo-viewer__image-dialog-download {
+  position: absolute;
+  top: 12px;
+  right: 68px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 70%);
+  color: #fff;
+  font-family: v.$main-font-family;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.fan-moments-photo-viewer__image-dialog-download:hover,
+.fan-moments-photo-viewer__image-dialog-download:focus-visible {
+  background: rgb(0 0 0 / 88%);
+  box-shadow: 0 0 0 2px rgb(255 255 255 / 36%);
+  color: #fff;
+}
+
 .fan-moments-photo-viewer__image-dialog-close:hover,
 .fan-moments-photo-viewer__image-dialog-close:focus-visible {
   background: rgb(0 0 0 / 88%);
