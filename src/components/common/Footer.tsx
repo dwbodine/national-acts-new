@@ -23,9 +23,10 @@ const primaryLinks: FooterLink[] = [
   { href: '/', label: 'Home' },
   { href: '/vipclients', label: 'Artists' },
   { href: '/events', label: 'Search Events' },
+  { href: '/moments', label: 'Moments' },
   { href: '/faq', label: 'FAQ' },
   { href: '/b2b', label: 'Work With Us' },
-  { href: '/contact-us', label: 'Contact Us' },
+  { href: '/contact-us', label: 'Contact Us' },  
 ];
 
 const secondaryLinks: FooterLink[] = [

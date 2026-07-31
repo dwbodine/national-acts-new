@@ -172,6 +172,11 @@ export class PublicService {
     }
 
     menu.items.push({
+      displayText: 'Moments',
+      route: 'moments',
+    });
+
+    menu.items.push({
       displayText: 'Contact Us',
       route: 'contact-us',
     });

@@ -1,6 +1,11 @@
 'use client';
 
-import { FaChevronLeft, FaChevronRight, FaDownload, FaLongArrowAltLeft } from 'react-icons/fa';
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaDownload,
+  FaLongArrowAltLeft,
+} from 'react-icons/fa';
 import { useEffect, useRef, useState } from 'react';
 import type { FanMoment } from '@/types/moments';
 import Modal from 'react-bootstrap/Modal';
@@ -18,23 +23,6 @@ type PhotoViewerItem = {
 type PhotoViewerProps = {
   className?: string;
   moments?: FanMoment[];
-};
-
-const columnClassNames = [
-  'fan-moments-photo-viewer__column fan-moments-photo-viewer__column--offset-medium',
-  'fan-moments-photo-viewer__column',
-  'fan-moments-photo-viewer__column fan-moments-photo-viewer__column--offset-large',
-  'fan-moments-photo-viewer__column',
-];
-
-const getColumns = (items: PhotoViewerItem[]) => {
-  const columns: PhotoViewerItem[][] = [[], [], [], []];
-
-  items.forEach((item, index) => {
-    columns[index % columns.length].push(item);
-  });
-
-  return columns;
 };
 
 const getMomentTitleText = (fm: FanMoment): React.ReactNode =>
@@ -102,7 +90,17 @@ const getPhotoViewerItem = (fm: FanMoment, image: string): PhotoViewerItem => ({
 });
 
 const getTileItems = (moments: FanMoment[]): PhotoViewerItem[] =>
-  moments
+  [...moments]
+    .sort((firstMoment, secondMoment) => {
+      const firstDate = moment(firstMoment.key.momentDate);
+      const secondDate = moment(secondMoment.key.momentDate);
+
+      if (!firstDate.isValid()) {
+        return secondDate.isValid() ? 1 : 0;
+      }
+
+      return secondDate.isValid() ? secondDate.valueOf() - firstDate.valueOf() : -1;
+    })
     .map((fm) => {
       const [firstImage] = getMomentImages(fm);
 
@@ -129,7 +127,6 @@ export default function MomentsPhotoViewer({
   const items = selectedMoment
     ? getSelectedMomentItems(selectedMoment)
     : getTileItems(moments);
-  const columns = getColumns(items);
   const selectedImageIndex = selectedImage
     ? items.findIndex((item) => item.foregroundImage === selectedImage.foregroundImage)
     : -1;
@@ -218,97 +215,90 @@ export default function MomentsPhotoViewer({
         </div>
       ) : undefined}
       <div className={wrapperClassName}>
-        {columns.map((columnItems, columnIndex) => (
-          <div
-            key={`fan-moments-photo-viewer-column-${columnIndex}`}
-            className={columnClassNames[columnIndex]}
-          >
-            {columnItems.map((item) => {
-              const fm = moments.find((candidateMoment) => {
-                const [firstImage] = getMomentImages(candidateMoment);
+        {items.map((item) => {
+          const fm = moments.find((candidateMoment) => {
+            const [firstImage] = getMomentImages(candidateMoment);
 
-                return (
-                  firstImage &&
-                  getMomentPath(candidateMoment, firstImage) === item.foregroundImage
-                );
-              });
+            return (
+              firstImage &&
+              getMomentPath(candidateMoment, firstImage) === item.foregroundImage
+            );
+          });
 
-              if (selectedMoment) {
-                return (
-                  <button
-                    key={item.foregroundImage}
-                    className="fan-moments-photo-viewer__card fan-moments-photo-viewer__card-button"
-                    type="button"
-                    onClick={() => setSelectedImage(item)}
-                  >
-                    <img
-                      className="fan-moments-photo-viewer__image fan-moments-photo-viewer__image--foreground"
-                      src={item.foregroundImage}
-                      alt={item.alt}
-                      style={{
-                        height: `${item.foregroundHeight}px`,
-                        width: `${item.foregroundWidth}px`,
-                      }}
-                    />
-                    <div
-                      className="fan-moments-photo-viewer__card-overlay"
-                      aria-hidden="true"
-                    />
-                  </button>
-                );
-              }
+          if (selectedMoment) {
+            return (
+              <button
+                key={item.foregroundImage}
+                className="fan-moments-photo-viewer__card fan-moments-photo-viewer__card-button"
+                type="button"
+                onClick={() => setSelectedImage(item)}
+              >
+                <img
+                  className="fan-moments-photo-viewer__image fan-moments-photo-viewer__image--foreground"
+                  src={item.foregroundImage}
+                  alt={item.alt}
+                  style={{
+                    height: `${item.foregroundHeight}px`,
+                    width: `${item.foregroundWidth}px`,
+                  }}
+                />
+                <div
+                  className="fan-moments-photo-viewer__card-overlay"
+                  aria-hidden="true"
+                />
+              </button>
+            );
+          }
 
-              if (fm) {
-                return (
-                  <button
-                    key={item.foregroundImage}
-                    className="fan-moments-photo-viewer__card fan-moments-photo-viewer__card-button"
-                    type="button"
-                    onClick={() => setSelectedMomentKey(getMomentKey(fm))}
-                  >
-                    <img
-                      className="fan-moments-photo-viewer__image fan-moments-photo-viewer__image--foreground"
-                      src={item.foregroundImage}
-                      alt={item.alt?.toString() ?? ''}
-                      style={{
-                        height: `${item.foregroundHeight}px`,
-                        width: `${item.foregroundWidth}px`,
-                      }}
-                    />
-                    <div
-                      className="fan-moments-photo-viewer__card-overlay"
-                      aria-hidden="true"
-                    >
-                      {item.title}
-                    </div>
-                  </button>
-                );
-              }
-
-              return (
-                <article
-                  key={item.foregroundImage}
-                  className="fan-moments-photo-viewer__card"
+          if (fm) {
+            return (
+              <button
+                key={item.foregroundImage}
+                className="fan-moments-photo-viewer__card fan-moments-photo-viewer__card-button"
+                type="button"
+                onClick={() => setSelectedMomentKey(getMomentKey(fm))}
+              >
+                <img
+                  className="fan-moments-photo-viewer__image fan-moments-photo-viewer__image--foreground"
+                  src={item.foregroundImage}
+                  alt={item.alt?.toString() ?? ''}
+                  style={{
+                    height: `${item.foregroundHeight}px`,
+                    width: `${item.foregroundWidth}px`,
+                  }}
+                />
+                <div
+                  className="fan-moments-photo-viewer__card-overlay"
+                  aria-hidden="true"
                 >
-                  <img
-                    className="fan-moments-photo-viewer__image fan-moments-photo-viewer__image--foreground"
-                    src={item.foregroundImage}
-                    alt=""
-                    aria-hidden="true"
-                    style={{
-                      height: `${item.foregroundHeight}px`,
-                      width: `${item.foregroundWidth}px`,
-                    }}
-                  />
-                  <div
-                    className="fan-moments-photo-viewer__card-overlay"
-                    aria-hidden="true"
-                  />
-                </article>
-              );
-            })}
-          </div>
-        ))}
+                  {item.title}
+                </div>
+              </button>
+            );
+          }
+
+          return (
+            <article
+              key={item.foregroundImage}
+              className="fan-moments-photo-viewer__card"
+            >
+              <img
+                className="fan-moments-photo-viewer__image fan-moments-photo-viewer__image--foreground"
+                src={item.foregroundImage}
+                alt=""
+                aria-hidden="true"
+                style={{
+                  height: `${item.foregroundHeight}px`,
+                  width: `${item.foregroundWidth}px`,
+                }}
+              />
+              <div
+                className="fan-moments-photo-viewer__card-overlay"
+                aria-hidden="true"
+              />
+            </article>
+          );
+        })}
       </div>
       <Modal
         show={Boolean(displayedImage)}
