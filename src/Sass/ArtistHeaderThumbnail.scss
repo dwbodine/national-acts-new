@@ -239,11 +239,16 @@
   .artist-header-thumbnail__description {
     text-align: justify;
   }
+
+  .artist-header-thumbnail__copy {
+    padding-top: 0;
+  }
 }
 
 @media (max-width: 1100px) {
   .artist-header-thumbnail {
-    padding: 32px 24px;
+    margin: 0 auto 25px auto;
+    padding: 32px 24px 0 24px;
   }
 
   .artist-header-thumbnail__hero {
@@ -258,7 +263,7 @@
 
 @media (max-width: 720px) {
   .artist-header-thumbnail {
-    padding: 24px 16px;
+    padding: 24px 16px 0 16px;
   }
 
   .artist-header-thumbnail__hero {
