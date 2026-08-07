@@ -290,7 +290,7 @@ export default function FanMoments() {
     return (
         <section className="fan-moments-section">
             <Container fluid>
-                <Row>
+                <Row hidden={hasSelectedSeller}>
                     <Col xs={12}>
                         <MomentsHeader />
                     </Col>
