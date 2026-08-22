@@ -17,6 +17,7 @@ import MyAccount from "../MyAccount";
 import OnePager from "../OnePager";
 import { PageProps } from "@/types/props";
 import Privacy from "../Privacy";
+import RefundPolicy from "../RefundPolicy";
 import { RootState } from "@/lib/store";
 import SiteHeader from "./SiteHeader";
 import Terms from "../Terms";
@@ -184,6 +185,9 @@ export default function PageLoader(props: PageProps) {
             case PageTypeKey.OnePager:
                 return <OnePager page={page} />
                 break; 
+            case PageTypeKey.Refunds:
+                return <RefundPolicy page={page} />
+                break;
             default:
                 return undefined;
                 break;

@@ -3,6 +3,8 @@ import {
   FaqCategory,
   FeaturedArtist,
   Page,
+  RefundCategory,
+  RefundPolicy,
   Seller,
   SiteSetting,
   Tour,
@@ -25,6 +27,14 @@ export interface GetFaqCategoriesResponse extends GetResponseBase {
 
 export interface GetFaqsResponse extends GetResponseBase {
   faqs?: Faq[];
+}
+
+export interface GetRefundCategoriesResponse extends GetResponseBase {
+  categories?: RefundCategory[];
+}
+
+export interface GetRefundPolicyResponse extends GetResponseBase {
+  policy?: RefundPolicy;
 }
 
 export interface GetPageResponse extends GetResponseBase {

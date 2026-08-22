@@ -7,6 +7,8 @@ import {
   MenuItem,
   Page,
   PostSubscriberRequest,
+  RefundCategory,
+  RefundPolicy,
   Seller,
   SiteSetting,
   Tour,
@@ -19,6 +21,8 @@ import {
   GetFaqsResponse,
   GetFeaturedArtistsResponse,
   GetPagesResponse,
+  GetRefundCategoriesResponse,
+  GetRefundPolicyResponse,
   GetSellersResponse,
   GetSettingsResponse,
   GetToursResponse,
@@ -93,6 +97,31 @@ export class PublicService {
     return response;
   };
 
+  getAllRefundCategories = async (): Promise<GetRefundCategoriesResponse> => {
+    const url = `/public/refund/categories`;
+
+    const response: GetRefundCategoriesResponse = {};
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'x-api-key': `${process.env.NEXT_PUBLIC_API_KEY}`,
+    };
+
+    try {
+      const res = await this.instance.get(url, { headers });
+      response.statusCode = res.status;
+      response.categories = res.data ? (res.data as RefundCategory[]) : undefined;
+    } catch (e) {
+      const err = e as AxiosError;
+      response.statusCode = err?.response?.status ?? 500;
+      response.error =
+        err?.message ??
+        'Unknown error while fetching refund categories - please contact your administrator';
+    }
+
+    return response;
+  };
+
   getFaqs = async (categoryId: number): Promise<GetFaqsResponse> => {
     const url = `/public/faq/${categoryId}`;
 
@@ -113,6 +142,34 @@ export class PublicService {
       response.error =
         err?.message ??
         'Unknown error while fetching faqs - please contact your administrator';
+    }
+
+    return response;
+  };
+
+  getRefundPolicy = async (categoryId: number): Promise<GetRefundPolicyResponse> => {
+    const url = `/public/refund/${categoryId}`;
+
+    const response: GetRefundPolicyResponse = {};
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'x-api-key': `${process.env.NEXT_PUBLIC_API_KEY}`,
+    };
+
+    try {
+      const res = await this.instance.get(url, { headers });
+      response.statusCode = res.status;
+      const policies = res.data ? (res.data as RefundPolicy[]) : undefined;
+      if (policies && policies.length > 0) {
+        [response.policy] = policies;
+      }
+    } catch (e) {
+      const err = e as AxiosError;
+      response.statusCode = err?.response?.status ?? 500;
+      response.error =
+        err?.message ??
+        'Unknown error while fetching refund policies - please contact your administrator';
     }
 
     return response;

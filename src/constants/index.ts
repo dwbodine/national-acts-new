@@ -21,6 +21,7 @@ export enum PageTypeKey {
   Partner = 34,
   Privacy = 32,
   Promoter = 16,
+  Refunds = 36,
   SellTickets = 4,
   SellVIPTickets = 5,
   Sports = 17,

@@ -104,6 +104,17 @@ export interface Faq {
   answer?: string;
 }
 
+export interface RefundCategory {
+  refundCategoryId: number;
+  categoryName?: string;
+}
+
+export interface RefundPolicy {
+  refundPolicyId?: number;
+  category?: RefundCategory;
+  policyText?: string;
+}
+
 export type GlobalSelection = {
   menu?: Menu;
   reloadMenu: boolean;
@@ -116,6 +127,8 @@ export type GlobalSelection = {
   reloadFeaturedArtists: boolean;
   reloadGeneralFaqs: boolean;
   reloadVIPFAQs: boolean;
+  reloadGeneralRefundPolicies: boolean;
+  reloadVIPRefundPolicies: boolean;
   reloadTours: boolean;
   pages?: Page[];
   tours?: Tour[];
@@ -124,6 +137,8 @@ export type GlobalSelection = {
   isLoading: boolean;
   generalFAQ: Faq[];
   vipFAQ: Faq[];
+  generalRefundPolicy?: RefundPolicy;
+  vipRefundPolicy?: RefundPolicy;
 };
 
 export interface Menu {

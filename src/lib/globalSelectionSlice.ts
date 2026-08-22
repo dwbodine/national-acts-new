@@ -6,6 +6,7 @@ import {
   GlobalSelection,
   Menu,
   Page,
+  RefundPolicy,
   SiteSetting,
   Tour,
   VipEvent,
@@ -17,6 +18,7 @@ const initialState: GlobalSelection = {
   eventReloadTime: 0,
   featuredArtists: undefined,
   generalFAQ: [],
+  generalRefundPolicy: undefined,
   isLoading: false,
   menu: undefined,
   pages: undefined,
@@ -24,12 +26,15 @@ const initialState: GlobalSelection = {
   reloadEvents: true,
   reloadFeaturedArtists: true,
   reloadGeneralFaqs: true,
+  reloadGeneralRefundPolicies: true,
   reloadMenu: true,
   reloadSettings: true,
   reloadTours: true,
   reloadVIPFAQs: true,
+  reloadVIPRefundPolicies: true,
   settings: undefined,
   vipFAQ: [],
+  vipRefundPolicy: undefined,
 };
 
 export const globalSelectionSlice = createSlice({
@@ -56,6 +61,10 @@ export const globalSelectionSlice = createSlice({
       state.generalFAQ = action.payload;
       return state;
     },
+    setGeneralRefundPolicy: (state, action: PayloadAction<RefundPolicy>) => {
+      state.generalRefundPolicy = action.payload;
+      return state;
+    },    
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
       return state;
@@ -84,6 +93,10 @@ export const globalSelectionSlice = createSlice({
       state.reloadGeneralFaqs = action.payload;
       return state;
     },
+    setReloadGeneralRefundPolicies: (state, action: PayloadAction<boolean>) => {
+      state.reloadGeneralRefundPolicies = action.payload;
+      return state;
+    },
     setReloadMenu: (state, action: PayloadAction<boolean>) => {
       state.reloadMenu = action.payload;
       return state;
@@ -100,6 +113,10 @@ export const globalSelectionSlice = createSlice({
       state.reloadVIPFAQs = action.payload;
       return state;
     },
+    setReloadVIPRefundPolicies: (state, action: PayloadAction<boolean>) => {
+      state.reloadVIPRefundPolicies = action.payload;
+      return state;
+    },
     setSettings: (state, action: PayloadAction<SiteSetting[]>) => {
       state.settings = action.payload;
       return state;
@@ -112,6 +129,10 @@ export const globalSelectionSlice = createSlice({
       state.vipFAQ = action.payload;
       return state;
     },
+    setVIPRefundPolicy: (state, action: PayloadAction<RefundPolicy>) => {
+      state.vipRefundPolicy = action.payload;
+      return state;
+    },
   },
 });
 
@@ -121,6 +142,7 @@ export const {
   setEvents,
   setFeaturedArtists,
   setGeneralFAQ,
+  setGeneralRefundPolicy,
   setIsLoading,
   setMenu,
   setPages,
@@ -128,13 +150,16 @@ export const {
   setReloadEvents,
   setReloadFeaturedArtists,
   setReloadGeneralFAQs,
+  setReloadGeneralRefundPolicies,
   setReloadMenu,
   setReloadSettings,
   setReloadTours,
   setReloadVIPFAQs,
+  setReloadVIPRefundPolicies,
   setSettings,
   setTours,
   setVIPFAQ,
+  setVIPRefundPolicy,
 } = globalSelectionSlice.actions;
 
 export default globalSelectionSlice.reducer;

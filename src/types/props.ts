@@ -15,13 +15,26 @@ export enum FAQType {
   VIP = 2,
 }
 
+export enum RefundPolicyType {
+  General = 1,
+  VIP = 2,
+}
+
 export interface FAQProps extends PageProps {
   faqType: FAQType;
+}
+
+export interface RefundPolicyProps extends PageProps {
+  refundPolicyType: RefundPolicyType;
 }
 
 export interface FAQuestionProps {
   question: Faq;
   index: number;
+}
+
+export interface RefundPolicyItemProps {
+  policyText: string;
 }
 
 export interface ArtistBoxProps {
