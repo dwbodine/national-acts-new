@@ -161,4 +161,25 @@
   .refund-policy {
     padding: 24px 16px;
   }
+
+  @media (max-width: 576px) {
+    .refund-page__hero h1 {
+      font-size: 36px;
+      line-height: 1.05;
+    }
+    .refund-page__content {
+      width: 100%;
+      padding: 0 20px;
+      p {
+        font-size: 14px;
+      }
+    }
+
+    .refund-page__filters button {
+      padding: 12px;
+      font-size: 14px;
+      min-height: unset;
+      margin: 0;
+    }
+  }
 }

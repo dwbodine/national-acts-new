@@ -64,7 +64,7 @@ export const globalSelectionSlice = createSlice({
     setGeneralRefundPolicy: (state, action: PayloadAction<RefundPolicy>) => {
       state.generalRefundPolicy = action.payload;
       return state;
-    },    
+    },
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
       return state;
