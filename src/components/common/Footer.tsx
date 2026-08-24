@@ -25,7 +25,6 @@ const primaryLinks: FooterLink[] = [
   { href: '/events', label: 'Search Events' },
   { href: '/moments', label: 'Moments' },
   { href: '/faq', label: 'FAQ' },
-  { href: '/refunds', label: 'Refund Policy' },
   { href: '/b2b', label: 'Work With Us' },
   { href: '/contact-us', label: 'Contact Us' },  
 ];
@@ -43,6 +42,7 @@ const secondaryLinks: FooterLink[] = [
 const legalLinks: FooterLink[] = [
   { href: '/terms', label: 'Terms of Use' },
   { href: '/privacy', label: 'Privacy Policy' },
+  { href: '/refunds', label: 'Refund Policy' },
 ];
 
 const socialLinks: SocialLink[] = [
